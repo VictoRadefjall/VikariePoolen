@@ -15,7 +15,39 @@ export default new Router({
     {
       path: '/vikarielista',
       name: 'vikarielista',
-      component: () => import('./views/Vikarielista.vue')
+      component: () => import('./views/Vikarielista.vue'),
+    },
+    {
+      path: '/avboka',
+      name: 'avboka',
+      component: () => import('./views/Avboka.vue')
+    },
+    {
+      path: '/boka',
+      name: 'boka',
+      component: () => import('./views/Boka.vue'),
+    },
+    {
+      path: '/confirm',
+      name: 'confirm',
+      component: () => import('./views/Confirm.vue')
+    },
+    {
+      path: '/panel',
+      name: 'panel',
+      component: () => import('./views/Panel.vue'),
+      children: [
+        {
+          path: '/add',
+          name: 'adduser',
+          component: () => import('./views/AddUser.vue')
+        },
+        {
+          path: '/edit',
+          name: 'edituser',
+          component: () => import('./views/EditUser.vue')
+        }
+      ]
     }
   ]
 })

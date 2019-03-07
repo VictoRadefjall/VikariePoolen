@@ -1,6 +1,7 @@
 <template>
     <main id="avboka">
-    
+        <h1>Avboka</h1>
+        <a @click="$router.push('/vikarielista')">Slutför</a>
     </main>
 </template>
 
