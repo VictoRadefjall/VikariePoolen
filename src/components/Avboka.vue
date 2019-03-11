@@ -1,7 +1,6 @@
 <template>
     <main id="avboka">
-        <h1>Avboka</h1>
-        <a @click="$router.push('/vikarielista')">Slutför</a>
+        <h1>Avbokad och klart!</h1>
     </main>
 </template>
 
@@ -13,5 +12,9 @@ export default {
 
 <style lang="scss">
 @import '../scss/main.scss';
+
+#avboka {
+    @extend %center;
+}
 
 </style>

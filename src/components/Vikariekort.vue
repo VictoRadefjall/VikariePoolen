@@ -1,6 +1,6 @@
 <template>
   <div class="vikariekort">
-    <h2>My name</h2>
+    <h2>Name</h2>
   </div>
 </template>
 

@@ -1,16 +1,17 @@
 <template>
     <main id="boka">
-        <h1>Boka</h1>
+        <h1>Vikarieprofil</h1>
         
         <footer>
-          <a @click="$router.push('/confirm')">Bekräfta bokning</a>
+          <a>Avboka</a>
+          <a>Boka</a>
         </footer>
     </main>
 </template>
 
 <script>
 export default {
-    name: 'boka'
+    name: 'vikarieprofil'
 }
 </script>
 

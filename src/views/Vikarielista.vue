@@ -1,12 +1,13 @@
 <template>
   <main id="lista">
+    <h1>Vikarielista</h1>
+    
     <Vikariekort />
     
     <footer>
-      <a @click="$router.push('/boka')">Boka</a> |
-      <a @click="$router.push('/avboka')">Avboka</a> 
-    </footer>
 
+    </footer>
+    
   </main>
 </template>
 
@@ -23,5 +24,9 @@ export default {
 
 <style lang="scss">
 @import '../scss/main.scss';
+
+#lista {
+  background: red;
+}
 
 </style>

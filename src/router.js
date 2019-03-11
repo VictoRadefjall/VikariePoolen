@@ -16,21 +16,13 @@ export default new Router({
       path: '/vikarielista',
       name: 'vikarielista',
       component: () => import('./views/Vikarielista.vue'),
-    },
-    {
-      path: '/avboka',
-      name: 'avboka',
-      component: () => import('./views/Avboka.vue')
-    },
-    {
-      path: '/boka',
-      name: 'boka',
-      component: () => import('./views/Boka.vue'),
-    },
-    {
-      path: '/confirm',
-      name: 'confirm',
-      component: () => import('./views/Confirm.vue')
+      children: [
+        {
+          path: '/vikarieprofil',
+          name: 'vikarieprofil',
+          component: () => import('./views/Vikarieprofil.vue')
+        }
+      ]
     },
     {
       path: '/panel',
