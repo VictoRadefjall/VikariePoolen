@@ -1,6 +1,6 @@
 <template>
     <main id="panel">
-        <h1>Admin</h1>
+        <h1>Admin - Panel</h1>
 
         <footer>
             <a @click="$router.push('/add')">Lägg till vikarie</a> |
