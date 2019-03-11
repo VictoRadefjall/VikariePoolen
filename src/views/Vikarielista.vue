@@ -1,9 +1,10 @@
 <template>
   <main id="lista">
     <h1>Vikarielista</h1>
-    
-    <Vikariekort />
-    
+
+    <div class="vikarier">
+      <Vikariekort />
+    </div>
     <footer>
 
     </footer>
@@ -18,15 +19,19 @@ export default {
   name: 'vikarielista',
   components: {
     Vikariekort
+  },
+  methods: {
+    hej() {
+      console.log('Hej');
+    }
+  },
+  beforeMount() {
+    this.$store.dispatch('getVikarier')
   }
 }
 </script>
 
 <style lang="scss">
 @import '../scss/main.scss';
-
-#lista {
-  background: red;
-}
 
 </style>

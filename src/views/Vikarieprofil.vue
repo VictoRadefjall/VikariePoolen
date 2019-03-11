@@ -1,5 +1,5 @@
 <template>
-    <main id="boka">
+    <main id="boka" >
         <h1>Vikarieprofil</h1>
         
         <footer>
