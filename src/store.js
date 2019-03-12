@@ -18,9 +18,9 @@ export default new Vuex.Store({
   },
   actions: {
     async getVikarier(ctx) {
-      let vikarier = await axios.get('http://localhost:3000/vikarier');
-      ctx.commit('setVikarier', vikarier.data);
-      console.log(vikarier.data)
+ //     let vikarier = await axios.get('http://localhost:3000/vikarier');
+  //    ctx.commit('setVikarier', vikarier.data);
+  //    console.log(vikarier.data)
     }
   }
 })
