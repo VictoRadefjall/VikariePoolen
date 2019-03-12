@@ -22,5 +22,16 @@ export default new Vuex.Store({
       ctx.commit('setVikarier', vikarier.data);
       console.log(vikarier.data)
     }
+  },
+  getters: {
+    vikarier(state) {
+      return state.vikarier;
+    },
+    getVikarieById(state) {
+      return (vikarieId) => {
+        console.log(vikarieId)
+        return state.vikarier.filter(vikarie => vikarie.id == vikarieId);
+      }
+    }
   }
 })
