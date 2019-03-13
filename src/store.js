@@ -20,7 +20,6 @@ export default new Vuex.Store({
     async getVikarier(ctx) {
       let vikarier = await axios.get('http://localhost:3000/vikarier');
       ctx.commit('setVikarier', vikarier.data);
-      console.log(vikarier.data)
     }
   },
   getters: {
@@ -30,7 +29,7 @@ export default new Vuex.Store({
     getVikarieById(state) {
       return (vikarieId) => {
         console.log(vikarieId)
-        return state.vikarier.filter(vikarie => vikarie.id == vikarieId);
+        return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
       }
     }
   }

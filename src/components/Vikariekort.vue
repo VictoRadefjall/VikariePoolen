@@ -3,7 +3,7 @@
     <section class="container" 
       v-for="(vikarie, index) in vikarier" 
       :key="index" 
-      @click=" $router.push(`/vikarielista/${vikarie._id}`) ">
+      @click=" $router.push(`/vikarielista/${vikarie._id}`)">
       
       <img src="../assets/avatar.png" width="100" />
       <h2> {{ vikarie.namn }} </h2>
@@ -23,9 +23,6 @@ export default {
   computed: {
     vikarier() {
       return this.$store.getters.vikarier
-    },
-    vikarieId() {
-      return this.$store.getters.getVikarieById(this.$route.params.id);
     },
   }
 }

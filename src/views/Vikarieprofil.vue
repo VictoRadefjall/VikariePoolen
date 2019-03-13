@@ -2,7 +2,7 @@
     <main id="boka">
       <div class="profil">
         <h1>Vikarieprofil</h1>
-        <p> {{ vikarieId }} </p>
+        <h2> {{ vikarie.namn }} </h2>
 
         <footer>
           <a>Avboka</a>
@@ -17,7 +17,7 @@
 export default {
     name: 'vikarieprofil',
     computed: {
-        vikarieId() {
+        vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
         },
     }
