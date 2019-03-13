@@ -11,14 +11,14 @@
 
       <section class="info">
         <h2> {{ vikarie.namn }} </h2>
-        <ul>
-          <li> 
+        <article>
+          <p> 
             Ämnen: 
               <span> 
                 {{ vikarie.amne.length }} 
               </span>
-          </li>
-          <li> 
+          </p>
+          <p> 
             Årskurs: 
               <span v-if="vikarie.klass.length > 1">
                 {{ vikarie.klass.length }}+
@@ -26,8 +26,8 @@
               <span v-else> 
                 {{ vikarie.klass.length }} 
               </span>
-          </li>
-          <li>
+          </p>
+          <p>
             Kommuner: 
               <span v-if="vikarie.kommun.length > 1">
                 Flera
@@ -35,9 +35,10 @@
               <span v-else>
                 {{ vikarie.kommun.length }} 
               </span>
-          </li>
-        </ul>
+          </p>
+        </article>
       </section>
+
     </section>
     <router-view />
   </main>
@@ -64,7 +65,7 @@ export default {
   
   .card {
     width: 85vw;
-    height: 10rem;
+    height: 5rem;
     padding: 1rem;
     display: inherit;
     border-radius: 5px;
@@ -74,44 +75,47 @@ export default {
 
     .info {
       display: flex;
-      justify-content: flex-start;
       flex-direction: column;
+      margin-left: .5rem;
+      flex: 7;
 
       h2 {
-        align-items: flex-start;
         display: inherit;
         margin: 0;
-        font-size: 2em;
+        align-items: center;
+        justify-content: flex-start;
       }
 
-      ul {
+      article {
         display: flex;
-        width: 50vw;
         flex-direction: row;
+        align-items: flex-start;
         justify-content: space-between;
-        font-size: 1.2em;
 
-        li {
-            list-style-type: none;
+        p {
+            font-weight: 600;
             display: inherit;
-            @extend %center;
             flex-direction: column;
+            @extend %center;
 
             span {
+              font-weight: normal;
               color: purple;
-              font-size: 1.5em;
+              font-size: 1em;
             }
         }
       }
+
     }
+  
 
     aside {
+      flex: 2;
       @extend %center;
-      padding: .5rem;
     
       .vikariebild {
-        width: 25vw;
-        max-width: 150px;
+        width: 15vw;
+        max-width: 100px;
         border-radius: 9999rem;
         background: linear-gradient(orange, white)
       }
