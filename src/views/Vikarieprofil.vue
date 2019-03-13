@@ -1,12 +1,16 @@
 <template>
-    <main id="boka" >
-        <h1>Seynabo Sey</h1>
-          <img src="../assets/avatar.png" alt="avatar">
+    <main id="boka">
+      <div class="profil">
+        <h1>Vikarieprofil</h1>
+        <h2> {{ vikarie.namn }} </h2>
+        <img src="../assets/avatar.png" alt="avatar"/>
+
         <footer>
           <a href="#" @click="toggle">Avboka</a>
           <a href="#">Boka</a>
         </footer>
-        <avboka :active="active" />
+      </div>
+
     </main>
 </template>
 
