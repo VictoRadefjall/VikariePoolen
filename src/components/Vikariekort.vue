@@ -3,7 +3,8 @@
     <section class="card" 
       v-for="(vikarie, index) in vikarier" 
       :key="index" 
-      @click=" $router.push(`/vikarielista/${vikarie._id}`)">
+      @click=" $router.push(`/vikarielista/${vikarie._id}`)"
+    >
       
       <aside>
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
@@ -64,7 +65,7 @@ export default {
   @extend %center;
   
   .card {
-    width: 85vw;
+    width: 40vw;
     height: 5rem;
     padding: 1rem;
     display: inherit;
@@ -72,6 +73,7 @@ export default {
     background: #eee;
     flex-direction: row;
     margin: .5rem;
+    cursor: pointer;
 
     .info {
       display: flex;
@@ -108,19 +110,23 @@ export default {
 
     }
   
-
     aside {
       flex: 2;
       @extend %center;
     
       .vikariebild {
-        width: 15vw;
-        max-width: 100px;
+        width: 5rem;
         border-radius: 9999rem;
         background: linear-gradient(orange, white)
       }
     }
 
+  }
+
+   @media screen and (max-width: 500px) {
+    .card {
+      width: 85vw;
+    }
   }
 }
 
