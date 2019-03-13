@@ -58,7 +58,7 @@ export default {
   methods: {
     filterKommun() {
         this.vikarier.forEach((vikarie) => {
-          if(this.kommun.includes(vikarie.kommun)) {
+          if(this.kommun.match(vikarie.kommun)) {
             console.log(vikarie);
             console.log(this.kommun);
             return this.vikarier.filter(kommun => vikarie.kommun == kommun.kommun)
