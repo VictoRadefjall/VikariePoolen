@@ -1,8 +1,8 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
+import Vue from 'vue';
+import Vuex from 'vuex';
+import axios from 'axios';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
@@ -13,14 +13,27 @@ export default new Vuex.Store({
   },
   mutations: {
     setVikarier(state, vikarier) {
-      state.vikarier = vikarier
+      state.vikarier = vikarier;
     }
   },
   actions: {
     async getVikarier(ctx) {
- //     let vikarier = await axios.get('http://localhost:3000/vikarier');
-  //    ctx.commit('setVikarier', vikarier.data);
-  //    console.log(vikarier.data)
+    let vikarier = await axios.get('http://localhost:3000/vikarier');
+    ctx.commit('setVikarier', vikarier.data);
+    console.log(vikarier.data);
     }
+  },
+  getters: {
+    vikarier (state) {
+      return state.vikarier;
+    },
+    getVikarierById(state){
+      return(vikarieId) => {
+        console.log(vikarieId)
+        return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
+      }
+    }
+
   }
+
 })

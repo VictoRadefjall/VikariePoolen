@@ -6,8 +6,8 @@
         <img src="../assets/avatar.png" alt="avatar"/>
 
         <footer>
-          <a href="#" @click="toggle">Avboka</a>
-          <a href="#">Boka</a>
+         <!-- <a href="#" @click="toggle">Avboka</a> -->
+          <a href="#" @click="toggle">Boka</a>
         </footer>
       </div>
 
@@ -29,8 +29,13 @@ export default {
     },
     methods: {
         toggle(){
-            console.log('ahjsdfjhsdfjh')
+            console.log('You are bookt')
             this.active = !this.active;
+        }
+    },
+    computed: {
+        vikarie(){
+            return this.$store.getters.getVikarieById($this.router.params.id);
         }
     }
 }
