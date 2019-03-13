@@ -21,9 +21,7 @@ export default {
     Vikariekort
   },
   methods: {
-    hej() {
-      console.log('Hej');
-    }
+
   },
   beforeMount() {
     this.$store.dispatch('getVikarier')
@@ -33,5 +31,11 @@ export default {
 
 <style lang="scss">
 @import '../scss/main.scss';
+
+#lista {
+  background: purple;
+
+
+}
 
 </style>
