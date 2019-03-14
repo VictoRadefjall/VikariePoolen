@@ -12,6 +12,11 @@
 <style lang="scss">
 @import './scss/main.scss';
 
+#app {
+  background: url('./assets/vikariepoolare.jpg') no-repeat;
+  background-size: contain;
+}
+
 #nav {
   padding: 30px;
   a {

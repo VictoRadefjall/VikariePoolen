@@ -7,9 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     vikarier: [],
-    kommuner: ['Kungälv', 'Lerum', 'Partille', 'Mölndal', 'Göteborg', 'Öckerö', 'Tjörn', 'Kungsbacka'],
-    amnen: ['Svenska', 'Engelska', 'Matematik', 'Samhällskunskap', 'Naturkunskap', 'Teknik', 'Idrott', 'Slöjd', 'Elevassistent', 'Musik', 'Språk', 'Bild'],
-    klasser: ['Grundskola', 'Förskola', 'Gymnasium']
+    kommuner: ['Alla', 'Kungälv', 'Lerum', 'Partille', 'Mölndal', 'Göteborg', 'Öckerö', 'Tjörn', 'Kungsbacka'],
+    amnen: ['Alla', 'Svenska', 'Engelska', 'Matematik', 'Samhällskunskap', 'Naturkunskap', 'Teknik', 'Idrott', 'Slöjd', 'Elevassistent', 'Musik', 'Språk', 'Bild'],
+    klasser: ['Alla', 'Grundskola', 'Förskola', 'Gymnasium']
   },
   mutations: {
     setVikarier(state, vikarier) {

@@ -17,11 +17,10 @@
 export default {
     name: 'vikarieprofil',
     computed: {
-        vikarie() {
-          return this.$store.getters.getVikarieById(this.$route.params.id);
-        },
+      vikarie() {
+        return this.$store.getters.getVikarieById(this.$route.params.id);
+      },
     }
-    
 }
 </script>
 
