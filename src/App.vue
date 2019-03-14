@@ -13,7 +13,7 @@
 @import './scss/main.scss';
 
 #app {
-  background: url('./assets/vikariepoolare.jpg') no-repeat;
+  // background: url('./assets/vikariepoolare.jpg') repeat;
   background-size: contain;
 }
 

@@ -6,7 +6,7 @@
 
         <footer>
           <a>Avboka</a>
-          <a>Boka</a>
+          <a>Boka</a> 
         </footer>
       </div>
 

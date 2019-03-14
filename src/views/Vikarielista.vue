@@ -43,7 +43,9 @@
     <div class="vikarier">
       <Vikariekort v-for="(vikarie, index) in filterKommun"
         :key="index"
-        :vikarie="vikarie" />
+        :vikarie="vikarie" 
+      />
+
     </div>
     
   </main>
@@ -79,7 +81,7 @@ export default {
         return this.vikarier;
       } else {
       return this.vikarier.filter(vikarie => {
-          return vikarie.kommun == this.kommun
+          return vikarie.kommun.includes(this.kommun);
         })
       }
     },
