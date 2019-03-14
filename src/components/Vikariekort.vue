@@ -1,10 +1,6 @@
 <template>
   <main id="vikariekort">
-    <section class="card" 
-      v-for="(vikarie, index) in vikarier" 
-      :key="index" 
-      @click=" $router.push(`/vikarielista/${vikarie._id}`)"
-    >
+    <section class="card">
       
       <aside>
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
@@ -48,6 +44,7 @@
 <script>
 export default {
   name: 'vikariekort',
+  props: ['vikarie'],
   computed: {
     vikarier() {
       return this.$store.getters.vikarier
