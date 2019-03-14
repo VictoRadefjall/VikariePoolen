@@ -12,7 +12,7 @@
         <textarea placeholder="Kompetenser" rows="4" cols="50" class="kompetens" v-model="nyVikarie.kompetens" /> 
         
         <div class="btn">
-          <a href="#" @click="skapaVikarie()">Lägg till</a>
+          <a href="#" @click="skapaVikarie()" >Lägg till</a>
         </div>
 
       </aside>
@@ -38,6 +38,7 @@ export default {
     methods: {
         async skapaVikarie() {
             this.$store.dispatch('skapaVikarie', this.nyVikarie);
+            this.$router.push('/panel')
         }
     } 
 }
