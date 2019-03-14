@@ -18,7 +18,7 @@ export default new Router({
       component: () => import('./views/Vikarielista.vue'),
       children: [
         {
-          path: '/vikarieprofil',
+          path: '/vikarielista/:id',
           name: 'vikarieprofil',
           component: () => import('./views/Vikarieprofil.vue')
         }

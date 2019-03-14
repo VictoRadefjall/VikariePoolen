@@ -9,7 +9,7 @@ export default new Vuex.Store({
     vikarier: [],
     kommuner: ['Kungälv', 'Lerum', 'Partille', 'Mölndal', 'Göteborg', 'Öckerö', 'Tjörn', 'Kungsbacka'],
     amnen: ['Svenska', 'Engelska', 'Matematik', 'Samhällskunskap', 'Naturkunskap', 'Teknik', 'Idrott', 'Slöjd', 'Elevassistent', 'Musik', 'Språk', 'Bild'],
-    klass: ['Grundskola', 'Förskola', 'Gymnasium']
+    klasser: ['Grundskola', 'Förskola', 'Gymnasium']
   },
   mutations: {
     setVikarier(state, vikarier) {
@@ -20,7 +20,17 @@ export default new Vuex.Store({
     async getVikarier(ctx) {
       let vikarier = await axios.get('http://localhost:3000/vikarier');
       ctx.commit('setVikarier', vikarier.data);
-      console.log(vikarier.data)
     }
+  },
+  getters: {
+    vikarier(state) {
+      return state.vikarier;
+    },
+    getVikarieById(state) {
+      return (vikarieId) => {
+        return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
+      }
+    },
+    
   }
 })
