@@ -54,6 +54,7 @@ computed: {
     align-items: center;
     max-width: 420px;
     width: 100%;
+    margin: auto;
     background: $lightpurple;
     flex-direction: column;
 
