@@ -30,16 +30,16 @@ export default new Router({
       component: () => import('./views/Panel.vue'),
       children: [
         {
-          path: '/add',
-          name: 'adduser',
-          component: () => import('./views/AddUser.vue')
-        },
-        {
           path: '/edit',
           name: 'edituser',
           component: () => import('./views/EditUser.vue')
         }
       ]
-    }
+    },
+    {
+      path: '/add',
+      name: 'adduser',
+      component: () => import('./views/AddUser.vue')
+    },
   ]
 });

@@ -1,6 +1,6 @@
 <template>
   <main id="vikariekort">
-    <section class="card">
+    <section class="card" @click="$router.push(`/vikarielista/${vikarie._id}`)">
       
       <aside>
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
@@ -11,8 +11,11 @@
         <article>
           <p> 
             Ämnen: 
-              <span> 
+              <span v-if="vikarie.amne.length > 1"> 
                 {{ vikarie.amne.length }} 
+              </span>
+              <span v-else>
+                {{ vikarie.amne.toString() }}
               </span>
           </p>
           <p> 
@@ -21,7 +24,7 @@
                 {{ vikarie.klass.length }}+
               </span>
               <span v-else> 
-                {{ vikarie.klass.length }} 
+                {{ vikarie.klass.toString() }} 
               </span>
           </p>
           <p>
@@ -30,7 +33,7 @@
                 Flera
               </span>
               <span v-else>
-                {{ vikarie.kommun.length }} 
+                {{ vikarie.kommun.toString() }} 
               </span>
           </p>
         </article>

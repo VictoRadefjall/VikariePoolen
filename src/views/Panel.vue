@@ -11,10 +11,7 @@
         </section>
 
         <section class="list-avtive">   
-            <ul>
-                <li></li>
-                <li></li>
-            </ul>         
+       <Vikariekort v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />        
 
         </section>
         
@@ -27,9 +24,23 @@
 </template>
 
 <script>
+import Vikariekort from '../components/Vikariekort'
 export default {
-    name: 'panel'
+    name: 'panel',
+
+beforeMount() {
+    this.$store.dispatch('getVikarier')
+},
+components: {
+    Vikariekort
+},
+computed: {
+    vikarier() {
+        return this.$store.getters.vikarier;
+    }
+} 
 }
+
 </script>
 
 <style lang="scss">
@@ -43,7 +54,8 @@ export default {
     align-items: center;
     max-width: 420px;
     width: 100%;
-    background: #d1d1d1;
+    margin: auto;
+    background: $lightpurple;
     flex-direction: column;
 
 
@@ -64,6 +76,7 @@ export default {
         }
         button{
             margin: 10px;
+            padding: 5px;
             border: solid white 2px;
             border-radius: 5px;
             background: none;

@@ -4,25 +4,29 @@
 
     <header>
       <input type="search" v-model="search" placeholder="Sök efter vikarie...">
-
+      
       <section class="selections">
-        <div class="custom-select">
+        
+        <div class="selectBtn">
+          <label>Kommun</label>
+          <br />
           <select @change="filterKommun" v-model="kommun">
-            <option default>Kommun</option>
             <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
           </select>
         </div>
 
         <div class="selectBtn">
-          <select>
-            <option>Ämne</option>
+          <label>Ämne</label> 
+          <br />
+          <select @change="filterKommun" v-model="amne">
             <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
           </select>
         </div>
 
         <div class="selectBtn">
-          <select>
-            <option>Årskurs</option>
+          <label>Årskurs</label> 
+          <br />
+          <select @change="filterKommun" v-model="klass">
             <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
           </select>
         </div>
@@ -31,17 +35,17 @@
 
       <div class="results" v-if="search.length > 0">
         <h3>Sökresultat</h3>
-        <p>Visar {{ vikarier.length }}st</p>
+        <p>Visar {{ filteredVikarier.length }}st</p>
       </div>
 
     </header>
 
     <div class="vikarier">
-      <Vikariekort v-for="(vikarie, index) in vikarier" 
-      :key="index" 
-      :vikarie="vikarie"
-      @click=" $router.push(`/vikarielista/${vikarie._id}`)" />
-      <div v-for="(index, kommun) in filterKommun" :key="kommun"></div>
+      <Vikariekort v-for="(vikarie, index) in filterKommun"
+        :key="index"
+        :vikarie="vikarie" 
+      />
+
     </div>
     
   </main>
@@ -55,27 +59,33 @@ export default {
   data() {
     return {
       search: '',
-      kommun: ''
+      kommun: 'Alla',
+      amne: 'Alla',
+      klass: 'Alla'
     }
   },
   methods: {
-    filterKommun(vikarie) {
-        if(this.kommun.match(vikarie.kommun)) {
-          console.log(vikarie.kommun);
-          console.log(this.kommun);
-          return this.vikarier.filter(kommun => vikarie.kommun == kommun)
-        }
-      }
   },
   components: {
     Vikariekort
   },
   computed: {
-    searchVikarier() {
+    filteredVikarier() {
       return this.$store.getters.vikarier.filter((vikarie) => {
         return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
       })
     },
+
+    filterKommun() {
+      if (this.kommun == 'Alla') {
+        return this.vikarier;
+      } else {
+      return this.vikarier.filter(vikarie => {
+          return vikarie.kommun.includes(this.kommun);
+        })
+      }
+    },
+
     vikarier() {
       return this.$store.getters.vikarier;
     },
@@ -101,8 +111,13 @@ export default {
 #lista {
   color: #333;
 
+    h1 {
+      margin: 0;
+    }
+
   header {
-    height: 10rem;
+    height: 11rem;
+    padding: 1rem;
 
     input[type="search"] {
       background: #eee;
@@ -113,7 +128,7 @@ export default {
 
     .selections {
       display: flex;
-      padding-top: .5rem;
+      padding-top: 1rem;
       justify-content: space-evenly;
       width: 40vw;
       margin: auto;
@@ -129,28 +144,36 @@ export default {
         border: none;
         box-shadow: 5px 3px 2px #777;
 
-        & option {
-          text-transform: lowercase;
-        }
-
       }
     
-      }
-      .results {
-        @extend %center;
-        padding: .75rem;
-        flex-direction: column;
+    
+    }
+    .results {
+      display: flex;
+      padding: 1rem;
+      width: 40vw;
+      margin: auto;
+      flex-direction: column;
 
-        & :first-child() {
-          margin: 0;
-        }
+      & :first-child() {
+        margin: 0;
+        @extend %center;
+      }
+
+      & p {
+        margin: .5rem;
+        display: flex;
+        font-weight: 200;
+        align-items: flex-end;
+        justify-content: flex-end;
+      }
     }
 
     }
 
 
     @media screen and (max-width: 500px) {
-      .selections, header input[type="search"] {
+      .selections, header input[type="search"], .results {
         width: 90vw;
       }
       .selections {

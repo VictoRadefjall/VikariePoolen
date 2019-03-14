@@ -31,6 +31,7 @@
            <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
            <a href="#" @click="toggle">Boka</a>
         </footer>
+        <avboka :active="active" />
       </div>
 
     </main>
@@ -39,7 +40,8 @@
 
 
 <script>
-import confirm from '@/components/Confirm';
+// import confirm from '@/components/Confirm';
+import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
@@ -49,7 +51,7 @@ export default {
         },
     },
     components: {
-        confirm
+        avboka
     },
     data(){
         return {

@@ -1,0 +1,19 @@
+:root {
+  background: #CDC1E8;
+}
+
+body {
+  margin: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+#app {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  width: inherit;
+  height: inherit;
+}
+/*# sourceMappingURL=main.css.map */

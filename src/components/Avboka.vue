@@ -10,19 +10,19 @@
     </main>
 </template>
 
-
-
-
-
 <script>
 export default {
     name: 'avboka',
-    props: ['active']
+    props: ['active'],
+    computed: {
+        vikarie() {
+            return this.$store.getters.getVikarieById(this.$route.params.id);
+        },
+    },
+
+
 };
 </script>
-
-
-
 
 
 <style lang="scss">
