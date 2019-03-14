@@ -1,23 +1,45 @@
 <template>
     <main id="add">
-      <h1>Lägg till vikarie</h1>
-      <form id="addForm">
-          <label for="">Namn </label>
-          <input type="text"> <br>
-          <label for="">Info </label>
-          <textarea rows="4" cols="50" /> <br>
-          <label for="">Ämnen </label>
-          <select></select> <br>
-          <label for="">Kommun </label>
-          <select></select> <br>
-          <button type="button">Lägg till</button>
-      </form>
+
+      <aside class="form">
+
+        <h2>Lägg till ny vikarie</h2>
+        <input type="text" placeholder="Kommun" class="kommun" v-model="nyVikarie.kommun">
+        <input type="text" placeholder="Klass" class="klass"  v-model="nyVikarie.klass">
+        <input type="text" placeholder="Ämne" class="amne"  v-model="nyVikarie.amne">
+        <input type="text" placeholder="Intressen" class="intressen"  v-model="nyVikarie.intressen">
+        <input type="text" placeholder="Namn" class="namn"  v-model="nyVikarie.namn">
+        <textarea placeholder="Kompetenser" rows="4" cols="50" class="kompetens" v-model="nyVikarie.kompetens" /> 
+        
+        <div class="btn">
+          <a href="#" @click="skapaVikarie()">Lägg till</a>
+        </div>
+
+      </aside>
+
     </main>
 </template>
 
 <script>
 export default {
-    name: 'adduser'
+    name: 'adduser',
+    data() {
+        return {
+            nyVikarie: {
+                kommun: [],
+                klass: [],
+                amne: [],
+                intressen: [],
+                namn: '',
+                kompetens: ''
+            }
+        }
+    },
+    methods: {
+        async skapaVikarie() {
+            this.$store.dispatch('skapaVikarie', this.nyVikarie);
+        }
+    } 
 }
 </script>
 
