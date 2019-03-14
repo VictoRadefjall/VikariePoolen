@@ -1,7 +1,6 @@
 <template>
   <main id="lista">
     <h1>Vikarielista</h1>
-    
 
     <header>
       <input type="search" v-model="search" placeholder="Sök efter vikarie...">
@@ -38,7 +37,11 @@
     </header>
 
     <div class="vikarier">
-      <Vikariekort />
+      <Vikariekort v-for="(vikarie, index) in vikarier" 
+      :key="index" 
+      :vikarie="vikarie"
+      @click=" $router.push(`/vikarielista/${vikarie._id}`)" />
+      <div v-for="(index, kommun) in filterKommun" :key="kommun"></div>
     </div>
     
   </main>
@@ -56,14 +59,12 @@ export default {
     }
   },
   methods: {
-    filterKommun() {
-        this.vikarier.forEach((vikarie) => {
-          if(this.kommun.match(vikarie.kommun)) {
-            console.log(vikarie);
-            console.log(this.kommun);
-            return this.vikarier.filter(kommun => vikarie.kommun == kommun.kommun)
-          }
-        })
+    filterKommun(vikarie) {
+        if(this.kommun.match(vikarie.kommun)) {
+          console.log(vikarie.kommun);
+          console.log(this.kommun);
+          return this.vikarier.filter(kommun => vikarie.kommun == kommun)
+        }
       }
   },
   components: {
