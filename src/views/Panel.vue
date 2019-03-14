@@ -11,7 +11,7 @@
         </section>
 
         <section class="list-avtive">   
-       <Vikariekort v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />        
+       <Vikariekort class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />        
 
         </section>
         
@@ -47,12 +47,12 @@ computed: {
 @import '../scss/main.scss';
 
 
-#panel {
-    // @extend %center;
+#panel, {
+    margin: auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 420px;
+    max-width: 460px;
     width: 100%;
     background: $lightpurple;
     flex-direction: column;
