@@ -4,12 +4,17 @@
         <h1>Vikarieprofil</h1>
         <h2> {{ vikarie.namn }} </h2>
         <img src="../assets/avatar.png" alt="avatar"/>
+       </div>
+       <section class="info">
+           <p>Ämne
+               <span> {{ vikarie.amne }} </span>
+           </p>
 
+       </section>
         <footer>
          <!-- <a href="#" @click="toggle">Avboka</a> -->
           <a href="#" @click="toggle">Boka</a>
         </footer>
-      </div>
 
     </main>
 </template>

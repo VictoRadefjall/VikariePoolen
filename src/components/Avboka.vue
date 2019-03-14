@@ -1,8 +1,12 @@
 <template>
     <main id="avboka">
         <article :class="{ active : active }">
-            <h1>Tack för din avbokning</h1>
+            <h1>Du har nu avbokat </h1>
+            <span> {{ vikarie.namn }} </span>
         </article>   
+         <section id="btn">
+            <button type="button">Tillbaka</button>
+         </section>
     </main>
 </template>
 
