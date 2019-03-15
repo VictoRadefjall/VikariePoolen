@@ -1,29 +1,29 @@
 <template>
     <main id="boka">
       <div class="profil">
-          <h1>Profil</h1>
-          <h2> {{ vikarie.namn }} </h2>
-          <img class="vikarie-bild" src="../assets/avatar.png" alt="avatar"/>
+        <h1>Profil</h1>
+        <h2> {{ vikarie.namn }} </h2>
+        <img class="vikarie-bild" src="../assets/avatar.png" alt="avatar"/>
 
       <section class="information">
-          <article>
-           <p>
-               Ämne :
-           <span> {{vikarie.amne.toString()}}  </span> <br>
-           </p> 
-           <p>
-               Kommun: 
-               <span v-if="vikarie.kommun">
-                   {{vikarie.kommun.toString()}}
-              </span> <br>
-              </p>  
-              <p> 
-                  Utbildning: 
-                  <span v-if="vikarie.klass">
-                      {{vikarie.klass.toString()}}
-                 </span> <br>
-                </p>      
-          </article>
+        <article>
+          <p>
+              Ämne :
+          <span> {{vikarie.amne.toString()}}  </span> <br>
+          </p> 
+          <p>
+              Kommun: 
+              <span v-if="vikarie.kommun">
+                  {{vikarie.kommun.toString()}}
+            </span> <br>
+            </p>  
+            <p> 
+                Utbildning: 
+                <span v-if="vikarie.klass">
+                    {{vikarie.klass.toString()}}
+                </span> <br>
+              </p>      
+        </article>
       </section>  
 
         <footer>

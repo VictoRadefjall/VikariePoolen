@@ -131,23 +131,29 @@ export default {
 @import '../scss/main.scss';
 
 #lista {
-  color: #333;
 
-    h1 {
-      margin: 0;
-    }
+  h1 {
+    margin: 0;
+    color: white;
+  }
 
   header {
+    color: white;
     height: 11rem;
     padding: 1rem;
 
     input[type="search"] {
-      background: #eee;
+      background-color: #eee;
       border: none;
+      padding: 1rem 1.75rem;
       width: 40vw;
-      padding: .75rem;
+      border-radius: 3px;
+      background-image: url('../assets/search.svg');
+      background-repeat: no-repeat;
+      background-position: 1% 50%;
+      background-size: 1.25rem 1.25rem;
     }
-
+    
     .selections {
       display: flex;
       padding-top: 1rem;
@@ -155,24 +161,27 @@ export default {
       width: 40vw;
       margin: auto;
 
-
       select {
         background: #eee;
         appearance: none;
-        padding: 1rem;
+        width: 10vw;
+        padding: .35rem;
         border-radius: 5px;
+        font-size: .8em;
         height: 3rem;
-        font-family: 'Times New Roman', Times, serif;
         border: none;
         box-shadow: 5px 3px 2px #777;
-
+        background-image: url('../assets/arrow.svg');
+        background-repeat: no-repeat;
+        background-position: 95% 50%;
+        background-size: 1rem 1rem;
       }
     
     
     }
     .results {
       display: flex;
-      padding: 1rem;
+      padding: .75rem;
       width: 40vw;
       margin: auto;
       flex-direction: column;
@@ -199,9 +208,15 @@ export default {
       .selections, header input[type="search"] {
         width: 90vw;
       }
-      .selections {
-        & select {
-          margin: .25rem;
+      header {
+        .selections {
+          & select {
+            margin: .25rem;
+            width: 30vw;
+            font-size: .75em;
+            background-position: 95% 50%;
+            background-size: .75rem .75rem;
+          }
         }
       }
       .results {

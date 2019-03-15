@@ -98,16 +98,16 @@ export default {
         font-weight: 400;
 
         p {
-            display: inherit;
-            flex-direction: column;
-            @extend %center;
+          display: inherit;
+          flex-direction: column;
+          @extend %center;
 
-            span {
-              font-weight: normal;
-              padding-top: .25rem;
-              color: purple;
-              font-size: 1em;
-            }
+          span {
+            font-weight: normal;
+            padding-top: .25rem;
+            color: purple;
+            font-size: 1em;
+          }
         }
       }
 
