@@ -7,41 +7,50 @@
 
       <section class="information">
           <article>
-           <p>
-               Ämne :
-           <span> {{vikarie.amne.toString()}}  </span> <br>
+
+           <p class="vikarieInfo">
+               Ämne:
+           <span> {{vikarie.amne.toString()}}  </span>
            </p> 
-           <p>
-               Kommun: 
-               <span v-if="vikarie.kommun">
-                   {{vikarie.kommun.toString()}}
-              </span> <br>
-              </p>  
-              <p> 
-                  Utbildning: 
-                  <span v-if="vikarie.klass">
-                      {{vikarie.klass.toString()}}
-                 </span> <br>
-                </p>      
+
+           <p class="vikarieInfo">
+                Kommun: 
+            <span>
+                {{vikarie.kommun.toString()}}
+            </span> 
+            </p>  
+
+            <p class="vikarieInfo"> 
+                Utbildning: 
+                <span>
+                    {{vikarie.klass.toString()}}
+                </span> 
+            </p>     
+
           </article>
       </section>  
-
-        <footer>
            <p class="input-bokare"> Bokare <input type="text" placeholder="Bokare"></p>
            <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
-           <a href="#" @click="toggle">Boka</a>
-        </footer>
-        <avboka :active="active" />
-      </div>
+          <!-- <a href="#" @click="toggle">Boka</a>  -->
+     <!-- <confirm :active="active" />  -->
+       <Modal btnText="Boka"
+        :closeBtn="true"
+        closeBtnHTML="<span>X</span>"
+        >
+        <confirm/>
+       </Modal>
+     
 
+      </div>
     </main>
 </template>
 
 
 
 <script>
-// import confirm from '@/components/Confirm';
-import avboka from '@/components/Avboka'
+import Modal from "@melmacaluso/vue-modal"
+import confirm from '@/components/Confirm'
+//import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
@@ -51,7 +60,7 @@ export default {
         },
     },
     components: {
-        avboka
+        confirm
     },
     data(){
         return {
@@ -88,6 +97,27 @@ export default {
         column-rule-width: 1px;
         column-rule-color: #BFDE8E;
         width: 100%;
+        text-overflow: hidden;
+        
+
+        article {
+        display: flex;
+        flex-direction: column;
+
+            .vikarieInfo {
+                display: flex;
+                height: 5rem;
+                flex-direction: column;
+
+                & span {
+                    display: inherit;
+                    flex-direction: column;
+                }
+
+            }
+
+        }
+
       }
 
     .vikarie-bild {
@@ -114,30 +144,35 @@ export default {
         width: 100%;
         height: 100%;
 
-      footer {
-    display: flex;
-    flex-direction: column;
-    a {
-        background: #BFDE8E;
-        padding: .4rem;
-        margin: .5rem;
-        border: 0.2rem ;
-        text-decoration: none;
-        width: 2rem;
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        font-weight: bold;
-        color: white;
-        font-size: 18px;
-        border-radius: 999rem;
-        width: 25vw;
-        display: block;
+    div {
+        button {
+            @extend %center;
+            background: #BFDE8E;
+            padding: .4rem;
+            margin: .5rem;
+            border: 0.2rem ;
+            text-decoration: none;
+            font-size: 1.25em;
+            font-family: 'Avenir', Helvetica, Arial, sans-serif;
+            font-weight: bold;
+            color: white;
+            border-radius: 999rem;
+            width: 25vw;
 
+            &.close {
+                margin: auto;
+                width: auto;
+            }
+
+        }
+        span{
+
+        }
 
     .input-profil{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
     }  
-    }
     
   }
  }

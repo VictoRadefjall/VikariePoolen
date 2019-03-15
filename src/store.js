@@ -38,7 +38,6 @@ export default new Vuex.Store({
     },
     getVikarieById(state){
       return(vikarieId) => {
-        console.log(vikarieId)
         return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
       }
     }
