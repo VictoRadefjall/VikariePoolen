@@ -23,10 +23,7 @@ export default {
   text-transform: uppercase;
   background: linear-gradient($purple, $lightpurple);
   height: 100vh;
-
-  max-width: 460px;
-  width: 100%;
-  margin: auto;
+  width: 100vw;
 
   img{
     height: 300px;

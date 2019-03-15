@@ -8,7 +8,7 @@
 
       <section class="info">
         <h2> {{ vikarie.namn }} </h2>
-                  <span v-if="vikarie.ledig" class="greenTxt"> Tillgänglig </span>
+          <span v-if="vikarie.ledig" class="greenTxt"> Tillgänglig </span>
           <span v-else class="redTxt">Bokad</span>
 
         <article>

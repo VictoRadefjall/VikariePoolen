@@ -4,8 +4,6 @@
 
         <h2>Redigera vikarie</h2>
 
-        <p> {{ vikarie }} </p>
-
 <!--
         <div class="input-field">
             <input type="text" placeholder="Kommun" class="kommun pads" :vikarie="vikarie" v-model="vikarie.kommun">
@@ -30,8 +28,8 @@
 export default {
     name: 'edituser',
     computed: {
-        vikarie() {
-            return this.$store.getters.getVikarieById(this.$route.params.id);
+        vikarier() {
+            return this.$store.getters.vikarier;
         },
     },
 

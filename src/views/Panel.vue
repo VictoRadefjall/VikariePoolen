@@ -1,5 +1,6 @@
 <template>
     <main id="panel">
+
         <section class="topnav">
             <h1>Admin Panel</h1> 
             <button @click="$router.push('/add')">Lägg till</button>
@@ -8,6 +9,8 @@
         <section class="filter">
             <h3>Filtrera Listan</h3>
         </section>
+
+        <router-view />
 
         <section class="list-active">   
 
