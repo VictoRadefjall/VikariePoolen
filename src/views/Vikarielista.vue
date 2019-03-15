@@ -203,7 +203,6 @@ export default {
 
     }
 
-
     @media screen and (max-width: 500px) {
       .selections, header input[type="search"] {
         width: 90vw;

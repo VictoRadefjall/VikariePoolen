@@ -1,7 +1,7 @@
 <template>
     <main id="avboka">
         <article :class="{ active : active }">
-            <h1>Du har nu avbokat </h1>
+            <h1>Du har nu avbokat</h1>
             <span> {{ vikarie.namn }} </span>
         </article>   
          <section id="btn">

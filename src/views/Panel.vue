@@ -12,7 +12,7 @@
 
         <section class="list-avtive">   
 
-      <!-- <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />   -->    
+      <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
 
         </section>
         <router-view />
@@ -20,16 +20,16 @@
 </template>
 
 <script>
-// import VikariekortAdmin from '../components/VikariekortAdmin'
+import VikariekortAdmin from '../components/VikariekortAdmin'
 
 export default {
     name: 'panel',
     beforeMount() {
         this.$store.dispatch('getVikarier')
-    }, /*
+    }, 
     components: {
         VikariekortAdmin
-    }, */
+    }, 
     computed: {
         vikarier() {
             return this.$store.getters.vikarier;
