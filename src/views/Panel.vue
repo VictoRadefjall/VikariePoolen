@@ -14,11 +14,6 @@
        <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />        
 
         </section>
-        
-
-        <footer>
-            <a @click="$router.push('/edit')">Redigera vikarie</a>
-        </footer>
         <router-view />
     </main>
 </template>
@@ -48,7 +43,7 @@ computed: {
 
 
 #panel, {
-    margin: auto;
+    margin: 10px auto 2rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -63,7 +58,7 @@ computed: {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        width: 42vw;
         height: 50px;
         background: #8729FF;
 
