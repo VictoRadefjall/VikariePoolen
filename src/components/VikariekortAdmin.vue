@@ -8,8 +8,11 @@
 
       <section class="info">
         <div class="nameEdit">
-        <h2> {{ vikarie.namn }} </h2>
-        <i class="fas fa-user-edit" @click="$router.push('/edit')"></i>
+          <h2> {{ vikarie.namn }} </h2>
+          <div class="icon">
+            <i class="fas fa-user-edit" @click="$router.push('/edit')"></i>
+            <i class="fas fa-user-minus"></i>
+          </div>
         </div>
         <article>
           <p> 
@@ -81,9 +84,15 @@ export default {
       flex-direction: row;
       justify-content: space-between;
     }
-    .fa-user-edit{
+    .fa-user-edit {
       color: #8729FF;
       opacity: .7;
+      margin: 5px;
+    }
+    .fa-user-minus {
+      color: rgb(189, 58, 108);
+      opacity: .7;
+      margin: 5px;
     }
 
     .info {
@@ -97,6 +106,8 @@ export default {
         margin: 0;
         align-items: center;
         justify-content: flex-start;
+        color: rgb(99, 98, 98);
+        font-family: 'Roboto';
       }
 
       article {

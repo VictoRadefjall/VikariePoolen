@@ -10,9 +10,9 @@
             <h3>Filtrera Listan</h3>
         </section>
 
-        <section class="list-avtive">   
+        <section class="list-active">   
 
-      <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
+        <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
 
         </section>
         <router-view />
@@ -69,6 +69,8 @@ export default {
             font-size: 1.5rem;
             margin: 0;
             padding: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         button{
             margin: 10px;

@@ -23,6 +23,11 @@ export default {
   text-transform: uppercase;
   background: linear-gradient($purple, $lightpurple);
   height: 100vh;
+
+  img{
+    height: 300px;
+    width: 300px
+  }
   
 
   .h1-header {
