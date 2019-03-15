@@ -34,10 +34,10 @@
           <!-- <a href="#" @click="toggle">Boka</a>  -->
      <!-- <confirm :active="active" />  -->
        <Modal btnText="Boka"
-        :closeBtn="true"
-        closeBtnHTML="<span>X</span>"
-        >
-        <confirm/>
+          :closeBtn="true"
+          closeBtnHTML="<span>X</span>"
+          >
+          <confirm/>
        </Modal>
      
 
@@ -64,13 +64,27 @@ export default {
     },
     data(){
         return {
-            active: false
+            active: false,
+            nyBokning: {
+              vikarie: {},
+              ledig: true,
+              datum: {
+                dag: Number,
+                manad: ''
+              },
+              bokare: '',
+              skola: ''
+            }
         }
     },
     methods: {
         toggle(){
             console.log('It works!')
             this.active = !this.active;
+        },
+        async skapaBokning() {
+          this.$store.dispatch('skapaBokning', this.nyBokning);
+          this.$store.dispatch('getBokningar')
         }
     }
    
