@@ -10,10 +10,11 @@
         <div class="nameEdit">
           <h2> {{ vikarie.namn }} </h2>
           <div class="icon">
-            <i class="fas fa-user-edit" @click="$router.push('/edit')"></i>
+            <i class="fas fa-user-edit" @click="$router.push(`/edit/${vikarie._id}`)"></i>
             <i class="fas fa-user-minus"></i>
           </div>
         </div>
+        
         <article>
           <p> 
             Ämnen: 
@@ -43,7 +44,7 @@
       </section>
 
     </section>
-    <router-view />
+    
   </main>
 </template>
 
@@ -84,6 +85,7 @@ export default {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      
     }
     .fa-user-edit {
       color: #8729FF;

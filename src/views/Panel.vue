@@ -1,6 +1,5 @@
 <template>
     <main id="panel">
-
         <section class="topnav">
             <h1>Admin Panel</h1> 
             <button @click="$router.push('/add')">Lägg till</button>
@@ -15,7 +14,7 @@
         <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
 
         </section>
-        <router-view />
+
     </main>
 </template>
 
@@ -26,6 +25,7 @@ export default {
     name: 'panel',
     beforeMount() {
         this.$store.dispatch('getVikarier')
+        this.$store.dispatch('getBokningar')
     }, 
     components: {
         VikariekortAdmin
@@ -33,7 +33,7 @@ export default {
     computed: {
         vikarier() {
             return this.$store.getters.vikarier;
-        }
+        },
     } 
 }
 
@@ -43,7 +43,7 @@ export default {
 @import '../scss/main.scss';
 
 
-#panel, {
+#panel {
     margin: 10px auto 2rem auto;
     display: flex;
     justify-content: center;
