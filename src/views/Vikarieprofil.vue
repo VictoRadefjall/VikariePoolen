@@ -12,7 +12,7 @@
                Ämne:
            <span> {{vikarie.amne.toString()}}  </span>
            </p> 
-
+             
            <p class="vikarieInfo">
                 Kommun: 
             <span>
@@ -31,8 +31,6 @@
       </section>  
            <p class="input-bokare"> Bokare <input type="text" placeholder="Bokare"></p>
            <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
-          <!-- <a href="#" @click="toggle">Boka</a>  -->
-     <!-- <confirm :active="active" />  -->
        <Modal btnText="Boka"
         :closeBtn="true"
         closeBtnHTML="<span>X</span>"
@@ -64,14 +62,10 @@ export default {
     },
     data(){
         return {
-            active: false
         }
     },
     methods: {
-        toggle(){
-            console.log('It works!')
-            this.active = !this.active;
-        }
+       
     }
    
 }
@@ -89,6 +83,8 @@ export default {
       max-width: 420px;
       width: 100vw;
       height: 40rem;
+      border-radius: 2rem;
+      border:0.2rem solid grey;
 
       .information{
         column-count: 3;
@@ -135,6 +131,7 @@ export default {
       .input-bokare{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
+
     }
     .profil{
         display: flex;
