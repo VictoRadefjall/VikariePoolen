@@ -83,6 +83,7 @@ export default {
       max-width: 420px;
       width: 100vw;
       height: 40rem;
+      margin: auto;
 
       .information{
         column-count: 3;

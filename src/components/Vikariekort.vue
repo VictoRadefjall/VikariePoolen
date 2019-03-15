@@ -40,7 +40,7 @@
       </section>
 
     </section>
-    <router-view />
+
   </main>
 </template>
 
@@ -74,6 +74,7 @@ export default {
     flex-direction: row;
     margin: .5rem;
     cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
     .info {
       display: flex;
@@ -93,15 +94,17 @@ export default {
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
+        color: #444;
+        font-weight: 400;
 
         p {
-            font-weight: 600;
             display: inherit;
             flex-direction: column;
             @extend %center;
 
             span {
               font-weight: normal;
+              padding-top: .25rem;
               color: purple;
               font-size: 1em;
             }
@@ -126,6 +129,14 @@ export default {
    @media screen and (max-width: 500px) {
     .card {
       width: 85vw;
+      font-size: 1em;
+
+      .info {
+        article {
+          font-size: .75em;
+          
+        } 
+      }
     }
   }
 }

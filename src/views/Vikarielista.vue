@@ -10,7 +10,7 @@
         <div class="selectBtn">
           <label>Kommun</label>
           <br />
-          <select @change="filterKommun" v-model="kommun">
+          <select v-model="kommun">
             <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
           </select>
         </div>
@@ -18,7 +18,7 @@
         <div class="selectBtn">
           <label>Ämne</label> 
           <br />
-          <select @change="filterKommun" v-model="amne">
+          <select v-model="amne">
             <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
           </select>
         </div>
@@ -26,7 +26,7 @@
         <div class="selectBtn">
           <label>Årskurs</label> 
           <br />
-          <select @change="filterKommun" v-model="klass">
+          <select v-model="klass">
             <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
           </select>
         </div>
@@ -35,19 +35,19 @@
 
       <div class="results" v-if="search.length > 0">
         <h3>Sökresultat</h3>
-        <p>Visar {{ filteredVikarier.length }}st</p>
+        <p v-if="filterAmne.length > 1">Visar {{ filterAmne.length }} vikarier</p>
+        <p v-else>Visar 1 vikarie</p>
       </div>
 
     </header>
 
     <div class="vikarier">
-      <Vikariekort v-for="(vikarie, index) in filterKommun"
+      <router-view></router-view>
+      <Vikariekort v-for="(vikarie, index) in filterAmne"
         :key="index"
-        :vikarie="vikarie" 
-      />
-
+        :vikarie="vikarie"/>
     </div>
-    
+
   </main>
 </template>
 
@@ -70,18 +70,40 @@ export default {
     Vikariekort
   },
   computed: {
-    filteredVikarier() {
-      return this.$store.getters.vikarier.filter((vikarie) => {
-        return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
-      })
-    },
-
+    // Filter kommuner
     filterKommun() {
       if (this.kommun == 'Alla') {
         return this.vikarier;
       } else {
-      return this.vikarier.filter(vikarie => {
-          return vikarie.kommun.includes(this.kommun);
+        return this.vikarier.filter(vikarie => {
+          return vikarie.kommun.includes(this.kommun)
+        })
+      }
+    },
+
+    // Filter ämnen
+    filterAmne() {
+      if (this.amne == 'Alla') {
+        return this.vikarier;
+      } 
+      if (this.search != '') {
+        return this.$store.getters.vikarier.filter((vikarie) => {
+          return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
+      })
+      } else {
+        return this.vikarier.filter(vikarie => {
+          return vikarie.amne.includes(this.amne)
+        })
+      }
+    },
+
+    // Filter klasser
+    filterKlass() {
+      if (this.klass == 'Alla') {
+        return this.vikarier;
+      } else {
+        return this.vikarier.filter(vikarie => {
+          return vikarie.klass.includes(this.klass)
         })
       }
     },
@@ -157,15 +179,16 @@ export default {
 
       & :first-child() {
         margin: 0;
+        color: white;
         @extend %center;
       }
 
       & p {
-        margin: .5rem;
         display: flex;
         font-weight: 200;
         align-items: flex-end;
         justify-content: flex-end;
+        color: #555;
       }
     }
 
@@ -173,13 +196,23 @@ export default {
 
 
     @media screen and (max-width: 500px) {
-      .selections, header input[type="search"], .results {
+      .selections, header input[type="search"] {
         width: 90vw;
       }
       .selections {
         & select {
           margin: .25rem;
         }
+      }
+      .results {
+        width: 90vw;
+        justify-content: center;
+        align-items: center;
+
+          & p {
+            margin: .5rem;
+            font-size: .75em;
+          }
       }
     }
 

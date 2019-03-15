@@ -27,18 +27,17 @@
 import Vikariekort from '../components/Vikariekort'
 export default {
     name: 'panel',
-
-beforeMount() {
-    this.$store.dispatch('getVikarier')
-},
-components: {
-    Vikariekort
-},
-computed: {
-    vikarier() {
-        return this.$store.getters.vikarier;
-    }
-} 
+    beforeMount() {
+        this.$store.dispatch('getVikarier')
+    },
+    components: {
+        Vikariekort
+    },
+    computed: {
+        vikarier() {
+            return this.$store.getters.vikarier;
+        }
+    } 
 }
 
 </script>
