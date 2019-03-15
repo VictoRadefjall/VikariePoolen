@@ -24,6 +24,10 @@ export default {
   background: linear-gradient($purple, $lightpurple);
   height: 100vh;
 
+  max-width: 460px;
+  width: 100%;
+  margin: auto;
+
   img{
     height: 300px;
     width: 300px
@@ -47,12 +51,14 @@ export default {
     margin: auto;
     font-weight: 600;
     display: block;
-    width: 40vw;
+    width: 80%;
     cursor: pointer;
     @extend %center;
+    margin-top: 10rem;
 
     &:hover {
       box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.4);
+      background: rgba(94, 13, 201, 0.548);
     }
   }
 

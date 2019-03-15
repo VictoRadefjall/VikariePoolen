@@ -63,6 +63,7 @@ export default {
         width: 100%;
         height: 50px;
         background: #8729FF;
+        border-radius: 5px;
 
         h1{
             color: whitesmoke;
@@ -90,9 +91,7 @@ export default {
         @extend %center;
         margin: 15px;
     }
-    footer{
-        @extend %center;
-        background: orange;
+    .card{
         width: 100%;
     }
 
