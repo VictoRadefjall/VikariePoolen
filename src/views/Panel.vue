@@ -10,8 +10,9 @@
             <h3>Filtrera Listan</h3>
         </section>
 
-        <section class="list-avtive">   
-       <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />        
+        <section class="list-active">   
+
+        <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
 
         </section>
         <router-view />
@@ -20,20 +21,20 @@
 
 <script>
 import VikariekortAdmin from '../components/VikariekortAdmin'
+
 export default {
     name: 'panel',
-
-beforeMount() {
-    this.$store.dispatch('getVikarier')
-},
-components: {
-    VikariekortAdmin
-},
-computed: {
-    vikarier() {
-        return this.$store.getters.vikarier;
-    }
-} 
+    beforeMount() {
+        this.$store.dispatch('getVikarier')
+    }, 
+    components: {
+        VikariekortAdmin
+    }, 
+    computed: {
+        vikarier() {
+            return this.$store.getters.vikarier;
+        }
+    } 
 }
 
 </script>
@@ -49,6 +50,7 @@ computed: {
     align-items: center;
     max-width: 460px;
     width: 100%;
+    margin: auto;
     background: $lightpurple;
     flex-direction: column;
 
@@ -67,6 +69,8 @@ computed: {
             font-size: 1.5rem;
             margin: 0;
             padding: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         button{
             margin: 10px;
