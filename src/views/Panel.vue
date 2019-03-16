@@ -28,7 +28,6 @@ export default {
     name: 'panel',
     beforeMount() {
         this.$store.dispatch('getVikarier')
-        this.$store.dispatch('getBokningar')
     }, 
     components: {
         VikariekortAdmin

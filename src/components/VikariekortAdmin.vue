@@ -10,8 +10,8 @@
         <div class="nameEdit">
           <h2> {{ vikarie.namn }} </h2>
           <div class="icon">
-            <i class="fas fa-user-edit" @click="$router.push(`/edit/${vikarie._id}`)"></i>
-            <i class="fas fa-user-minus"></i>
+            <i class="fas fa-user-edit" @click="$router.push(`/panel/${vikarie._id}`)"></i>
+            <i class="fas fa-user-minus" @click="removeVikarie(vikarie._id)"></i>
           </div>
         </div>
         
@@ -56,6 +56,11 @@ export default {
     vikarier() {
       return this.$store.getters.vikarier
     },
+  },
+  methods: {
+    removeVikarie(id) {
+     this.$store.dispatch('removeVikarie', id);
+    }
   }
 }
 </script>
