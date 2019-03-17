@@ -25,17 +25,18 @@ export default {
   height: 100vh;
   width: 100vw;
 
-  img{
+  & :nth-child(2) {
     height: 300px;
-    width: 300px
+    width: 300px;
   }
-  
 
   .h1-header {
     font-family: 'Sansita';
     font-weight: 700;
     font-style: italic;
     font-size: 2.5em;
+    padding: .5rem;
+    margin: 0;
   }
 
   .startBtn {
@@ -46,12 +47,10 @@ export default {
     border-radius: 5px;
     padding: 1.25rem;
     margin: auto;
-    font-weight: 600;
-    display: block;
-    width: 80%;
+    font-weight: 600; 
+    width: 40vw;
     cursor: pointer;
     @extend %center;
-    margin-top: 10rem;
 
     &:hover {
       box-shadow: 3px 8px 8px rgba(0, 0, 0, 0.4);

@@ -149,10 +149,14 @@ export default {
       font-size: 1em;
 
       .info {
+
         article {
           font-size: .75em;
-          
         } 
+
+        h2 {
+          font-size: 1.2em;
+        }
       }
     }
   }

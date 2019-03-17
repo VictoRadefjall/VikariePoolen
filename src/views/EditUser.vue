@@ -4,7 +4,6 @@
 
         <h2>Redigera vikarie</h2>
 
-<!--
         <div class="input-field">
             <input type="text" placeholder="Kommun" class="kommun pads" :vikarie="vikarie" v-model="vikarie.kommun">
             <input type="text" placeholder="Klass" class="klass pads" :vikarie="vikarie" v-model="vikarie.klass">
@@ -13,10 +12,9 @@
             <input type="text" placeholder="Namn" class="namn pads" :vikarie="vikarie" v-model="vikarie.namn">
             <textarea placeholder="Kompetenser.." rows="4" cols="50" :vikarie="vikarie" class="kompetens pads" v-model="vikarie.kompetens" /> 
         </div>
--->
 
         <div class="btn pads">
-          <button href="#"class="confirm">Redigera</button>
+          <button href="#" class="confirm">Redigera</button>
           <button href="#" @click="$router.push('/panel')" class="back">Tillbaka </button>
         </div>
 
@@ -28,8 +26,8 @@
 export default {
     name: 'edituser',
     computed: {
-        vikarier() {
-            return this.$store.getters.vikarier;
+       vikarie() {
+          return this.$store.getters.getVikarieById(this.$route.params.id);
         },
     },
 

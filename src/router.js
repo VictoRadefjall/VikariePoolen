@@ -30,7 +30,7 @@ export default new Router({
       component: () => import('./views/Panel.vue'),
       children: [
         {
-          path: '/panel/:vikarieId',
+          path: '/panel/:id',
           name: 'edituser',
           component: () => import('./views/EditUser.vue')
         }

@@ -1,10 +1,10 @@
 <template>
     <main id="boka">
       <div class="profil">
-        <section class="backBtn" @click="$router.push('/vikarielista')">
-          <span>tillbaka</span>
-          <span class="arrow"> &#8592; </span>
-        </section>
+        <button class="backBtn" @click="$router.push('/vikarielista')">
+          tillbaka <br />
+          &#8592;
+        </button>
         <h1>Profil</h1>
         <h2> {{ vikarie.namn }} </h2>
         <img class="vikarie-bild" src="../assets/avatar.png" alt="avatar"/>
@@ -64,7 +64,8 @@ export default {
         },
     },
     components: {
-        confirm
+        confirm,
+        Modal
     },
     data(){
         return {
@@ -113,6 +114,7 @@ export default {
       left: 0;
       right: 0;
       margin: auto;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 
       .information{
         column-count: 3;
@@ -125,8 +127,8 @@ export default {
         
 
         article {
-        display: flex;
-        flex-direction: column;
+          display: flex;
+          flex-direction: column;
 
             .vikarieInfo {
                 display: flex;
@@ -170,10 +172,12 @@ export default {
 
         .backBtn {
           display: flex;
-          padding: .5rem;
           flex-direction: column;
           width: inherit;
-          font-size: 1.2em;
+          font-size: 1em;
+          padding: .5rem;
+          border: 0;
+          align-items: flex-end;
           cursor: pointer;
         }
 

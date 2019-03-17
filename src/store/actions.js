@@ -35,6 +35,6 @@ export default {
     deleteVikarie(ctx, vikarie) {
       let vikarier = this.state.vikarier;
       vikarier.splice(vikarier.findIndex(v => v.id == vikarie.id), 1);
-      ctx.commit('removedProducts', vikarier)
+      ctx.commit('deletedVikarier', vikarier)
     },
 }

@@ -26,9 +26,6 @@ import VikariekortAdmin from '../components/VikariekortAdmin'
 
 export default {
     name: 'panel',
-    beforeMount() {
-        this.$store.dispatch('getVikarier')
-    }, 
     components: {
         VikariekortAdmin
     }, 

@@ -121,9 +121,7 @@ export default {
       return this.$store.state.klasser;
     }
   },
-  beforeMount() {
-    this.$store.dispatch('getVikarier')
-  }
+
 }
 </script>
 
@@ -134,6 +132,7 @@ export default {
 
   h1 {
     margin: 0;
+    padding: 1rem;
     color: white;
   }
 
