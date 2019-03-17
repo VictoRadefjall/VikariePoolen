@@ -107,7 +107,7 @@ export default {
         })
       }
     },
-
+    
     vikarier() {
       return this.$store.getters.vikarier;
     },

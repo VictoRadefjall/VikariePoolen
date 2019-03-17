@@ -50,7 +50,6 @@
 </template>
 
 
-
 <script>
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'

@@ -29,12 +29,15 @@ export default {
         console.error(err);
       }
     },
-    removeVikarie(id) {
-      return axios.delete(`http://localhost:3000/vikarier/${id}`)
+    async removeVikarie(ctx, index) {
+      await axios.delete('http://localhost:3000/vikarier/');
+      ctx.commit('removeVikarie', index)
+    }
+    
+    /*
+    removeVikarie(vikarie) {
+      // axios.delete('http://localhost:3000/vikarier/' + id)
+      this.getters.vikarier.splice(this.getters.vikarier.indexOf(vikarie), 1);
     },
-    deleteVikarie(ctx, vikarie) {
-      let vikarier = this.state.vikarier;
-      vikarier.splice(vikarier.findIndex(v => v.id == vikarie.id), 1);
-      ctx.commit('deletedVikarier', vikarier)
-    },
+    */
 }

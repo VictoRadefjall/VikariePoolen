@@ -42,9 +42,23 @@ export default {
     methods: {
         async skapaVikarie() {
             this.$store.dispatch('skapaVikarie', this.nyVikarie);
-            this.$router.push('/panel')
+            this.$router.push('/panel');
         }
-    } 
+    },
+    computed: {
+        vikarier() {
+            return this.$store.getters.vikarier;
+        },
+        kommuner() {
+            return this.$store.state.kommuner;
+        },
+        amnen() {
+            return this.$store.state.amnen;
+        },
+        klasser() {
+            return this.$store.state.klasser;
+        }
+    }
 }
 </script>
 

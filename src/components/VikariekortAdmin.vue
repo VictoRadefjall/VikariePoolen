@@ -11,7 +11,7 @@
           <h2> {{ vikarie.namn }} </h2>
           <div class="icon">
             <i class="fas fa-user-edit" @click="$router.push(`/panel/${vikarie._id}`)"></i>
-            <i class="fas fa-user-minus" @click="removeVikarie(vikarie._id)"></i>
+            <i class="fas fa-user-minus" @click="removeVikarie(vikarie, vikarie._id)"></i>
           </div>
         </div>
         
@@ -58,8 +58,8 @@ export default {
     },
   },
   methods: {
-    removeVikarie(id) {
-     this.$store.dispatch('removeVikarie', id);
+    removeVikarie(vikarie) {
+      this.$store.dispatch('removeVikarie', vikarie);
     }
   }
 }
