@@ -1,6 +1,10 @@
 <template>
     <main id="boka">
       <div class="profil">
+        <section class="backBtn" @click="$router.push('/vikarielista')">
+          <span>tillbaka</span>
+          <span class="arrow"> &#8592; </span>
+        </section>
         <h1>Profil</h1>
         <h2> {{ vikarie.namn }} </h2>
         <img class="vikarie-bild" src="../assets/avatar.png" alt="avatar"/>
@@ -102,7 +106,12 @@ export default {
       background: white;
       max-width: 420px;
       width: 100vw;
-      height: 40rem;
+      height: 100vh;
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       margin: auto;
 
       .information{
@@ -158,6 +167,19 @@ export default {
         justify-content: center;
         width: 100%;
         height: 100%;
+
+        .backBtn {
+          display: flex;
+          padding: .5rem;
+          flex-direction: column;
+          width: inherit;
+          font-size: 1.2em;
+          cursor: pointer;
+        }
+
+        & h1 {
+          color: $purple;
+        }
 
     div {
         button {
