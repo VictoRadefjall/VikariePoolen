@@ -8,5 +8,8 @@ export default {
     removeVikarie(state, vikarie) {
       state.vikarier.splice(state.vikarier.indexOf(vikarie), 1)
       console.log(vikarie);
-  }
+    },
+    setActiveAdmin(state, admin){
+      state.activeAdmin = admin;
+    },
 }

@@ -32,5 +32,20 @@ export default {
     async removeVikarie(ctx, id) {
       await axios.delete('http://localhost:3000/vikarier/' + id);
       ctx.commit('removeVikarie', id);
-    }
+    },
+    async login(ctx, loginData){
+ 
+      try {
+        let token = await axios.post('http://localhost:3000/auth', loginData)
+        console.log(token);
+
+        sessionStorage.setItem('authAdmin', token.data.authToken);
+        
+        // Uppdatera för UI
+        ctx.commit('setActiveAdmin', token.data.username);
+
+      } catch(err) {
+        console.error(err);      
+      }
+    },
 }

@@ -42,6 +42,11 @@ export default new Router({
       component: () => import('./views/AddUser.vue')
     },
     {
+      path: '/admin',
+      name: 'admin',
+      component: () => import('./views/Admin.vue')
+    },
+    {
       path: '*',
       redirect: '/'
     }
