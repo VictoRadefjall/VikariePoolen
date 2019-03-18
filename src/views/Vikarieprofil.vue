@@ -106,7 +106,7 @@ export default {
       background: white;
       max-width: 420px;
       width: 100vw;
-      height: 100vh;
+      height: auto;
       z-index: 1;
       position: fixed;
       top: 0;
