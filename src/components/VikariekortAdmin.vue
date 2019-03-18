@@ -60,6 +60,7 @@ export default {
   methods: {
     removeVikarie(vikarie) {
       this.$store.dispatch('removeVikarie', vikarie);
+      this.$store.dispatch('getVikarier');
     }
   }
 }

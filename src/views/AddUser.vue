@@ -6,12 +6,32 @@
         <h2>Lägg till ny vikarie</h2>
 
         <div class="input-field">
-        <input type="text" placeholder="Kommun" class="kommun pads" v-model="nyVikarie.kommun">
-        <input type="text" placeholder="Klass" class="klass pads"  v-model="nyVikarie.klass">
-        <input type="text" placeholder="Ämne" class="amne pads"  v-model="nyVikarie.amne">
-        <input type="text" placeholder="Intressen" class="intressen pads"  v-model="nyVikarie.intressen">
-        <input type="text" placeholder="Namn" class="namn pads"  v-model="nyVikarie.namn">
-        <textarea placeholder="Kompetenser.." rows="4" cols="50" class="kompetens pads" v-model="nyVikarie.kompetens" /> 
+            <label>Kommun</label>
+            <ul>
+              <li v-for="kommun in kommuner" :key="kommun">
+                {{ kommun }}
+              <input type="checkbox" :value="kommun" v-model="nyVikarie.kommun">
+              </li>
+            </ul>
+
+            <label>Årskurs</label>
+            <ul>
+              <li v-for="klass in klasser" :key="klass">
+                {{ klass }}
+              <input type="checkbox" :value="klass" v-model="nyVikarie.klass">
+              </li>
+            </ul>
+
+            <label>Ämnen</label>
+             <ul>
+              <li v-for="amne in amnen" :key="amne">
+                {{ amne }}
+              <input type="checkbox" :value="amne" v-model="nyVikarie.amne">
+              </li>
+            </ul>
+
+            <input type="text" placeholder="Namn" class="namn pads"  v-model="nyVikarie.namn">
+            <input type="text" placeholder="Kompetenser.." class="kompetens pads" v-model="nyVikarie.kompetens" /> 
         </div>
 
         <div class="btn pads">
@@ -68,30 +88,50 @@ export default {
 #add {
     @extend %center;
     flex-direction: column;
+    width: 50vw;
+    margin: auto;
 
-    .input-field{
-        display: grid;
-        grid-template-columns: 1fr;
-        grid-auto-rows: auto;
-        grid-template-areas: 
-        "kommun"
-        "klass"
-        "amne"
-        "intresse"
-        "namn"
-        "komp";
+    .form { 
 
-        .kommun{grid-area: kommun;}
-        .klass{grid-area: klass;}
-        .amne{grid-area: amne;}
-        .intressen{grid-area: intresse;}
-        .namn{grid-area: namn;}
-        .kompetens{grid-area: komp;}
+        .input-field {
+            display: grid;
+            margin: auto;
+            grid-template-columns: 1fr;
+            grid-auto-rows: auto;
+            grid-template-areas: 
+            "kommun"
+            "klass"
+            "amne"
+            "intresse"
+            "namn"
+            "komp";
 
-        .pads{
-            margin: 6px;
-            padding: 10px;
-            border-radius: 3px;
+            .kommun{grid-area: kommun;}
+            .klass{grid-area: klass;}
+            .amne{grid-area: amne;}
+            .intressen{grid-area: intresse;}
+            .namn{grid-area: namn;}
+            .kompetens{grid-area: komp;}
+
+            .pads{
+                margin: 6px;
+                padding: 10px;
+                border-radius: 3px;
+            }
+
+            ul {
+                flex-direction: row; 
+                @extend %center;
+            }
+
+            li {
+                list-style-type: none;
+                background: orange;
+                border-radius: 5px;
+                padding: .5rem;
+                margin: .25rem;
+                color: white;
+            }
         }
     }
 
@@ -117,5 +157,7 @@ export default {
         }
         
     }
+
+
 }
 </style>

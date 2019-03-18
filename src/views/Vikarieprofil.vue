@@ -14,20 +14,22 @@
 
            <p class="vikarieInfo">
                Ämne:
-           <span> {{vikarie.amne.toString()}}  </span>
+           <span> 
+             {{vikarie.amne.toString()}} <br>
+            </span>
            </p> 
 
            <p class="vikarieInfo">
                 Kommun: 
             <span>
-                {{vikarie.kommun.toString()}}
+                {{vikarie.kommun.toString()}} <br>
             </span> 
             </p>  
 
             <p class="vikarieInfo"> 
                 Utbildning: 
                 <span>
-                    {{vikarie.klass.toString()}}
+                    {{vikarie.klass.toString()}} <br>
                 </span> 
             </p>     
 
