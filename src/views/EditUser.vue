@@ -17,9 +17,9 @@
             <section class="kommun">
                 <label>Kommun</label>
                 <ul>
-                <li v-for="kommun in kommuner" :key="kommun" :vikarie="vikarie">
+                <li v-for="kommun in kommuner" :key="kommun">
                     {{ kommun }}
-                <input type="checkbox" :vikarie="vikarie" v-model="vikarie.kommun">
+                <input type="checkbox" :value="kommun" v-model="vikarie.kommun">
                 </li>
             </ul>
             </section>
