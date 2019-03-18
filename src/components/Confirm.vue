@@ -2,8 +2,8 @@
     <main id="confirm">
         <h1>Tack för din bokning!</h1> 
         <h2> {{vikarie.namn}} </h2>
-         <!--   <h3> {{vikarie.skola}}</h3>
-        <h3>{{vikarie.bokare}} </h3> -->
+          <h3> {{vikarie.skola}}</h3>
+        <h3>{{vikarie.bokare}} </h3> 
     </main>
 </template>
 

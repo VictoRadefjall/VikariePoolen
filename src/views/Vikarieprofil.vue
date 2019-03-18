@@ -1,10 +1,10 @@
 <template>
     <main id="boka">
       <div class="profil">
-        <button class="backBtn" @click="$router.push('/vikarielista')">
+        <btn class="backBtn" @click="$router.push('/vikarielista')">
           tillbaka <br />
           &#8592;
-        </button>
+        </btn>
         <h1>Profil</h1>
         <h2> {{ vikarie.namn }} </h2>
 
@@ -13,10 +13,10 @@
         <div class="vikarie-bild">
         <img  src="../assets/avatar.png" alt="avatar"/>
         </div>
-        <div class="status">
+      <!--  <div class="status">
             <h2>Status:</h2>
-          <!--  <p>{{ this.status }}</p> -->
-        </div>
+           <p>{{ this.status }}</p> 
+        </div> -->
 
         </div>
 
@@ -55,7 +55,7 @@
 
        <Modal btnText="Boka"
         :closeBtn="true" 
-        class="boka"
+        class="boka-btn"
         closeBtnHTML="<span>X</span>"
         >
         <confirm/>
@@ -118,6 +118,33 @@ export default {
 @import '../scss/main.scss';
 
 
+   button {
+      background-color: #BFDE8E;
+       @extend %center;
+       margin-bottom: 2rem;
+       width: 20rem;
+       border-radius: 999rem;
+       height: 2rem;
+       color: white;
+       text-decoration: none;
+
+
+     }
+
+     .close {
+         padding: 2rem;
+         background: none;
+         width: 1rem;
+         font-size: 2rem;
+         margin: auto;
+         margin-bottom: 3px;
+         border: none;
+
+     }
+
+    
+
+
     #boka {
       flex-direction: column;
       @extend %center;
@@ -128,7 +155,6 @@ export default {
       border-radius: 2rem;
       border:0.2rem solid grey;
       z-index: 1;
-      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -178,6 +204,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        
 
         img {
             height: auto;
@@ -223,26 +250,10 @@ export default {
         }
 
     div {
-        .boka {
-            @extend %center;
-            background: #BFDE8E;
-            padding: .4rem;
-            margin: .5rem;
-            border: 0.2rem ;
-            text-decoration: none;
-            font-size: 1.25em;
-            font-family: 'Avenir', Helvetica, Arial, sans-serif;
-            font-weight: bold;
-            color: white;
-            border-radius: 999rem;
-            width: 25vw;
-
-            &.close {
+            button .close {
                 margin: auto;
-                width: auto;
+                @extend %center;
             }
-
-        }
         
 
     .input-profil{

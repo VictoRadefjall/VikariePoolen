@@ -3,8 +3,8 @@
      <!-- Calender -->
  
     <date-pick
-        v-model="date"
-        :hasInputElement="false"
+        v-model="StartDate"
+        :hasInputElement="false" 
     ></date-pick>
 
   </div>   
@@ -19,7 +19,8 @@ export default {
     components: {DatePick},
     data() {
       return {
-        date: '2019-01-01',
+        StartDate: '2019-01-01',
+        endDate: '',
       }
     },
 }
@@ -41,8 +42,18 @@ export default {
     }
 
     .vdpHeader{
-        color:#BFDE8E;
+        background-color:#BFDE8E;
         height: 4rem !important;
+    }
+
+    .vdpArrow:after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -0.5em;
+    width: 0;
+    height: 0;
     }
 }
 
