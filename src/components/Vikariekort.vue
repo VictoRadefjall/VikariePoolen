@@ -1,6 +1,6 @@
 <template>
   <main id="vikariekort">
-    <section class="card" @click="$router.push(`/vikarielista/${vikarie._id}`)">
+       <section class="card" @click="$router.push(`/vikarielista/${vikarie._id}`)">
       
       <aside>
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
@@ -43,11 +43,12 @@
       </section>
 
     </section>
-
+ 
   </main>
 </template>
 
 <script>
+
 export default {
   name: 'vikariekort',
   props: ['vikarie'],

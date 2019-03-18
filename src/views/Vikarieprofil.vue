@@ -7,41 +7,58 @@
         </button>
         <h1>Profil</h1>
         <h2> {{ vikarie.namn }} </h2>
-        <img class="vikarie-bild" src="../assets/avatar.png" alt="avatar"/>
+
+
+    <div class="vikarie-bild-status">
+        <div class="vikarie-bild">
+        <img  src="../assets/avatar.png" alt="avatar"/>
+        </div>
+        <div class="status">
+            <h2>Status:</h2>
+          <!--  <p>{{ this.status }}</p> -->
+        </div>
+
+        </div>
 
       <section class="information">
           <article>
 
            <p class="vikarieInfo">
                Ämne:
-           <span> {{vikarie.amne.toString()}}  </span>
+           <span> 
+             {{vikarie.amne.toString()}} <br>
+            </span>
            </p> 
-
+             
            <p class="vikarieInfo">
                 Kommun: 
             <span>
-                {{vikarie.kommun.toString()}}
+                {{vikarie.kommun.toString()}} <br>
             </span> 
             </p>  
 
             <p class="vikarieInfo"> 
                 Utbildning: 
                 <span>
-                    {{vikarie.klass.toString()}}
+                    {{vikarie.klass.toString()}} <br>
                 </span> 
             </p>     
-
+        
           </article>
       </section>  
+      
            <p class="input-bokare"> Bokare <input type="text" placeholder="Bokare"></p>
            <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
-          <!-- <a href="#" @click="toggle">Boka</a>  -->
-     <!-- <confirm :active="active" />  -->
+
+        
+       <Kalender />
+
        <Modal btnText="Boka"
-          :closeBtn="true"
-          closeBtnHTML="<span>X</span>"
-          >
-          <confirm/>
+        :closeBtn="true" 
+        class="boka"
+        closeBtnHTML="<span>X</span>"
+        >
+        <confirm/>
        </Modal>
      
 
@@ -53,6 +70,7 @@
 <script>
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'
+import Kalender from '@/components/Kalender'
 //import avboka from '@/components/Avboka'
 
 export default {
@@ -64,7 +82,8 @@ export default {
     },
     components: {
         confirm,
-        Modal
+        Modal,
+        Kalender
     },
     data(){
         return {
@@ -91,7 +110,6 @@ export default {
           this.$store.dispatch('getBokningar')
         }
     }
-   
 }
 </script>
 
@@ -144,13 +162,30 @@ export default {
         }
 
       }
+    .vikarie-bild-status{
+        @extend %center;
+        flex-direction: row;
 
+    
     .vikarie-bild {
-        width: 10rem;
+        flex: 1;
+        width: 100%;
+        height: auto;
         border-radius: 9999rem;
         background: linear-gradient(orange, white);
         display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: auto;
+            width: 100%;
+        }
       }
+      .status{
+          flex: 1;
+      }
+    }
 
       .information{
         column-count: 3;
@@ -160,6 +195,7 @@ export default {
       .input-bokare{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
+        margin: .25rem;
     }
     .profil{
         display: flex;
@@ -185,7 +221,7 @@ export default {
         }
 
     div {
-        button {
+        .boka {
             @extend %center;
             background: #BFDE8E;
             padding: .4rem;
@@ -205,9 +241,7 @@ export default {
             }
 
         }
-        span{
-
-        }
+        
 
     .input-profil{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -217,4 +251,6 @@ export default {
   }
  }
 }
+
+
 </style>
