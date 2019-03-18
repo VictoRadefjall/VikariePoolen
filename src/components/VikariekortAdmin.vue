@@ -60,7 +60,6 @@ export default {
   methods: {
     removeVikarie(vikarie) {
       this.$store.dispatch('removeVikarie', vikarie);
-      this.$store.dispatch('getVikarier');
     }
   }
 }
@@ -94,7 +93,7 @@ export default {
       
     }
     .fa-user-edit {
-      color: #8729FF;
+      color: $purple;
       opacity: .7;
       margin: 5px;
     }

@@ -11,11 +11,7 @@
 
     <div class="vikarie-bild-status">
         <div class="vikarie-bild">
-        <img  src="../assets/avatar.png" alt="avatar"/>
-        </div>
-        <div class="status">
-            <h2>Status:</h2>
-          <!--  <p>{{ this.status }}</p> -->
+          <img  src="../assets/avatar.png" alt="avatar"/>
         </div>
 
         </div>
@@ -23,26 +19,33 @@
       <section class="information">
           <article>
 
-           <p class="vikarieInfo">
-               Ämne:
-           <span> 
-             {{vikarie.amne.toString()}} <br>
-            </span>
-           </p> 
-             
-           <p class="vikarieInfo">
-                Kommun: 
-            <span>
-                {{vikarie.kommun.toString()}} <br>
-            </span> 
-            </p>  
+            <div class="vikarieInfo">
+              <label class="rubrik">Kommun:</label>
+              <ul>
+                <li v-for="kommun in vikarie.kommun" :key="kommun">
+                  {{ kommun }}
+                </li> 
+              </ul>
+            </div>  
+            
 
-            <p class="vikarieInfo"> 
-                Utbildning: 
-                <span>
-                    {{vikarie.klass.toString()}} <br>
-                </span> 
-            </p>     
+           <div class="vikarieInfo">
+              <label class="rubrik">Ämne:</label>
+              <ul>
+                <li v-for="amne in vikarie.amne" :key="amne"> 
+                  {{ amne }} 
+                </li>
+              </ul>
+           </div> 
+
+            <div class="vikarieInfo"> 
+              <label class="rubrik">Årskurs:</label>
+              <ul>
+                <li v-for="klass in vikarie.klass" :key="klass">
+                  {{ klass }}
+                </li> 
+              </ul>
+            </div>     
         
           </article>
       </section>  
@@ -55,7 +58,6 @@
 
        <Modal btnText="Boka"
         :closeBtn="true" 
-        class="boka"
         closeBtnHTML="<span>X</span>"
         >
         <confirm/>
@@ -78,7 +80,7 @@ export default {
     computed: {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
-        },
+        }
     },
     components: {
         confirm,
@@ -90,10 +92,9 @@ export default {
             active: false,
             nyBokning: {
               vikarie: {},
-              ledig: true,
               datum: {
-                dag: Number,
-                manad: ''
+                fran: Date,
+                till: Date
               },
               bokare: '',
               skola: ''
@@ -124,12 +125,7 @@ export default {
       background: white;
       max-width: 420px;
       width: 100vw;
-      height: 100vh;
-      z-index: 1;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
+      height: auto;
       margin: auto;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 
@@ -146,15 +142,29 @@ export default {
         article {
           display: flex;
           flex-direction: column;
-
+          
             .vikarieInfo {
                 display: flex;
-                height: 5rem;
+                height: 10rem;
                 flex-direction: column;
+              
+                & label {
+                  color: #D95BF8;
+                  font-weight: 600;
+                  font-size: 1.2em;
 
-                & span {
-                    display: inherit;
-                    flex-direction: column;
+                }
+
+                ul {
+                  padding: .25rem;
+                  margin: 0;
+                  display: flex;
+                  flex-direction: column;
+                
+                  li {
+                    list-style-type: none;
+                    color: none;
+                  }
                 }
 
             }
@@ -179,7 +189,7 @@ export default {
 
         img {
             height: auto;
-            width: 100%;
+            width: 10rem;
         }
       }
       .status{
@@ -197,7 +207,7 @@ export default {
         font-weight: bold;
         margin: .25rem;
     }
-    .profil{
+    .profil {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -241,9 +251,8 @@ export default {
             }
 
         }
-        
 
-    .input-profil{
+    .input-profil {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
     }  

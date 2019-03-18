@@ -11,6 +11,7 @@
           <label>Kommun</label>
           <br />
           <select v-model="kommun">
+            <option>Alla</option>
             <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
           </select>
         </div>
@@ -19,6 +20,7 @@
           <label>Ämne</label> 
           <br />
           <select v-model="amne">
+            <option>Alla</option>
             <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
           </select>
         </div>
@@ -27,6 +29,7 @@
           <label>Årskurs</label> 
           <br />
           <select v-model="klass">
+            <option>Alla</option>
             <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
           </select>
         </div>
@@ -43,9 +46,11 @@
 
     <div class="vikarier">
       <router-view></router-view>
-      <Vikariekort v-for="(vikarie, index) in filterAmne"
+      <Vikariekort 
+        v-for="(vikarie, index) in filterAmne"
         :key="index"
-        :vikarie="vikarie"/>
+        :vikarie="vikarie"
+      />
     </div>
 
   </main>
@@ -76,7 +81,6 @@ export default {
           return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
         })
     },
-
 
     // Filter kommuner
     filterKommun() {
