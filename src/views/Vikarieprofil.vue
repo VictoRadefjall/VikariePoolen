@@ -1,6 +1,10 @@
 <template>
     <main id="boka">
       <div class="profil">
+        <button class="backBtn" @click="$router.push('/vikarielista')">
+          tillbaka <br />
+          &#8592;
+        </button>
         <h1>Profil</h1>
         <h2> {{ vikarie.namn }} </h2>
 
@@ -21,20 +25,22 @@
 
            <p class="vikarieInfo">
                Ämne:
-           <span> {{vikarie.amne.toString()}}  </span>
+           <span> 
+             {{vikarie.amne.toString()}} <br>
+            </span>
            </p> 
              
            <p class="vikarieInfo">
                 Kommun: 
             <span>
-                {{vikarie.kommun.toString()}}
+                {{vikarie.kommun.toString()}} <br>
             </span> 
             </p>  
 
             <p class="vikarieInfo"> 
                 Utbildning: 
                 <span>
-                    {{vikarie.klass.toString()}}
+                    {{vikarie.klass.toString()}} <br>
                 </span> 
             </p>     
         
@@ -61,7 +67,6 @@
 </template>
 
 
-
 <script>
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'
@@ -70,11 +75,6 @@ import Kalender from '@/components/Kalender'
 
 export default {
     name: 'vikarieprofil',
-    data() {
-        return {
-            date: '2019-02-12'
-        }
-    },
     computed: {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
@@ -82,8 +82,33 @@ export default {
     },
     components: {
         confirm,
+        Modal,
         Kalender
-        
+    },
+    data(){
+        return {
+            active: false,
+            nyBokning: {
+              vikarie: {},
+              ledig: true,
+              datum: {
+                dag: Number,
+                manad: ''
+              },
+              bokare: '',
+              skola: ''
+            }
+        }
+    },
+    methods: {
+        toggle(){
+            console.log('It works!')
+            this.active = !this.active;
+        },
+        async skapaBokning() {
+          this.$store.dispatch('skapaBokning', this.nyBokning);
+          this.$store.dispatch('getBokningar')
+        }
     }
 }
 </script>
@@ -102,9 +127,13 @@ export default {
       height: auto;
       border-radius: 2rem;
       border:0.2rem solid grey;
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       margin: auto;
-
-        
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 
       .information{
         column-count: 3;
@@ -117,8 +146,8 @@ export default {
         
 
         article {
-        display: flex;
-        flex-direction: column;
+          display: flex;
+          flex-direction: column;
 
             .vikarieInfo {
                 display: flex;
@@ -150,7 +179,7 @@ export default {
         align-items: center;
         justify-content: center;
 
-        img{
+        img {
             height: auto;
             width: 100%;
         }
@@ -177,6 +206,21 @@ export default {
         justify-content: center;
         width: 100%;
         height: 100%;
+
+        .backBtn {
+          display: flex;
+          flex-direction: column;
+          width: inherit;
+          font-size: 1em;
+          padding: .5rem;
+          border: 0;
+          align-items: flex-end;
+          cursor: pointer;
+        }
+
+        & h1 {
+          color: $purple;
+        }
 
     div {
         .boka {

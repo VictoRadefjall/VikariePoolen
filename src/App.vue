@@ -1,30 +1,33 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Start</router-link> |
-      <router-link to="/vikarielista">Vikarielista</router-link> |
-      <router-link to="/panel">Panel</router-link> 
-    </div>
-    <router-view/>
+    <transition name="fade">
+      <router-view/>
+    </transition>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'app',
+  beforeMount() {
+    this.$store.dispatch('getVikarier');
+    this.$store.dispatch('getBokningar');
+  }
+};
+</script>
 
 <style lang="scss">
 @import './scss/main.scss';
 
-#app {
-  // background: url('./assets/vikariepoolare.jpg') repeat;
-  background-size: contain;
+.fade-enter-active, .fade-leave-active {
+  transition-property: opacity;
+  transition-duration: .2s;
+}
+.fade-enter-active {
+  transition-delay: .2s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0
 }
 
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>

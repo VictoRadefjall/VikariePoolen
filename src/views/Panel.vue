@@ -10,12 +10,14 @@
             <h3>Filtrera Listan</h3>
         </section>
 
-        <section class="list-avtive">   
+        <router-view />
 
-      <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
+        <section class="list-active">   
+
+        <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
 
         </section>
-        <router-view />
+
     </main>
 </template>
 
@@ -24,16 +26,13 @@ import VikariekortAdmin from '../components/VikariekortAdmin'
 
 export default {
     name: 'panel',
-    beforeMount() {
-        this.$store.dispatch('getVikarier')
-    }, 
     components: {
         VikariekortAdmin
     }, 
     computed: {
         vikarier() {
             return this.$store.getters.vikarier;
-        }
+        },
     } 
 }
 
@@ -43,7 +42,7 @@ export default {
 @import '../scss/main.scss';
 
 
-#panel, {
+#panel {
     margin: 10px auto 2rem auto;
     display: flex;
     justify-content: center;
@@ -61,14 +60,18 @@ export default {
         justify-content: space-between;
         align-items: center;
         width: 100%;
+        margin: auto;
         height: 50px;
         background: #8729FF;
+        border-radius: 5px;
 
         h1{
             color: whitesmoke;
             font-size: 1.5rem;
             margin: 0;
             padding: 10px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
         }
         button{
             margin: 10px;
@@ -88,9 +91,7 @@ export default {
         @extend %center;
         margin: 15px;
     }
-    footer{
-        @extend %center;
-        background: orange;
+    .card{
         width: 100%;
     }
 

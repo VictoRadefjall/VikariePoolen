@@ -8,9 +8,13 @@
 
       <section class="info">
         <div class="nameEdit">
-        <h2> {{ vikarie.namn }} </h2>
-        <i class="fas fa-user-edit" @click="$router.push('/edit')"></i>
+          <h2> {{ vikarie.namn }} </h2>
+          <div class="icon">
+            <i class="fas fa-user-edit" @click="$router.push(`/panel/${vikarie._id}`)"></i>
+            <i class="fas fa-user-minus" @click="removeVikarie(vikarie._id)"></i>
+          </div>
         </div>
+        
         <article>
           <p> 
             Ämnen: 
@@ -40,7 +44,7 @@
       </section>
 
     </section>
-    <router-view />
+    
   </main>
 </template>
 
@@ -52,6 +56,12 @@ export default {
     vikarier() {
       return this.$store.getters.vikarier
     },
+  },
+  methods: {
+    removeVikarie(vikarie) {
+      this.$store.dispatch('removeVikarie', vikarie);
+      this.$store.dispatch('getVikarier');
+    }
   }
 }
 </script>
@@ -75,15 +85,23 @@ export default {
     margin: .5rem;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    font-family: 'Roboto';
 
     .nameEdit{
       display: flex;
       flex-direction: row;
       justify-content: space-between;
+      
     }
-    .fa-user-edit{
+    .fa-user-edit {
       color: #8729FF;
       opacity: .7;
+      margin: 5px;
+    }
+    .fa-user-minus {
+      color: rgb(189, 58, 108);
+      opacity: .7;
+      margin: 5px;
     }
 
     .info {
@@ -97,6 +115,8 @@ export default {
         margin: 0;
         align-items: center;
         justify-content: flex-start;
+        color: rgb(99, 98, 98);
+        font-family: 'Roboto';
       }
 
       article {

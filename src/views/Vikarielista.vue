@@ -70,6 +70,14 @@ export default {
     Vikariekort
   },
   computed: {
+    // Sök vikarie efter namn
+    searchVikarie() {
+        return this.$store.getters.vikarier.filter((vikarie) => {
+          return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
+        })
+    },
+
+
     // Filter kommuner
     filterKommun() {
       if (this.kommun == 'Alla') {
@@ -85,11 +93,6 @@ export default {
     filterAmne() {
       if (this.amne == 'Alla') {
         return this.vikarier;
-      } 
-      if (this.search != '') {
-        return this.$store.getters.vikarier.filter((vikarie) => {
-          return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
-      })
       } else {
         return this.vikarier.filter(vikarie => {
           return vikarie.amne.includes(this.amne)
@@ -107,7 +110,7 @@ export default {
         })
       }
     },
-
+    
     vikarier() {
       return this.$store.getters.vikarier;
     },
@@ -121,9 +124,7 @@ export default {
       return this.$store.state.klasser;
     }
   },
-  beforeMount() {
-    this.$store.dispatch('getVikarier')
-  }
+
 }
 </script>
 
@@ -134,6 +135,7 @@ export default {
 
   h1 {
     margin: 0;
+    padding: 1rem;
     color: white;
   }
 

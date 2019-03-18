@@ -1,6 +1,6 @@
 <template>
   <main id="vikariekort">
-    <section class="card" @click="$router.push(`/vikarielista/${vikarie._id}`)">
+       <section class="card" @click="$router.push(`/vikarielista/${vikarie._id}`)">
       
       <aside>
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
@@ -8,6 +8,9 @@
 
       <section class="info">
         <h2> {{ vikarie.namn }} </h2>
+          <span v-if="vikarie.ledig" class="greenTxt"> Tillgänglig </span>
+          <span v-else class="redTxt">Bokad</span>
+
         <article>
           <p> 
             Ämnen: 
@@ -40,11 +43,12 @@
       </section>
 
     </section>
-
+ 
   </main>
 </template>
 
 <script>
+
 export default {
   name: 'vikariekort',
   props: ['vikarie'],
@@ -52,6 +56,9 @@ export default {
     vikarier() {
       return this.$store.getters.vikarier
     },
+    bokningar() {
+      return this.$store.getters.bokningar
+    }
   }
 }
 </script>
@@ -60,7 +67,6 @@ export default {
 @import '../scss/main.scss';
 
 #vikariekort {
-  display: flex;
   flex-direction: column;
   @extend %center;
   
@@ -81,6 +87,19 @@ export default {
       flex-direction: column;
       margin-left: .5rem;
       flex: 7;
+
+        & span {
+          font-size: .75em;
+          display: flex;
+        }
+
+        .greenTxt {
+          color: green;
+        }
+
+        .redTxt {
+          color: red;
+        }
 
       h2 {
         display: inherit;
@@ -104,7 +123,6 @@ export default {
 
           span {
             font-weight: normal;
-            padding-top: .25rem;
             color: purple;
             font-size: 1em;
           }
@@ -132,10 +150,14 @@ export default {
       font-size: 1em;
 
       .info {
+
         article {
           font-size: .75em;
-          
         } 
+
+        h2 {
+          font-size: 1.2em;
+        }
       }
     }
   }
