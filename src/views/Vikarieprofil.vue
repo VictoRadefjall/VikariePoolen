@@ -11,38 +11,50 @@
 
     <div class="vikarie-bild-status">
         <div class="vikarie-bild">
+<<<<<<< HEAD
         <img  src="../assets/avatar.png" alt="avatar"/>
         </div>
       <!--  <div class="status">
             <h2>Status:</h2>
            <p>{{ this.status }}</p> 
         </div> -->
+=======
+          <img  src="../assets/avatar.png" alt="avatar"/>
+        </div>
+>>>>>>> 0811600e2818efadf0cc202eec32dce942507c84
 
         </div>
 
       <section class="information">
           <article>
 
-           <p class="vikarieInfo">
-               Ämne:
-           <span> 
-             {{vikarie.amne.toString()}} <br>
-            </span>
-           </p> 
-             
-           <p class="vikarieInfo">
-                Kommun: 
-            <span>
-                {{vikarie.kommun.toString()}} <br>
-            </span> 
-            </p>  
+            <div class="vikarieInfo">
+              <label class="rubrik">Kommun:</label>
+              <ul>
+                <li v-for="kommun in vikarie.kommun" :key="kommun">
+                  {{ kommun }}
+                </li> 
+              </ul>
+            </div>  
+            
 
-            <p class="vikarieInfo"> 
-                Utbildning: 
-                <span>
-                    {{vikarie.klass.toString()}} <br>
-                </span> 
-            </p>     
+           <div class="vikarieInfo">
+              <label class="rubrik">Ämne:</label>
+              <ul>
+                <li v-for="amne in vikarie.amne" :key="amne"> 
+                  {{ amne }} 
+                </li>
+              </ul>
+           </div> 
+
+            <div class="vikarieInfo"> 
+              <label class="rubrik">Årskurs:</label>
+              <ul>
+                <li v-for="klass in vikarie.klass" :key="klass">
+                  {{ klass }}
+                </li> 
+              </ul>
+            </div>     
         
           </article>
       </section>  
@@ -78,7 +90,7 @@ export default {
     computed: {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
-        },
+        }
     },
     components: {
         confirm,
@@ -90,10 +102,9 @@ export default {
             active: false,
             nyBokning: {
               vikarie: {},
-              ledig: true,
               datum: {
-                dag: Number,
-                manad: ''
+                fran: Date,
+                till: Date
               },
               bokare: '',
               skola: ''
@@ -152,8 +163,6 @@ export default {
       max-width: 420px;
       width: 100vw;
       height: auto;
-      border-radius: 2rem;
-      border:0.2rem solid grey;
       z-index: 1;
       top: 0;
       left: 0;
@@ -174,15 +183,29 @@ export default {
         article {
           display: flex;
           flex-direction: column;
-
+          
             .vikarieInfo {
                 display: flex;
-                height: 5rem;
+                height: 10rem;
                 flex-direction: column;
+              
+                & label {
+                  color: $pink;
+                  font-weight: 600;
+                  font-size: 1.2em;
 
-                & span {
-                    display: inherit;
-                    flex-direction: column;
+                }
+
+                ul {
+                  padding: .25rem;
+                  margin: 0;
+                  display: flex;
+                  flex-direction: column;
+                
+                  li {
+                    list-style-type: none;
+                    color: none;
+                  }
                 }
 
             }
@@ -208,7 +231,7 @@ export default {
 
         img {
             height: auto;
-            width: 100%;
+            width: 10rem;
         }
       }
       .status{
@@ -226,7 +249,7 @@ export default {
         font-weight: bold;
         margin: .25rem;
     }
-    .profil{
+    .profil {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -254,9 +277,10 @@ export default {
                 margin: auto;
                 @extend %center;
             }
-        
 
-    .input-profil{
+        }
+
+    .input-profil {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
     }  
@@ -264,6 +288,5 @@ export default {
   }
  }
 }
-
 
 </style>

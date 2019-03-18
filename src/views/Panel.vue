@@ -6,15 +6,42 @@
             <button @click="$router.push('/add')">Lägg till</button>
         </section>
 
-        <section class="filter">
-            <h3>Filtrera Listan</h3>
+
+        <!-- Filter Section -->
+        <section class="selections">
+            <div class="selectBtn">
+            <label>Kommun</label>
+            <br />
+            <select v-model="kommun">
+                <option default>Alla</option>
+                <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
+            </select>
+            </div>
+
+            <div class="selectBtn">
+            <label>Ämne</label> 
+            <br />
+            <select v-model="amne">
+                <option default>Alla</option>
+                <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
+            </select>
+            </div>
+
+            <div class="selectBtn">
+            <label>Årskurs</label> 
+            <br />
+            <select v-model="klass">
+                <option default>Alla</option>
+                <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
+            </select>
+            </div>
         </section>
 
         <router-view />
 
         <section class="list-active">   
 
-        <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
+        <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
 
         </section>
 
@@ -29,11 +56,60 @@ export default {
     components: {
         VikariekortAdmin
     }, 
+    data() {
+        return {
+            kommun: 'Alla',
+            amne: 'Alla',
+            klass: 'Alla'
+        }
+    },
     computed: {
+        filterAll() {
+            return filterAmne(filterKommun(filterKlass(this.vikarier, this.klass), this.kommun), this.amne)
+        },
         vikarier() {
             return this.$store.getters.vikarier;
         },
+        kommuner() {
+            return this.$store.state.kommuner;
+        },
+        amnen() {
+            return this.$store.state.amnen;
+        },
+        klasser() {
+            return this.$store.state.klasser;
+        }
     } 
+}
+
+function filterKlass(list, klass) {
+    if (klass == 'Alla') {
+      return list;
+    } else {
+      return list.filter(vikarie => {
+        return vikarie.klass.includes(klass)
+      })
+    }
+}
+
+function filterAmne(list, amne) {
+    if (amne == 'Alla') {
+      return list;
+    } else {
+      return list.filter(vikarie => {
+        return vikarie.amne.includes(amne)
+      })
+    }
+}
+
+function filterKommun(list, kommun) {
+    if (kommun == 'Alla') {
+      return list;
+    } else {
+      return list.filter(vikarie => {
+        return vikarie.kommun.includes(kommun)
+      })
+    }
 }
 
 </script>
@@ -82,14 +158,31 @@ export default {
             color: white;
         }
     }
-    .filter{
-        width: 70%;
-        height: 40px;
+
+    .selections {
+      display: flex;
+      padding-top: 1rem;
+      justify-content: space-evenly;
+      width: 100%;
+      margin: auto;
+      margin-bottom: 3rem;
+
+      select {
+        background: #eee;
+        appearance: none;
+        width: 10vw;
+        padding: .35rem;
         border-radius: 5px;
-        border: black solid 1px;
-        background: #ffffff;
-        @extend %center;
-        margin: 15px;
+        font-size: .8em;
+        height: 3rem;
+        border: none;
+        box-shadow: 5px 3px 2px #777;
+        background-image: url('../assets/arrow.svg');
+        background-repeat: no-repeat;
+        background-position: 95% 50%;
+        background-size: 1rem 1rem;
+      }    
+    
     }
     .card{
         width: 100%;

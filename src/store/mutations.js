@@ -6,6 +6,7 @@ export default {
       state.bokningar = bokningar;
     },
     removeVikarie(state, vikarie) {
-      state.vikarier.splice(state.vikarier.indexOf(vikarie), 1);
+      state.vikarier.splice(state.vikarier.indexOf(vikarie), 1)
+      console.log(vikarie);
   }
 };
