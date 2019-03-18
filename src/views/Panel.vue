@@ -33,7 +33,10 @@ export default {
         vikarier() {
             return this.$store.getters.vikarier;
         },
-    } 
+        bookedVikarier() {
+            return this.$store.getters.bookedVikarier;
+        }
+    }
 }
 
 </script>
