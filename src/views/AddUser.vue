@@ -6,29 +6,36 @@
         <h2>Lägg till ny vikarie</h2>
 
         <div class="input-field">
-            <label>Kommun</label>
-            <ul>
-              <li v-for="kommun in kommuner" :key="kommun">
-                {{ kommun }}
-              <input type="checkbox" :value="kommun" v-model="nyVikarie.kommun">
-              </li>
-            </ul>
 
-            <label>Årskurs</label>
-            <ul>
-              <li v-for="klass in klasser" :key="klass">
-                {{ klass }}
-              <input type="checkbox" :value="klass" v-model="nyVikarie.klass">
-              </li>
+            <section class="kommun">
+                <label>Kommun</label>
+                <ul>
+                <li v-for="kommun in kommuner" :key="kommun">
+                    {{ kommun }}
+                <input type="checkbox" :value="kommun" v-model="nyVikarie.kommun">
+                </li>
             </ul>
+            </section>
 
-            <label>Ämnen</label>
-             <ul>
-              <li v-for="amne in amnen" :key="amne">
-                {{ amne }}
-              <input type="checkbox" :value="amne" v-model="nyVikarie.amne">
-              </li>
-            </ul>
+            <section class="klass">
+                <label>Årskurs</label>
+                <ul>
+                <li v-for="klass in klasser" :key="klass">
+                    {{ klass }}
+                <input type="checkbox" :value="klass" v-model="nyVikarie.klass">
+                </li>
+                </ul>
+            </section>
+
+            <section class="amne">
+                <label>Ämnen</label>
+                <ul>
+                <li v-for="amne in amnen" :key="amne">
+                    {{ amne }}
+                <input type="checkbox" :value="amne" v-model="nyVikarie.amne">
+                </li>
+                </ul>
+            </section>
 
             <input type="text" placeholder="Namn" class="namn pads"  v-model="nyVikarie.namn">
             <input type="text" placeholder="Kompetenser.." class="kompetens pads" v-model="nyVikarie.kompetens" /> 
@@ -88,7 +95,8 @@ export default {
 #add {
     @extend %center;
     flex-direction: column;
-    width: 50vw;
+    width: 100vw;
+    max-width: 410px;
     margin: auto;
 
     .form { 
@@ -99,17 +107,27 @@ export default {
             grid-template-columns: 1fr;
             grid-auto-rows: auto;
             grid-template-areas: 
-            "kommun"
+            "namn"
             "klass"
             "amne"
-            "intresse"
-            "namn"
+            "kommun"
             "komp";
 
-            .kommun{grid-area: kommun;}
-            .klass{grid-area: klass;}
+            .kommun{
+                grid-area: kommun;
+
+                li{
+                    background: lightsalmon;
+                }
+            }
+            .klass{
+                grid-area: klass;
+                
+                li{
+                    background: rgb(252, 201, 82);
+                }    
+            }
             .amne{grid-area: amne;}
-            .intressen{grid-area: intresse;}
             .namn{grid-area: namn;}
             .kompetens{grid-area: komp;}
 
@@ -122,6 +140,8 @@ export default {
             ul {
                 flex-direction: row; 
                 @extend %center;
+                flex-wrap: wrap;
+                padding: 0;
             }
 
             li {
@@ -131,6 +151,11 @@ export default {
                 padding: .5rem;
                 margin: .25rem;
                 color: white;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            }
+
+            label {
+                font-weight: bold;
             }
         }
     }

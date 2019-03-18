@@ -126,6 +126,11 @@ export default {
       max-width: 420px;
       width: 100vw;
       height: auto;
+      z-index: 1;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
       margin: auto;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 
@@ -260,6 +265,5 @@ export default {
   }
  }
 }
-
 
 </style>

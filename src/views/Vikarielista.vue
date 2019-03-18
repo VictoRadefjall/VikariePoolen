@@ -63,7 +63,6 @@ export default {
   name: 'vikarielista',
   data() {
     return {
-      vlist: this.$store.getters.vikarier,
       search: '',
       kommun: 'Alla',
       amne: 'Alla',

@@ -13,4 +13,7 @@ export default {
     bookedVikarier(state) {
       return state.vikarier.filter(vikarie => !vikarie.ledig)
     },
+    activeVikarier(state) {
+      return state.vikarier.filter(vikarie => vikarie.ledig)
+    }
 }
