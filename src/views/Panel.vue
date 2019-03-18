@@ -11,34 +11,30 @@
         </section>
 
         <section class="list-avtive">   
-       <Vikariekort v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />        
+
+      <VikariekortAdmin class="card" v-for="(vikarie, index) in vikarier" :key="index" :vikarie="vikarie" />  
 
         </section>
-        
-
-        <footer>
-            <a @click="$router.push('/edit')">Redigera vikarie</a>
-        </footer>
         <router-view />
     </main>
 </template>
 
 <script>
-import Vikariekort from '../components/Vikariekort'
+import VikariekortAdmin from '../components/VikariekortAdmin'
+
 export default {
     name: 'panel',
-
-beforeMount() {
-    this.$store.dispatch('getVikarier')
-},
-components: {
-    Vikariekort
-},
-computed: {
-    vikarier() {
-        return this.$store.getters.vikarier;
-    }
-} 
+    beforeMount() {
+        this.$store.dispatch('getVikarier')
+    }, 
+    components: {
+        VikariekortAdmin
+    }, 
+    computed: {
+        vikarier() {
+            return this.$store.getters.vikarier;
+        }
+    } 
 }
 
 </script>
@@ -47,12 +43,12 @@ computed: {
 @import '../scss/main.scss';
 
 
-#panel {
-    // @extend %center;
+#panel, {
+    margin: 10px auto 2rem auto;
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 420px;
+    max-width: 460px;
     width: 100%;
     margin: auto;
     background: $lightpurple;

@@ -1,9 +1,20 @@
 <template>
     <main id="boka">
       <div class="profil">
-          <h1>Profil</h1>
-          <h2> {{ vikarie.namn }} </h2>
-          <img class="vikarie-bild" src="../assets/avatar.png" alt="avatar"/>
+        <h1>Profil</h1>
+        <h2> {{ vikarie.namn }} </h2>
+
+
+    <div class="vikarie-bild-status">
+        <div class="vikarie-bild">
+        <img  src="../assets/avatar.png" alt="avatar"/>
+        </div>
+        <div class="status">
+            <h2>Status:</h2>
+          <!--  <p>{{ this.status }}</p> -->
+        </div>
+
+        </div>
 
       <section class="information">
           <article>
@@ -26,13 +37,19 @@
                     {{vikarie.klass.toString()}}
                 </span> 
             </p>     
-
+        
           </article>
       </section>  
+      
            <p class="input-bokare"> Bokare <input type="text" placeholder="Bokare"></p>
            <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
+
+        
+       <Kalender />
+
        <Modal btnText="Boka"
-        :closeBtn="true"
+        :closeBtn="true" 
+        class="boka"
         closeBtnHTML="<span>X</span>"
         >
         <confirm/>
@@ -48,26 +65,26 @@
 <script>
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'
+import Kalender from '@/components/Kalender'
 //import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
+    data() {
+        return {
+            date: '2019-02-12'
+        }
+    },
     computed: {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
         },
     },
     components: {
-        confirm
-    },
-    data(){
-        return {
-        }
-    },
-    methods: {
-       
+        confirm,
+        Kalender
+        
     }
-   
 }
 </script>
 
@@ -85,6 +102,9 @@ export default {
       height: 40rem;
       border-radius: 2rem;
       border:0.2rem solid grey;
+      margin: auto;
+
+        
 
       .information{
         column-count: 3;
@@ -115,13 +135,30 @@ export default {
         }
 
       }
+    .vikarie-bild-status{
+        @extend %center;
+        flex-direction: row;
 
+    
     .vikarie-bild {
-        width: 10rem;
+        flex: 1;
+        width: 100%;
+        height: auto;
         border-radius: 9999rem;
         background: linear-gradient(orange, white);
         display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img{
+            height: auto;
+            width: 100%;
+        }
       }
+      .status{
+          flex: 1;
+      }
+    }
 
       .information{
         column-count: 3;
@@ -131,7 +168,7 @@ export default {
       .input-bokare{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
-
+        margin: .25rem;
     }
     .profil{
         display: flex;
@@ -142,7 +179,7 @@ export default {
         height: 100%;
 
     div {
-        button {
+        .boka {
             @extend %center;
             background: #BFDE8E;
             padding: .4rem;
@@ -162,9 +199,7 @@ export default {
             }
 
         }
-        span{
-
-        }
+        
 
     .input-profil{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -174,4 +209,6 @@ export default {
   }
  }
 }
+
+
 </style>

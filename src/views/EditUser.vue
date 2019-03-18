@@ -12,6 +12,7 @@
           <select></select> <br>
           <label for="">Datum </label> <br>
           <button type="button">Redigera</button>
+          <button href="#" @click="$router.push('/panel')" class="back">tillbaka </button>
       </form>
     </main>
 </template>

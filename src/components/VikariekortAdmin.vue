@@ -1,21 +1,21 @@
 <template>
-  <main id="vikariekort">
-    <section class="card" @click="$router.push(`/vikarielista/${vikarie._id}`)">
+  <main id="vikariekortAdmin">
+    <section class="card">
       
       <aside>
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
       </aside>
 
       <section class="info">
+        <div class="nameEdit">
         <h2> {{ vikarie.namn }} </h2>
+        <i class="fas fa-user-edit" @click="$router.push('/edit')"></i>
+        </div>
         <article>
           <p> 
             Ämnen: 
-              <span v-if="vikarie.amne.length > 1"> 
+              <span> 
                 {{ vikarie.amne.length }} 
-              </span>
-              <span v-else>
-                {{ vikarie.amne.toString() }}
               </span>
           </p>
           <p> 
@@ -24,7 +24,7 @@
                 {{ vikarie.klass.length }}+
               </span>
               <span v-else> 
-                {{ vikarie.klass.toString() }} 
+                {{ vikarie.klass.length }} 
               </span>
           </p>
           <p>
@@ -33,20 +33,20 @@
                 Flera
               </span>
               <span v-else>
-                {{ vikarie.kommun.toString() }} 
+                {{ vikarie.kommun.length }} 
               </span>
           </p>
         </article>
       </section>
 
     </section>
-
+    <router-view />
   </main>
 </template>
 
 <script>
 export default {
-  name: 'vikariekort',
+  name: 'vikariekortAdmin',
   props: ['vikarie'],
   computed: {
     vikarier() {
@@ -59,7 +59,7 @@ export default {
 <style lang="scss">
 @import '../scss/main.scss';
 
-#vikariekort {
+#vikariekortAdmin {
   display: flex;
   flex-direction: column;
   @extend %center;
@@ -75,6 +75,16 @@ export default {
     margin: .5rem;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+    .nameEdit{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+    .fa-user-edit{
+      color: #8729FF;
+      opacity: .7;
+    }
 
     .info {
       display: flex;
@@ -94,20 +104,18 @@ export default {
         flex-direction: row;
         align-items: flex-start;
         justify-content: space-between;
-        color: #444;
-        font-weight: 400;
 
         p {
-          display: inherit;
-          flex-direction: column;
-          @extend %center;
+            font-weight: 600;
+            display: inherit;
+            flex-direction: column;
+            @extend %center;
 
-          span {
-            font-weight: normal;
-            padding-top: .25rem;
-            color: purple;
-            font-size: 1em;
-          }
+            span {
+              font-weight: normal;
+              color: purple;
+              font-size: 1em;
+            }
         }
       }
 
@@ -129,14 +137,6 @@ export default {
    @media screen and (max-width: 500px) {
     .card {
       width: 85vw;
-      font-size: 1em;
-
-      .info {
-        article {
-          font-size: .75em;
-          
-        } 
-      }
     }
   }
 }
