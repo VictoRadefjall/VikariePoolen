@@ -149,7 +149,7 @@ export default {
                 flex-direction: column;
               
                 & label {
-                  color: #D95BF8;
+                  color: $pink;
                   font-weight: 600;
                   font-size: 1.2em;
 

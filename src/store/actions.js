@@ -31,13 +31,6 @@ export default {
     },
     async removeVikarie(ctx, id) {
       await axios.delete('http://localhost:3000/vikarier/' + id);
-      ctx.commit('removeVikarie', id)
+      ctx.commit('removeVikarie', id);
     }
-    
-    /*
-    removeVikarie(vikarie) {
-      // axios.delete('http://localhost:3000/vikarier/' + id)
-      this.getters.vikarier.splice(this.getters.vikarier.indexOf(vikarie), 1);
-    },
-    */
 }
