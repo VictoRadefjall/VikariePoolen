@@ -10,7 +10,7 @@
 <script>
 export default {
     name: 'confirm',
-        computed: {
+    computed: {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
         },

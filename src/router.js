@@ -41,5 +41,9 @@ export default new Router({
       name: 'adduser',
       component: () => import('./views/AddUser.vue')
     },
+    {
+      path: '*',
+      redirect: '/'
+    }
   ]
 });

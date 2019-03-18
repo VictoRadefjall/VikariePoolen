@@ -29,9 +29,9 @@ export default {
         console.error(err);
       }
     },
-    async removeVikarie(ctx, index) {
-      await axios.delete('http://localhost:3000/vikarier/');
-      ctx.commit('removeVikarie', index)
+    async removeVikarie(ctx, id) {
+      await axios.delete('http://localhost:3000/vikarier/' + id);
+      ctx.commit('removeVikarie', id)
     }
     
     /*
