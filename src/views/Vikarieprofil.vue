@@ -99,7 +99,7 @@ export default {
       background: white;
       max-width: 420px;
       width: 100vw;
-      height: 40rem;
+      height: auto;
       border-radius: 2rem;
       border:0.2rem solid grey;
       margin: auto;
