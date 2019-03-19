@@ -30,7 +30,13 @@ export default {
       }
     },
     async removeVikarie(ctx, id) {
+      try{
       await axios.delete('http://localhost:3000/vikarier/' + id);
-      ctx.commit('removeVikarie', id);
+      await ctx.dispatch('getVikarier');
+      console.log('Användare borttagen.')
+    }
+    catch(err) {
+      console.error(err);
+    }
     }
 }

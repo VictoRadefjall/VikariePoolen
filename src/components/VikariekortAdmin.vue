@@ -59,7 +59,7 @@ export default {
   },
   methods: {
     removeVikarie(vikarie) {
-      this.$store.dispatch('removeVikarie', vikarie._id);
+      this.$store.dispatch('removeVikarie', vikarie);
     }
   }
 }
@@ -113,8 +113,9 @@ export default {
         margin: 0;
         align-items: center;
         justify-content: flex-start;
-        color: rgb(99, 98, 98);
+        color: #073454;
         font-family: 'Roboto';
+        font-weight: lighter;
       }
 
       article {
@@ -131,8 +132,9 @@ export default {
 
             span {
               font-weight: normal;
-              color: purple;
-              font-size: 1em;
+              color: #685BF8;
+              font-size: 1.2em;
+              margin: 5px;
             }
         }
       }
