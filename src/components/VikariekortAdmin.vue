@@ -10,7 +10,7 @@
         <div class="nameEdit">
           <h2> {{ vikarie.namn }} </h2>
           <div class="icon">
-            <i class="fas fa-user-edit" @click="$router.push(`/panel/${vikarie._id}`)"></i>
+            <a href="#top"><i class="fas fa-user-edit" @click="$router.push(`/panel/${vikarie._id}`)" href="#top"></i></a>
             <i class="fas fa-user-minus" @click="removeVikarie(vikarie._id)"></i>
           </div>
         </div>
@@ -116,8 +116,9 @@ export default {
         margin: 0;
         align-items: center;
         justify-content: flex-start;
-        color: rgb(99, 98, 98);
+        color: #073454;
         font-family: 'Roboto';
+        font-weight: lighter;
       }
 
       article {
@@ -134,8 +135,9 @@ export default {
 
             span {
               font-weight: normal;
-              color: purple;
-              font-size: 1em;
+              color: #685BF8;
+              font-size: 1.2em;
+              margin: 5px;
             }
         }
       }
