@@ -7,7 +7,6 @@
             <input v-model="password" type="password" placeholder="password">
             <a href="#" @click="login" class="btn">Login</a>
         </section>
-        <span v-if="!validPassword && !validUsername">Fel användarnamn eller lösenord.</span>
     </main>
 </template>
 
@@ -34,6 +33,9 @@ export default {
     computed: {
         admin() {
             return this.$store.state.activeAdmin;
+        },
+        loggedIn() {
+            return this.$store.state.loggedIn;
         }
     }
 }

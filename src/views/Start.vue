@@ -4,7 +4,7 @@
     <img src="../assets/start.svg" />
     <p>När du behöver en poolare</p>
     <a class="startBtn" @click="$router.push('/vikarielista')">Hitta vikarie</a>
-    <a class="admin" @click="$router.push('/admin')">Admin</a>
+    <a class="admin" @click="$router.push('/login')">Admin</a>
   </main>
 </template>
 

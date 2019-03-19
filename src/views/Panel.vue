@@ -39,7 +39,7 @@
         <router-view />
 
         <section class="list-active">   
-            <h3>Aktiva</h3>
+            <h3>Ej bokade</h3>
             <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
         </section>
 

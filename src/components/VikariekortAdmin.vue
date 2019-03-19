@@ -51,7 +51,7 @@
 <script>
 export default {
   name: 'vikariekortAdmin',
-  props: ['vikarie', 'bokning'],
+  props: ['vikarie'],
   computed: {
     vikarier() {
       return this.$store.getters.vikarier;

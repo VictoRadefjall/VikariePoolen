@@ -35,6 +35,9 @@ let router = new Router({
         {
           path: '/panel/:id',
           name: 'edituser',
+          meta: { 
+            requiresAuth: true
+          },
           component: () => import('./views/EditUser.vue')
         }
       ]
@@ -42,10 +45,13 @@ let router = new Router({
     {
       path: '/add',
       name: 'adduser',
+      meta: { 
+        requiresAuth: true
+      },
       component: () => import('./views/AddUser.vue')
     },
     {
-      path: '/admin',
+      path: '/login',
       name: 'admin',
       component: () => import('./views/Admin.vue')
     },
