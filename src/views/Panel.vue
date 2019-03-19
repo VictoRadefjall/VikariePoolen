@@ -3,7 +3,7 @@
 
         <section class="topnav">
             <h1>Admin Panel</h1> 
-            <button @click="$router.push('/add')">Lägg till</button>
+            <div class="add" @click="$router.push('/add')">Lägg till</div>
         </section>
 
 
@@ -149,13 +149,15 @@ function filterKommun(list, kommun) {
             text-transform: uppercase;
             letter-spacing: 3px;
         }
-        button{
+        .add{
             margin: 10px;
             padding: 5px;
-            border: solid white 2px;
-            border-radius: 5px;
-            background: none;
+            // border: solid white 2px;
+            border-radius: 15px;
+            background: #F151C4;
             color: white;
+            cursor: pointer;
+            font-size: .8rem;
         }
     }
 
