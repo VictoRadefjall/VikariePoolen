@@ -1,27 +1,18 @@
 <template>
     <main id="boka">
       <div class="profil">
-        <btn class="backBtn" @click="$router.push('/vikarielista')">
+        <button class="backBtn" @click="$router.push('/vikarielista')">
           tillbaka <br />
           &#8592;
-        </btn>
+        </button>
         <h1>Profil</h1>
         <h2> {{ vikarie.namn }} </h2>
 
 
     <div class="vikarie-bild-status">
         <div class="vikarie-bild">
-<<<<<<< HEAD
-        <img  src="../assets/avatar.png" alt="avatar"/>
-        </div>
-      <!--  <div class="status">
-            <h2>Status:</h2>
-           <p>{{ this.status }}</p> 
-        </div> -->
-=======
           <img  src="../assets/avatar.png" alt="avatar"/>
         </div>
->>>>>>> 0811600e2818efadf0cc202eec32dce942507c84
 
         </div>
 
@@ -32,7 +23,7 @@
               <label class="rubrik">Kommun:</label>
               <ul>
                 <li v-for="kommun in vikarie.kommun" :key="kommun">
-                  {{ kommun }}
+                  <p>{{ kommun }}</p>
                 </li> 
               </ul>
             </div>  
@@ -59,14 +50,16 @@
           </article>
       </section>  
       
-           <p class="input-bokare"> Bokare <input type="text" placeholder="Bokare"></p>
-           <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
+           <p class="input-bokare"> Bokare <input type="text"  placeholder="Bokare" v-model="nyBokning.bokare"></p>
+           <p class="input-bokare"> Plats <input type="text" v-model="nyBokning.skola" placeholder="Plats"></p>
 
         
        <Kalender />
 
        <Modal btnText="Boka"
-        :closeBtn="true" 
+        @before-close="skapaBokning()"
+        :closeBtn="true"
+         
         class="boka-btn"
         closeBtnHTML="<span>X</span>"
         >
@@ -89,8 +82,18 @@ export default {
     name: 'vikarieprofil',
     computed: {
         vikarie() {
+          console.log(this.$store.getters.getVikarieById(this.$route.params.id));
           return this.$store.getters.getVikarieById(this.$route.params.id);
+          
         }
+    },
+    watch: {
+      vikarie: {
+        immediate: true,
+        handler(val){
+          this.nyBokning.vikarie = val._id; 
+        }
+      }
     },
     components: {
         confirm,
@@ -99,26 +102,22 @@ export default {
     },
     data(){
         return {
-            active: false,
-            nyBokning: {
+              nyBokning: {
               vikarie: {},
               datum: {
-                fran: Date,
-                till: Date
+                fran: new Date,
+                till: new Date
               },
-              bokare: '',
-              skola: ''
+              bokare: 'sdfg',
+              skola: 'dghj'
             }
         }
     },
     methods: {
-        toggle(){
-            console.log('It works!')
-            this.active = !this.active;
-        },
         async skapaBokning() {
           this.$store.dispatch('skapaBokning', this.nyBokning);
           this.$store.dispatch('getBokningar')
+          //console.log(nyBokning);
         }
     }
 }
@@ -287,6 +286,6 @@ export default {
     
   }
  }
-}
+
 
 </style>

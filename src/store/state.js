@@ -1,5 +1,6 @@
 export default {
     vikarier: [],
+    apiUrl: 'http://localhost:3001',
     bokningar: [],
     bokning: {}, 
     kommuner: ['Kungälv', 'Lerum', 'Partille', 'Mölndal', 'Göteborg', 'Öckerö', 'Tjörn', 'Kungsbacka'],

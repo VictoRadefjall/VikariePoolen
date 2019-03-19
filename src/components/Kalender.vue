@@ -3,7 +3,7 @@
      <!-- Calender -->
  
     <date-pick
-        v-model="StartDate"
+        v-model="StartDate" 
         :hasInputElement="false" 
     ></date-pick>
 
@@ -20,7 +20,7 @@ export default {
     data() {
       return {
         StartDate: '2019-01-01',
-        endDate: '',
+        endDate: ''
       }
     },
 }

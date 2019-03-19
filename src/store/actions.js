@@ -2,17 +2,19 @@ import axios from 'axios'
 
 export default {
     async getVikarier(ctx) {
-      let vikarier = await axios.get('http://localhost:3000/vikarier');
+      console.log('ARIBA!!')
+      let vikarier = await axios.get(`${ctx.state.apiUrl}/vikarier`);
+      console.log(vikarier);
       ctx.commit('setVikarier', vikarier.data);
     },
     async getBokningar(ctx) {
-      let bokningar = await axios.get('http://localhost:3000/bokningar');
+      let bokningar = await axios.get(`${ctx.state.apiUrl}/bokningar`);
       ctx.commit('setBokningar', bokningar.data);
     },
     async skapaVikarie(data, nyVikarie) {
       try {
         console.log(data, nyVikarie)
-        await axios.post('http://localhost:3000/vikarier', nyVikarie);
+        await axios.post(`${data.state.apiUrl}/vikarier`, nyVikarie);
         data.dispatch('getVikarier');
       }
       catch(err) {
@@ -21,8 +23,8 @@ export default {
     },
     async skapaBokning(data, nyBokning) {
       try {
-        console.log(data, nyBokning)
-        await axios.post('http://localhost:3000/bokningar', nyBokning);
+        console.log(nyBokning)
+        await axios.post(`${data.state.apiUrl}/bokningar`, nyBokning);
         data.dispatch('getBokningar');
       }
       catch(err) {
@@ -30,7 +32,7 @@ export default {
       }
     },
     async removeVikarie(ctx, id) {
-      await axios.delete('http://localhost:3000/vikarier/' + id);
+      await axios.delete(`${ctx.state.apiUrl}/vikarier` + id);
       ctx.commit('removeVikarie', id);
     }
 }
