@@ -54,8 +54,11 @@ export default {
   props: ['vikarie'],
   computed: {
     vikarier() {
-      return this.$store.getters.vikarier
+      return this.$store.getters.vikarier;
     },
+    bokningar() {
+      return this.$store.getters.bokningar;
+    }
   },
   methods: {
     removeVikarie(vikarie) {

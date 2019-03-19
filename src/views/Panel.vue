@@ -6,7 +6,6 @@
             <button @click="$router.push('/add')">Lägg till</button>
         </section>
 
-
         <!-- Filter Section -->
         <section class="selections">
             <div class="selectBtn">
@@ -40,9 +39,35 @@
         <router-view />
 
         <section class="list-active">   
+            <h3>Ej bokade</h3>
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
+        </section>
 
-        <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
+        <section class="list-booked">
+            <h3>Bokade</h3>
+            <p class="card" v-for="bokning in currentBookings" :key="bokning.id">  
+                <ul>
+                   <li> Vikarie: {{ bokning.vikarie.namn }} </li>
+                   <li> Från: {{ bokning.datum.fran }} </li>
+                    <li> Till: {{ bokning.datum.till }} </li>
+                    <li> Bokad av: {{ bokning.bokare }} </li>
+                    <li> Skola: {{ bokning.skola }} </li>
+              </ul>
+            </p>
+        </section>
+        
 
+        <section class="list-finished">
+            <h3>Avslutade</h3>
+            <p class="card" v-for="bokning in oldBookings" :key="bokning.id">  
+                <ul>
+                   <li> Vikarie: {{ bokning.vikarie.namn }} </li>
+                   <li> Från: {{ bokning.datum.fran }} </li>
+                    <li> Till: {{ bokning.datum.till }} </li>
+                    <li> Bokad av: {{ bokning.bokare }} </li>
+                    <li> Skola: {{ bokning.skola }} </li>
+              </ul>
+            </p>
         </section>
 
     </main>
@@ -65,10 +90,19 @@ export default {
     },
     computed: {
         filterAll() {
-            return filterAmne(filterKommun(filterKlass(this.vikarier, this.klass), this.kommun), this.amne)
+            return filterAmne(filterKommun(filterKlass(this.activeVikarier, this.klass), this.kommun), this.amne)
         },
-        vikarier() {
-            return this.$store.getters.vikarier;
+        bookedVikarier() {
+            return this.$store.getters.bookedVikarier;
+        },
+        activeVikarier() {
+            return this.$store.getters.activeVikarier;
+        },
+        currentBookings() {
+            return this.$store.getters.currentBookings;
+        },
+        oldBookings() {
+            return this.$store.getters.oldBookings;
         },
         kommuner() {
             return this.$store.state.kommuner;
@@ -92,7 +126,7 @@ function filterKlass(list, klass) {
     }
 }
 
-function filterAmne(list, amne) {
+function filterAmne(list, amne) { 
     if (amne == 'Alla') {
       return list;
     } else {
@@ -123,11 +157,16 @@ function filterKommun(list, kommun) {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 460px;
+    max-width: 480px;
     width: 100%;
     margin: auto;
     background: $lightpurple;
     flex-direction: column;
+
+    .list-active, .list-booked {
+        width: 90vw;
+        max-width: 460px;
+    }
 
 
     .topnav{
@@ -157,6 +196,7 @@ function filterKommun(list, kommun) {
             background: none;
             color: white;
         }
+
     }
 
     .selections {
@@ -188,7 +228,15 @@ function filterKommun(list, kommun) {
         width: 100%;
     }
 
+    @media screen and (max-width: 500px) {
+    
+    .selections {
+        select {
+            width: 30vw;
+        }
+    }
 
+    }
 }
 
 
