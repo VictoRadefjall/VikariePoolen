@@ -5,6 +5,7 @@ import state from './state';
 import actions from './actions';
 import mutations from './mutations';
 import axios from 'axios';
+import VCalendar from 'v-calendar';
 
 Vue.use(Vuex, axios);
 

@@ -1,11 +1,8 @@
 <template>
   <div class="kalender">
      <!-- Calender -->
- 
-    <date-pick
-        v-model="StartDate" 
-        :hasInputElement="false" 
-    ></date-pick>
+  <date-pick v-model="StartDate" :format="'YYYY.MM.DD'"></date-pick>     
+  <date-pick v-model="EndDate" :format="'YYYY.MM.DD'"></date-pick>
 
   </div>   
 </template>
@@ -17,13 +14,16 @@ import DatePick from 'vue-date-pick';
 export default {
     name: 'kalender',
     components: {DatePick},
-    data() {
-      return {
-        StartDate: '2019-01-01',
-        endDate: ''
-      }
-    },
-}
+    data: () => ({
+        StartDate: '',
+        EndDate: ''
+    }),
+    methods : {
+        nyBokning() {
+            console.log(this.$children)
+        }
+    }   
+};
 </script>
 
 <style lang="scss">

@@ -1,10 +1,9 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export default {
     async getVikarier(ctx) {
       console.log('ARIBA!!')
       let vikarier = await axios.get(`${ctx.state.apiUrl}/vikarier`);
-      console.log(vikarier);
       ctx.commit('setVikarier', vikarier.data);
     },
     async getBokningar(ctx) {
@@ -23,7 +22,7 @@ export default {
     },
     async skapaBokning(data, nyBokning) {
       try {
-        console.log(nyBokning)
+        
         await axios.post(`${data.state.apiUrl}/bokningar`, nyBokning);
         data.dispatch('getBokningar');
       }

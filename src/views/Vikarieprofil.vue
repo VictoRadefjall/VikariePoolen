@@ -53,13 +53,13 @@
            <p class="input-bokare"> Bokare <input type="text"  placeholder="Bokare" v-model="nyBokning.bokare"></p>
            <p class="input-bokare"> Plats <input type="text" v-model="nyBokning.skola" placeholder="Plats"></p>
 
-        
+       
+
        <Kalender />
 
        <Modal btnText="Boka"
         @before-close="skapaBokning()"
         :closeBtn="true"
-         
         class="boka-btn"
         closeBtnHTML="<span>X</span>"
         >
@@ -87,6 +87,7 @@ export default {
           
         }
     },
+    // kan säga att den tvingar computed att köras
     watch: {
       vikarie: {
         immediate: true,
@@ -105,19 +106,23 @@ export default {
               nyBokning: {
               vikarie: {},
               datum: {
-                fran: new Date,
-                till: new Date
+                fran: null,
+                till: null
               },
-              bokare: 'sdfg',
-              skola: 'dghj'
+              bokare: '',
+              skola: ''
             }
         }
     },
     methods: {
         async skapaBokning() {
+          this.nyBokning.datum.fran = this.$children[0].StartDate;
+          this.nyBokning.datum.till = this.$children[0].EndDate;
+
           this.$store.dispatch('skapaBokning', this.nyBokning);
           this.$store.dispatch('getBokningar')
-          //console.log(nyBokning);
+
+
         }
     }
 }

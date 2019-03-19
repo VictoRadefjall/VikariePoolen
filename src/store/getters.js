@@ -8,6 +8,6 @@ export default {
     getVikarieById(state){
       return(vikarieId) => {
         return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
-      }
+      };
     }
-}
+};
