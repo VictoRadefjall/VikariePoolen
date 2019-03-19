@@ -35,6 +35,7 @@
                 <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
             </select>
             </div>
+            <a name="top"></a>
         </section>
 
         <router-view />
