@@ -22,4 +22,4 @@ export default {
     currentBookings(state) {
       return state.bokningar.filter(bokning => new Date(bokning.datum.till).getUnixTime() >= state.today.toFixed())
     }
-}
+};
