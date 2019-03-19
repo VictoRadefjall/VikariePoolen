@@ -54,9 +54,14 @@ export default {
         // Uppdatera för UI
         ctx.commit('setActiveAdmin', token.data.username);
 
-      } catch(err) {  
-        console.error(err);   
-        // visa error   
+      } catch(err) {
+
+        ctx.commit('reject');
+        setTimeout(()=>{
+          ctx.commit('reject');
+        }, 1000)
+
+        console.error(err);      
       }
     },
 }

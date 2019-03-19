@@ -3,6 +3,7 @@
 
         <section class="topnav">
             <h1>Admin Panel</h1> 
+            <button @click="logout">Logga ut</button>
             <button @click="$router.push('/add')">Lägg till</button>
         </section>
 
@@ -87,6 +88,12 @@ export default {
             kommun: 'Alla',
             amne: 'Alla',
             klass: 'Alla'
+        }
+    },
+    methods: {
+        logout() {
+            sessionStorage.clear();
+            this.$router.push('/');
         }
     },
     computed: {

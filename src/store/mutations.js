@@ -8,4 +8,7 @@ export default {
     setActiveAdmin(state, admin){
       state.activeAdmin = admin;
     },
+    reject(state) {
+      state.loggedIn = !state.loggedIn;
+    }
 }

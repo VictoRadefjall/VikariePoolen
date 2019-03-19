@@ -2,7 +2,7 @@
     <main id="admin">
         <h1>Logga in som Admin</h1>
         <section class="login">
-            <span v-if="loggedIn">Något sket sig.</span>
+            <span :class="{rejected : rejected}" v-if="!this.validUsername">Ajdå! Något sket sig.</span>
             <input v-model="username" type="text" class="username" placeholder="username">
             <input v-model="password" type="password" placeholder="password">
             <a href="#" @click="login" class="btn">Login</a>
@@ -25,9 +25,8 @@ export default {
         login(){
             if(this.validUsername && this.validPassword) {
                 this.$store.dispatch('login', {username: this.username, password: this.password });
-                console.log(this.admin);
                 this.$router.push('/panel');
-            }
+            } 
         }
     },
     computed: {
@@ -49,6 +48,10 @@ export default {
     flex-direction: column;
     width: 100vw;
     color: white;
+
+    &.rejected {
+        color: red;
+    }
 
     & h1 {
         font-family: 'Sansita';
