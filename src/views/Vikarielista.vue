@@ -11,6 +11,7 @@
           <label>Kommun</label>
           <br />
           <select v-model="kommun">
+            <option default>Alla</option>
             <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
           </select>
         </div>
@@ -19,6 +20,7 @@
           <label>Ämne</label> 
           <br />
           <select v-model="amne">
+            <option default>Alla</option>
             <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
           </select>
         </div>
@@ -27,6 +29,7 @@
           <label>Årskurs</label> 
           <br />
           <select v-model="klass">
+            <option default>Alla</option>
             <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
           </select>
         </div>
@@ -35,17 +38,19 @@
 
       <div class="results" v-if="search.length > 0">
         <h3>Sökresultat</h3>
-        <p v-if="filterAmne.length > 1">Visar {{ filterAmne.length }} vikarier</p>
-        <p v-else>Visar 1 vikarie</p>
+        <p v-if="filterAll.length > 1">Visar {{ filterAll.length }} vikarier</p>
+        <p v-if="filterAll.length == 1">Visar 1 vikarie</p>
       </div>
 
     </header>
 
     <div class="vikarier">
       <router-view></router-view>
-      <Vikariekort v-for="(vikarie, index) in filterAmne"
+      <Vikariekort 
+        v-for="(vikarie, index) in filterAll"
         :key="index"
-        :vikarie="vikarie"/>
+        :vikarie="vikarie"
+      />
     </div>
 
   </main>
@@ -70,45 +75,9 @@ export default {
     Vikariekort
   },
   computed: {
-    // Sök vikarie efter namn
-    searchVikarie() {
-        return this.$store.getters.vikarier.filter((vikarie) => {
-          return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
-        })
-    },
-
-
-    // Filter kommuner
-    filterKommun() {
-      if (this.kommun == 'Alla') {
-        return this.vikarier;
-      } else {
-        return this.vikarier.filter(vikarie => {
-          return vikarie.kommun.includes(this.kommun)
-        })
-      }
-    },
-
-    // Filter ämnen
-    filterAmne() {
-      if (this.amne == 'Alla') {
-        return this.vikarier;
-      } else {
-        return this.vikarier.filter(vikarie => {
-          return vikarie.amne.includes(this.amne)
-        })
-      }
-    },
-
-    // Filter klasser
-    filterKlass() {
-      if (this.klass == 'Alla') {
-        return this.vikarier;
-      } else {
-        return this.vikarier.filter(vikarie => {
-          return vikarie.klass.includes(this.klass)
-        })
-      }
+    // Filtrera alla
+    filterAll() {
+      return filterAmne(filterKommun(filterKlass(filterSearch(this.vikarier, this.search), this.klass), this.kommun), this.amne)
     },
     
     vikarier() {
@@ -126,6 +95,43 @@ export default {
   },
 
 }
+
+function filterSearch(list, search) {
+  return list.filter((vikarie) => {
+      return vikarie.namn.toUpperCase().match(search.toUpperCase());
+    })
+}
+
+function filterKlass(list, klass) {
+    if (klass == 'Alla') {
+      return list;
+    } else {
+      return list.filter(vikarie => {
+        return vikarie.klass.includes(klass)
+      })
+    }
+}
+
+function filterAmne(list, amne) {
+    if (amne == 'Alla') {
+      return list;
+    } else {
+      return list.filter(vikarie => {
+        return vikarie.amne.includes(amne)
+      })
+    }
+}
+
+function filterKommun(list, kommun) {
+    if (kommun == 'Alla') {
+      return list;
+    } else {
+      return list.filter(vikarie => {
+        return vikarie.kommun.includes(kommun)
+      })
+    }
+}
+
 </script>
 
 <style lang="scss">
