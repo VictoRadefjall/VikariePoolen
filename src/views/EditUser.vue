@@ -10,8 +10,8 @@
                 <label>Kommun</label>
                 <ul>
                 <li v-for="kommun in kommuner" :key="kommun">
-                    {{ kommun }}
-                <input type="checkbox" :value="kommun" v-model="vikarie.kommun">
+                   {{ kommun }}
+                <input type="checkbox" :value="kommun" v-model="vikarie.kommun"  >
                 </li>
             </ul>
             </section>
@@ -41,7 +41,7 @@
         </div>
 
         <div class="btn pads">
-          <button href="#" class="confirm" @click="$router.push('/panel')">Redigera</button>
+          <button href="#" class="confirm" @click="$router.push('/panel')">Spara Ändringar</button>
           <button href="#" @click="$router.push('/panel')" class="back">Tillbaka </button>
         </div>
 
@@ -66,6 +66,13 @@ export default {
             return this.$store.state.klasser;
         }
     },
+    methods: {
+        handleClick(data){
+            console.log(data)
+            this.vikarie._id;
+            this.$store.commit('updateVikarie', {id: this.vikarie._id, data: data})
+        }
+    }
 
 }
 </script>
