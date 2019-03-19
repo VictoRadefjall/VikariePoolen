@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import auth from './auth';
 
 Vue.use(Router);
-
-export default new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -27,6 +27,9 @@ export default new Router({
     {
       path: '/panel',
       name: 'panel',
+      meta: { 
+        requiresAuth: true
+      },
       component: () => import('./views/Panel.vue'),
       children: [
         {
@@ -52,3 +55,14 @@ export default new Router({
     }
   ]
 });
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
+    next({ path: '/admin' });
+  } else {
+    next();
+  }
+});
+
+export default router;

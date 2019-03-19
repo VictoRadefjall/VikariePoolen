@@ -15,5 +15,11 @@ export default {
     },
     activeVikarier(state) {
       return state.vikarier.filter(vikarie => vikarie.ledig)
+    },
+    oldBookings(state) {
+      return state.bokningar.filter(bokning => new Date(bokning.datum.till).getUnixTime() <= state.today);
+    },
+    currentBookings(state) {
+      return state.bokningar.filter(bokning => new Date(bokning.datum.till).getUnixTime() >= state.today)
     }
 }

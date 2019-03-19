@@ -51,11 +51,14 @@
 <script>
 export default {
   name: 'vikariekortAdmin',
-  props: ['vikarie'],
+  props: ['vikarie', 'bokning'],
   computed: {
     vikarier() {
-      return this.$store.getters.vikarier
+      return this.$store.getters.vikarier;
     },
+    bokningar() {
+      return this.$store.getters.bokningar;
+    }
   },
   methods: {
     removeVikarie(vikarie) {

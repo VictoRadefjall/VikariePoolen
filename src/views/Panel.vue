@@ -6,7 +6,6 @@
             <button @click="$router.push('/add')">Lägg till</button>
         </section>
 
-
         <!-- Filter Section -->
         <section class="selections">
             <div class="selectBtn">
@@ -46,7 +45,29 @@
 
         <section class="list-booked">
             <h3>Bokade</h3>
-            <VikariekortAdmin class="card" v-for="(vikarie, index) in bookedVikarier" :key="index" :vikarie="vikarie" />  
+            <p class="card" v-for="bokning in currentBookings" :key="bokning.id">  
+                <ul>
+                   <li> Vikarie: {{ bokning.vikarie.namn }} </li>
+                   <li> Från: {{ bokning.datum.fran }} </li>
+                    <li> Till: {{ bokning.datum.till }} </li>
+                    <li> Bokad av: {{ bokning.bokare }} </li>
+                    <li> Skola: {{ bokning.skola }} </li>
+              </ul>
+            </p>
+        </section>
+        
+
+        <section class="list-finished">
+            <h3>Avslutade</h3>
+            <p class="card" v-for="bokning in oldBookings" :key="bokning.id">  
+                <ul>
+                   <li> Vikarie: {{ bokning.vikarie.namn }} </li>
+                   <li> Från: {{ bokning.datum.fran }} </li>
+                    <li> Till: {{ bokning.datum.till }} </li>
+                    <li> Bokad av: {{ bokning.bokare }} </li>
+                    <li> Skola: {{ bokning.skola }} </li>
+              </ul>
+            </p>
         </section>
 
     </main>
@@ -76,6 +97,12 @@ export default {
         },
         activeVikarier() {
             return this.$store.getters.activeVikarier;
+        },
+        currentBookings() {
+            return this.$store.getters.currentBookings;
+        },
+        oldBookings() {
+            return this.$store.getters.oldBookings;
         },
         kommuner() {
             return this.$store.state.kommuner;
@@ -130,11 +157,16 @@ function filterKommun(list, kommun) {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 460px;
+    max-width: 480px;
     width: 100%;
     margin: auto;
     background: $lightpurple;
     flex-direction: column;
+
+    .list-active, .list-booked {
+        width: 90vw;
+        max-width: 460px;
+    }
 
 
     .topnav{
@@ -164,6 +196,7 @@ function filterKommun(list, kommun) {
             background: none;
             color: white;
         }
+
     }
 
     .selections {
@@ -195,7 +228,15 @@ function filterKommun(list, kommun) {
         width: 100%;
     }
 
+    @media screen and (max-width: 500px) {
+    
+    .selections {
+        select {
+            width: 30vw;
+        }
+    }
 
+    }
 }
 
 

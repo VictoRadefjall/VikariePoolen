@@ -21,3 +21,10 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+Date.prototype.getUnixTime = function() { return this.getTime()/1000|0 };
+if(!Date.now) Date.now = function() { return new Date(); }
+Date.time = function() { return Date.now().getUnixTime(); }
+
+console.log(new Date('2019-03-25T00:00:00.000Z').getUnixTime());
+console.log(Date.now()/1000);
