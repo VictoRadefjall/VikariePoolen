@@ -84,7 +84,7 @@ export default {
     background: $lightpurple;
     flex-direction: column;
 
-    .list-active, .list-booked, .list-finished {
+    .list-active, .list-finished {
         width: 100vw;
         max-width: 480px;
     }
@@ -103,12 +103,20 @@ export default {
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
 
-        .logout{
+        .logout {
+            border-radius: 3px;
+            color: #fff;
             border: none;
             background: rgb(208, 105, 255);
             margin: 1rem;
             padding: 5px;
             cursor: pointer;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                background: rgb(195, 0, 255);
+            }
+            
         }
 
 
@@ -128,11 +136,16 @@ export default {
             color: white;
             cursor: pointer;
             font-size: .8rem;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                background: rgb(255, 0, 221);
+            }
         }
 
     }
 
-    .category{
+    .category {
         background: rgba(134, 41, 255, 0.63);
         text-align: left;
         padding: 8px;
@@ -168,11 +181,18 @@ export default {
             overflow: hidden;
 
         }
+
+        .list-finished :nth-child(2) {
+             width: 95vw;
+             margin: auto;
+        }
+
     
     .selections {
-        select {
-            width: 30vw;
-        }
+         input[type="search"] {
+             width: 70vw;
+             margin: auto;
+         }
     }
 
 

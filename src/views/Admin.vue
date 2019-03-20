@@ -58,7 +58,7 @@ export default {
     color: white;
     
     .redTxt {
-        color: red;
+        color: rgb(245, 96, 79);
         font-size: .75em;
     }
 

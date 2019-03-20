@@ -46,6 +46,8 @@ export default {
     flex-direction: row;
     background: rgb(193, 137, 238);
     padding: 2rem;
+    border: solid grey 1pt;
+    // box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
 
     .cal{
         margin-left: 1rem;

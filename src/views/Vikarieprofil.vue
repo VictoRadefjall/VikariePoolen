@@ -21,7 +21,8 @@
 
         <div class="status">
           <p>status:</p>
-          <h3>Tillgänglig</h3>
+          <h3 class="redTxt" v-if="vikarie.datum.till != ''">Bokad</h3>
+          <h3 v-else>Tillgänglig</h3>
         </div>
 
       </div>
@@ -29,7 +30,7 @@
       <section class="information">
           <article>
 
-            <div class="vikarieInfo border">
+            <div class="vikarieInfo ">
               <label class="rubrik">Kommun:</label>
               <ul>
                 <li v-for="kommun in vikarie.kommun" :key="kommun">
@@ -39,7 +40,7 @@
             </div>  
             
 
-           <div class="vikarieInfo border">
+           <div class="vikarieInfo ">
               <label class="rubrik">Ämne:</label>
               <ul>
                 <li v-for="amne in vikarie.amne" :key="amne"> 
@@ -60,10 +61,19 @@
           </article>
       </section>  
 
-      <div class="bokning">
-        <p class="input-bokare"> Bokare </p> <input type="text"  placeholder="Skriv in ditt namn.." v-model="nyBokning.bokare">
-        <p class="input-bokare"> Skola </p> <input type="text" v-model="nyBokning.skola" placeholder="Till vilken skola..">
-      </div>
+          <div class="bokning">
+
+            <div class="who">
+              <p class="input-bokare"> Bokare: </p> 
+              <p class="input-bokare"> Skola: </p> 
+            </div>
+
+            <div class="where">
+              <input type="text" v-model="nyBokning.skola" placeholder="Till vilken skola..">
+              <input type="text"  placeholder="Skriv in ditt namn.." v-model="nyBokning.bokare">
+           </div>
+
+           </div>
 
        
 
@@ -163,7 +173,6 @@ export default {
 <style lang="scss">
 @import '../scss/main.scss';
 
-
    button {
       background-color: #BFDE8E;
        @extend %center;
@@ -187,21 +196,22 @@ export default {
 
      }
 
-    
-
-
     #boka {
       flex-direction: column;
       @extend %center;
       background: white;
-      max-width: 420px;
+      max-width: 430px;
       width: 100vw;
-      height: auto;
       z-index: 1;
+      position: sticky;
+      top: 0;
+      left: 0;
+      right: 0;
+      overflow-y: scroll;
       margin: auto;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
       border-radius: 10px;
-      border-top: solid purple 15px;
+      border-top: solid rgb(166, 94, 180) 15px;
 
       .backBtn {
           background: none;
@@ -219,6 +229,7 @@ export default {
         display: flex;
         flex-direction: column;
         width: 100%;
+        margin-left: 1.5rem;
 
         h1 {
           text-align: left;
@@ -226,7 +237,7 @@ export default {
           padding-left: 10px;
           color: $purple;
         }
-        h2{
+        h2 {
           text-align: left;
           padding-left: 10px;
           margin: 0;
@@ -242,8 +253,6 @@ export default {
         flex-direction: row;
         justify-content: space-around;
         width: 100%;
-          
-
 
           .vikarie-bild {
             flex: 1;
@@ -256,9 +265,8 @@ export default {
           
 
             img {
-                height: auto;
-                width: 10rem;
-                
+              height: auto;
+              width: 10rem;
             }
 
           }
@@ -269,6 +277,10 @@ export default {
               margin: 0;
               text-transform: uppercase;
             }
+
+          .redTxt {
+            color: rgb(253, 119, 104);
+           }
             
             h3{
               color: green;
@@ -277,23 +289,29 @@ export default {
       }
         
       .information{
-        width: 100%;
+        width: 100vw;
         text-overflow: hidden;
         margin-top: 2rem;
         margin-bottom: 2rem;
         height: auto;
-        column-count: 3;
-        column-gap: 1rem;
+        @extend %center;
+
         
 
         article {
           display: flex;
-          flex-direction: column;
+          flex-direction: row;
+          border: solid grey 1px;
+          border-radius: 8px;          
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+
           
             .vikarieInfo {
                 display: flex;
                 height: auto;
                 flex-direction: column;
+                padding: .5rem;
+                margin: 10px;
                 
               
                 & label {
@@ -309,10 +327,12 @@ export default {
                   display: flex;
                   height: 7.5rem;
                   flex-direction: column;
+                  height: auto;
                 
                   li {
                     list-style-type: none;
                     color: none;
+                    font-size: .8rem;
                   }
                 }
 
@@ -325,28 +345,39 @@ export default {
       .bokning{
         height: auto;
         width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
 
-        p{
+        .who{
+          margin-right: .5rem;
+          p {
           color:  rgb(94, 94, 94);
+          text-align: left;
+          }
         }
-
+        .where {
+          display: inherit;
+          flex-direction: column;
+        }
       }
 
-    //   button {
-    //   background-color: #BFDE8E;
-    //    margin-bottom: 2rem;
-    //    width: 20rem;
-    //    height: 2rem;
-    //    color: white;
-    //    text-decoration: none;
-    //  }
+     button {
+      background-color: #BFDE8E;
+      //  margin-bottom: 2rem;
+      //  width: 20rem;
+      //  height: 2rem;
+       color: white;
+       text-decoration: none;
+     }
 
-      .input-bokare{
+    .input-bokare {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
         margin: .25rem;
     }
  }
-
 
 </style>
