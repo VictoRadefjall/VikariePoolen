@@ -1,6 +1,5 @@
 <template>
     <main id="boka">
-      <!-- <div class="profil"> -->
 
         <button class="backBtn" @click="$router.push('/vikarielista')">
           &#8592; tillbaka
@@ -77,24 +76,24 @@
        
 
        <Kalender />
-
-       <Modal btnText="Boka"
-        @before-close="skapaBokning()"
-        :closeBtn="true"
-        class="boka-btn"
-        closeBtnHTML="<span>X</span>"
-        >
-        <confirm/>
-       </Modal>
-
+        <div class="btn">
+        <Modal btnText="Boka"
+          @before-close="skapaBokning()"
+          :closeBtn="true"
+          closeBtnHTML="<span>X</span>"
+          >
+          <confirm/>
+        </Modal>
+       </div>
+        <div class="btn">
        <Modal btnText="Avboka"
        :closeBtn="true"
        closeBtnHTML="<span>X</span>"
         v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()">
         <avboka/>
        </Modal>
+       </div>
 
-      <!-- </div> -->
     </main>
 </template>
 
@@ -328,14 +327,22 @@ export default {
 
 
       }
+      .btn{
+        width: 80%;
+        height: 3rem;
+        background: hotpink;
+        @extend %center;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+      }
 
       button {
-      background-color: #BFDE8E;
-      //  margin-bottom: 2rem;
-      //  width: 20rem;
-      //  height: 2rem;
+      background-color: hotpink;
        color: white;
        text-decoration: none;
+       border: none;
+       font-size: 1rem;
+       cursor: pointer;
      }
 
       .input-bokare{

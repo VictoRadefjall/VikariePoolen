@@ -66,7 +66,7 @@ export default {
     }
 
     .vdpHeader{
-        background-color:#BFDE8E;
+        background-color:hotpink;
         height: 4rem !important;
     }
 
