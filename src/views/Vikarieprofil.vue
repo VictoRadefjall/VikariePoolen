@@ -77,7 +77,6 @@
        
 
        <Kalender />
-<<<<<<< HEAD
 
     <!-- Boka vikarie -->
        <Modal btnText="Boka"
@@ -100,25 +99,6 @@
         >
         <avboka/>
       </Modal>
-=======
-        <div class="btn">
-        <Modal btnText="Boka"
-          @before-close="skapaBokning()"
-          :closeBtn="true"
-          closeBtnHTML="<span>X</span>"
-          >
-          <confirm/>
-        </Modal>
-       </div>
-        <div class="btn">
-       <Modal btnText="Avboka"
-       :closeBtn="true"
-       closeBtnHTML="<span>X</span>"
-        v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()">
-        <avboka/>
-       </Modal>
-       </div>
->>>>>>> victor
 
     </main>
 </template>
@@ -390,16 +370,8 @@ export default {
         border-radius: 5px;
       }
 
-<<<<<<< HEAD
-     button {
-      background-color: #BFDE8E;
-      //  margin-bottom: 2rem;
-      //  width: 20rem;
-      //  height: 2rem;
-=======
       button {
-      background-color: hotpink;
->>>>>>> victor
+       background-color: hotpink;
        color: white;
        text-decoration: none;
        border: none;
