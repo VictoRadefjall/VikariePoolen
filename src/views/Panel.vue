@@ -3,7 +3,7 @@
 
         <section class="topnav">
             <button class="logout" @click="logout">Logga ut</button>
-            <h1>Admin Panel</h1>
+            <h1>Admin Panel</h1>    
             <div class="add" @click="$router.push('/add')">Lägg till</div>
         </section>
 
@@ -15,18 +15,13 @@
         <router-view />
 
         <section class="list-active">   
-            <h3 class="category">Tillgängliga</h3>
-            <VikariekortAdmin class="card" v-for="(vikarie, index) in activeVikarier" :key="index" :vikarie="vikarie" />  
-        </section>
-
-        <section class="list-booked">
-            <h3 class="category">Bokade</h3>
-            <VikariekortAdmin class="card" v-for="(vikarie, index) in currentBookings" :key="index" :vikarie="vikarie" />  
+            <h3 class="category">Tillgängliga och bokade</h3>
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in filterVikarier" :key="index" :vikarie="vikarie" />  
         </section>
         
 
         <section class="list-finished">
-            <h3 class="category">Avslutade</h3>
+            <h3 class="category">Avslutade bokningar</h3>
             <Bokningskort class="card" />
         </section>
 
@@ -54,59 +49,22 @@ export default {
             this.$router.push('/');
         }
     },
-    computed: {
-        filterAll() {
-            return filterAmne(filterKommun(filterKlass(this.activeVikarier, this.klass), this.kommun), this.amne)
+    computed: { 
+        filterVikarier() {
+          return this.$store.state.vikarier.filter((vikarie) => {
+            return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
+          })
+        }
         },
         activeVikarier() {
             return this.$store.getters.activeVikarier;
         },
-        currentBookings() {
-            return this.$store.getters.currentBookings;
+        vikarier() {
+            return this.$store.getters.vikarier;
         },
         oldBookings() {
             return this.$store.getters.oldBookings;
-        },
-        kommuner() {
-            return this.$store.state.kommuner;
-        },
-        amnen() {
-            return this.$store.state.amnen;
-        },
-        klasser() {
-            return this.$store.state.klasser;
         }
-    } 
-}
-
-function filterKlass(list, klass) {
-    if (klass == 'Alla') {
-      return list;
-    } else {
-      return list.filter(vikarie => {
-        return vikarie.klass.includes(klass)
-      })
-    }
-}
-
-function filterAmne(list, amne) { 
-    if (amne == 'Alla') {
-      return list;
-    } else {
-      return list.filter(vikarie => {
-        return vikarie.amne.includes(amne)
-      })
-    }
-}
-
-function filterKommun(list, kommun) {
-    if (kommun == 'Alla') {
-      return list;
-    } else {
-      return list.filter(vikarie => {
-        return vikarie.kommun.includes(kommun)
-      })
-    }
 }
 
 </script>
@@ -190,21 +148,17 @@ function filterKommun(list, kommun) {
       margin: auto;
       margin-bottom: 3rem;
 
-      select {
-        background: #eee;
-        appearance: none;
-        width: 10vw;
-        padding: .35rem;
-        border-radius: 5px;
-        font-size: .8em;
-        height: 3rem;
-        border: none;
-        box-shadow: 5px 3px 2px #777;
-        background-image: url('../assets/arrow.svg');
-        background-repeat: no-repeat;
-        background-position: 95% 50%;
-        background-size: 1rem 1rem;
-      }    
+    input[type="search"] {
+      background-color: #eee;
+      border: none;
+      padding: 1rem 1.75rem;
+      width: 40vw;
+      border-radius: 3px;
+      background-image: url('../assets/search.svg');
+      background-repeat: no-repeat;
+      background-position: 1% 50%;
+      background-size: 1.25rem 1.25rem;
+    }
     
     }
     .card {

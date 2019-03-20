@@ -7,11 +7,11 @@
       </aside>
 
       <section class="info">        
-        <section v-if="!bokning || bokning != undefined && new Date(bokning.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="messages">
+        <section v-if="!bokning || bokning != undefined && new Date(bokning.datum.till).getUnixTime() < this.$store.state.today.toFixed()">
           <span class="greenTxt"> Tillgänglig </span>
         </section>
         <section v-if="bokning != undefined">
-          <span v-if="new Date(bokning.datum.till).getUnixTime() > this.$store.state.today.toFixed()"> Bokad fram till {{ bokning.datum.till }} </span>
+          <span class="redTxt" v-if="new Date(bokning.datum.till).getUnixTime() > this.$store.state.today.toFixed()"> Bokad fram till {{ bokning.datum.till }} </span>
         </section>
         <div class="nameEdit">
           <h2> {{ vikarie.namn }} </h2> 
@@ -123,13 +123,20 @@ export default {
       margin-left: .5rem;
       flex: 7;
 
+      .greenTxt {
+        color: green;
+      }
+
+      .redTxt {
+        color: red;
+      }
+
         & span {
           font-size: .75em;
           display: flex;
           margin-top: -.25rem;
           padding-bottom: .75rem;
-          font-weight: 600;
-          color: $purple;
+          font-weight: 400;
         }
 
       h2 {
