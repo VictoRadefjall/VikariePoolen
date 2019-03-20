@@ -16,20 +16,18 @@
     </main>
 </template>
 
+
+
 <script>
 export default {
     name: 'avboka',
-    props: ['active'],
     computed: {
         vikarie() {
-            return this.$store.getters.getVikarieById(this.$route.params.id);
+          return this.$store.getters.getVikarieById(this.$route.params.id);
         },
     },
-
-
 };
 </script>
-
 
 <style lang="scss">
 @import '../scss/main.scss';

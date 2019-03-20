@@ -23,7 +23,7 @@ export default {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
         },
-    },
+    }
 }
 </script>
 
