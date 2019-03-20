@@ -166,7 +166,7 @@ export default {
               font-weight: normal;
               color: #685BF8;
               font-size: 1.2em;
-              margin: 5px;
+              padding-top: .2rem;
             }
         }
       }

@@ -17,7 +17,8 @@ export default {
             username: 'admin',
             password: 'poolare123',
             validUsername: true,
-            validPassword: true
+            validPassword: true,
+            isLoggedIn: false
         }
     },
     methods: {

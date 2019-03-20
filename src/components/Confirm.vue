@@ -3,9 +3,6 @@
         <div id="confirm">
             <h1>Du är på väg att boka vikarie:</h1> 
             <h2> {{vikarie.namn}} </h2>
-      
-            <p>Från:</p> <h3> {{vikarie.datum.fran.toString()}}</h3>
-            <p>Till:</p> <h3> {{vikarie.datum.till.toString()}}</h3>
 
             <p class="booktext">Tryck på X för att slutföra bokning.</p>
         
@@ -48,8 +45,8 @@ export default {
         flex-direction: column;
 
         & a {
-            padding: .5rem;
-            margin-top: .5rem;
+            padding: 1rem;
+            margin: 1rem;
             border-radius: 3px;
             @extend %center;
             background: $purple;
@@ -77,7 +74,6 @@ export default {
 
         h2 {
             font-size: 2rem;
-            margin: 0;
             padding: .5rem;
             font-weight: lighter;
             color:hotpink;
