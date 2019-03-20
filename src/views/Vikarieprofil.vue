@@ -1,35 +1,45 @@
 <template>
     <main id="boka">
-      <div class="profil">
+      <!-- <div class="profil"> -->
+
         <button class="backBtn" @click="$router.push('/vikarielista')">
-          tillbaka <br />
-          &#8592;
+          &#8592; tillbaka
         </button>
-        <h1>Profil</h1>
-        <h2> {{ vikarie.namn }} </h2>
 
-
-    <div class="vikarie-bild-status">
-        <div class="vikarie-bild">
-          <img src="../assets/avatar.png" alt="avatar"/>
+        <div class="name">
+          <h1>Profil</h1>
+          <h2> {{ vikarie.namn }} </h2>
         </div>
 
+
+      <div class="vikarie-bild-status">
+        <div class="bildContainer">
+          <div class="vikarie-bild">
+            <img src="../assets/avatar.png" alt="avatar"/>
+          </div>
         </div>
+
+        <div class="status">
+          <p>status:</p>
+          <h3>Tillgänglig</h3>
+        </div>
+
+      </div>
 
       <section class="information">
           <article>
 
-            <div class="vikarieInfo">
+            <div class="vikarieInfo border">
               <label class="rubrik">Kommun:</label>
               <ul>
                 <li v-for="kommun in vikarie.kommun" :key="kommun">
-                  <p>{{ kommun }}</p>
+                  {{ kommun }}
                 </li> 
               </ul>
             </div>  
             
 
-           <div class="vikarieInfo">
+           <div class="vikarieInfo border">
               <label class="rubrik">Ämne:</label>
               <ul>
                 <li v-for="amne in vikarie.amne" :key="amne"> 
@@ -49,9 +59,11 @@
         
           </article>
       </section>  
-      
-           <p class="input-bokare"> Bokare <input type="text"  placeholder="Bokare" v-model="nyBokning.bokare"></p>
-           <p class="input-bokare"> Plats <input type="text" v-model="nyBokning.skola" placeholder="Plats"></p>
+
+          <div class="bokning">
+           <p class="input-bokare"> Bokare </p> <input type="text"  placeholder="Skriv in ditt namn.." v-model="nyBokning.bokare">
+           <p class="input-bokare"> Skola </p> <input type="text" v-model="nyBokning.skola" placeholder="Till vilken skola..">
+           </div>
 
        
 
@@ -73,7 +85,7 @@
         <avboka/>
        </Modal>
 
-      </div>
+      <!-- </div> -->
     </main>
 </template>
 
@@ -139,34 +151,9 @@ export default {
 
 <style lang="scss">
 @import '../scss/main.scss';
-
-
-   button {
-      background-color: #BFDE8E;
-       @extend %center;
-       margin-bottom: 2rem;
-       width: 20rem;
-       border-radius: 999rem;
-       height: 2rem;
-       color: white;
-       text-decoration: none;
-
-
-     }
-
-     .close {
-         padding: 2rem;
-         background: none;
-         width: 1rem;
-         font-size: 2rem;
-         margin: auto;
-         margin-bottom: 3px;
-         border: none;
-
-     }
-
-    
-
+    .border {
+      border-right: 1px solid grey;
+    }
 
     #boka {
       flex-direction: column;
@@ -176,20 +163,92 @@ export default {
       width: 100vw;
       height: auto;
       z-index: 1;
-      top: 0;
-      left: 0;
-      right: 0;
       margin: auto;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+      border-radius: 10px;
+      border-top: solid purple 15px;
 
+      .backBtn {
+          background: none;
+          width: 100%;
+          font-size: 1em;
+          padding: .5rem;
+          border: 0;
+          align-items: flex-end;
+          cursor: pointer;
+          margin: 0;
+          color:hotpink;
+      }
+
+      .name {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+
+        h1 {
+          text-align: left;
+          padding: 0;
+          padding-left: 10px;
+          color: $purple;
+        }
+        h2{
+          text-align: left;
+          padding-left: 10px;
+          margin: 0;
+          margin-bottom: 1rem;
+          font-weight: lighter;
+          color: #073454;
+        }
+      }
+
+      .vikarie-bild-status { 
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+          
+
+
+          .vikarie-bild {
+            flex: 1;
+            width: 100%;
+            height: auto;
+            border-radius: 9999rem;
+            background: linear-gradient(orange, white);
+            align-self: left;
+            margin-left: 1rem;
+          
+
+            img {
+                height: auto;
+                width: 10rem;
+                
+            }
+
+          }
+          .status{
+            p{
+              color:grey;
+              font-size: 1rem;
+              margin: 0;
+              text-transform: uppercase;
+            }
+            
+            h3{
+              color: green;
+            }
+        }
+      }
+        
       .information{
-        column-count: 3;
-        column-gap: 1rem;
-        column-rule-style: solid;
-        column-rule-width: 1px;
-        column-rule-color: #BFDE8E;
         width: 100%;
         text-overflow: hidden;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        height: auto;
+        column-count: 3;
+        column-gap: 1rem;
         
 
         article {
@@ -198,8 +257,9 @@ export default {
           
             .vikarieInfo {
                 display: flex;
-                height: 10rem;
+                height: auto;
                 flex-direction: column;
+                
               
                 & label {
                   color: $pink;
@@ -225,79 +285,31 @@ export default {
         }
 
       }
-    .vikarie-bild-status{
-        @extend %center;
-        flex-direction: row;
 
-    
-    .vikarie-bild {
-        flex: 1;
-        width: 100%;
+      .bokning{
         height: auto;
-        border-radius: 9999rem;
-        background: linear-gradient(orange, white);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
+        width: 100%;
 
-        img {
-            height: auto;
-            width: 10rem;
+        p{
+          color:  rgb(94, 94, 94);
         }
-      }
-      .status{
-          flex: 1;
-      }
-    }
 
-      .information{
-        column-count: 3;
-        column-gap: 1rem;
       }
+
+    //   button {
+    //   background-color: #BFDE8E;
+    //    margin-bottom: 2rem;
+    //    width: 20rem;
+    //    height: 2rem;
+    //    color: white;
+    //    text-decoration: none;
+    //  }
 
       .input-bokare{
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         font-weight: bold;
         margin: .25rem;
     }
-    .profil {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 100%;
-        height: 100%;
-
-        .backBtn {
-          display: flex;
-          flex-direction: column;
-          width: inherit;
-          font-size: 1em;
-          padding: .5rem;
-          border: 0;
-          align-items: flex-end;
-          cursor: pointer;
-        }
-
-        & h1 {
-          color: $purple;
-        }
-
-    div {
-            button .close {
-                margin: auto;
-                @extend %center;
-            }
-
-        }
-
-    .input-profil {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        font-weight: bold;
-    }  
-    
-  }
  }
 
 

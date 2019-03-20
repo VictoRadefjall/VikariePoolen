@@ -1,9 +1,16 @@
 <template>
   <div class="kalender">
-     <!-- Calender -->
-  <date-pick v-model="StartDate" :format="'YYYY.MM.DD'"></date-pick>     
-  <date-pick v-model="EndDate" :format="'YYYY.MM.DD'"></date-pick>
 
+    <div class="icon">
+        <img class="vikariebild" src="../assets/calendar.png" alt="Bild av vikarie" style="height:200px; width:200px;" />
+    </div>
+     <!-- Calender -->
+     <div class="cal">
+        <p>Välj datum från:</p>
+        <date-pick v-model="StartDate" :format="'YYYY.MM.DD'"></date-pick>
+        <p>Välj datum till:</p>
+        <date-pick v-model="EndDate" :format="'YYYY.MM.DD'"></date-pick>
+    </div>
   </div>   
 </template>
 
@@ -32,12 +39,27 @@ export default {
 
 
 .kalender {
+    border-radius: 5px;
     transform: scale(0.75);
     @extend %center;
-    display: block;
+    display: flex;
+    flex-direction: row;
+    background: rgb(193, 137, 238);
+    padding: 2rem;
+
+    .cal{
+        margin-left: 1rem;
+
+        p{
+            text-align: left;
+            color: white;
+        }
+    }
+
  
     .vdpComponent{
         height: 50px;
+
         
     }
 
