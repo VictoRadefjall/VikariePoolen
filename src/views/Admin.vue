@@ -18,7 +18,8 @@ export default {
             username: '',
             password: '',
             validUsername: true,
-            validPassword: true
+            validPassword: true,
+            isLoggedIn: false
         }
     },
     methods: {

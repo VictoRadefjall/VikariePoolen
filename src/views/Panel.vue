@@ -3,56 +3,25 @@
 
         <section class="topnav">
             <button class="logout" @click="logout">Logga ut</button>
-            <h1>Admin Panel</h1>
+            <h1>Admin Panel</h1>    
             <div class="add" @click="$router.push('/add')">Lägg till</div>
         </section>
 
         <!-- Filter Section -->
         <section class="selections">
-            <div class="selectBtn">
-            <label>Kommun</label>
-            <br />
-            <select v-model="kommun">
-                <option default>Alla</option>
-                <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
-            </select>
-            </div>
-
-            <div class="selectBtn">
-            <label>Ämne</label> 
-            <br />
-            <select v-model="amne">
-                <option default>Alla</option>
-                <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
-            </select>
-            </div>
-
-            <div class="selectBtn">
-            <label>Årskurs</label> 
-            <br />
-            <select v-model="klass">
-                <option default>Alla</option>
-                <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
-            </select>
-            </div>
-            <a name="top"></a>
+            <input type="search" v-model="search" placeholder="Sök efter vikarie...">
         </section>
 
         <router-view />
 
         <section class="list-active">   
-            <h3 class="category">Tillgängliga</h3>
-            <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
-        </section>
-
-        <section class="list-booked">
-            <h3 class="category">Bokade</h3>
-            <VikariekortAdmin class="card" v-for="(vikarie, index) in currentBookings" :key="index" :vikarie="vikarie" />  
+            <h3 class="category">Tillgängliga och bokade</h3>
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in filterVikarier" :key="index" :vikarie="vikarie" />  
         </section>
         
 
         <section class="list-finished">
-            <h3 class="category">Avslutade</h3>
+            <h3 class="category">Avslutade bokningar</h3>
             <Bokningskort class="card" />
         </section>
 
@@ -71,9 +40,7 @@ export default {
     }, 
     data() {
         return {
-            kommun: 'Alla',
-            amne: 'Alla',
-            klass: 'Alla'
+            search: ''
         }
     },
     methods: {
@@ -82,62 +49,22 @@ export default {
             this.$router.push('/');
         }
     },
-    computed: {
-        filterAll() {
-            return filterAmne(filterKommun(filterKlass(this.activeVikarier, this.klass), this.kommun), this.amne)
-        },
-        bookedVikarier() {
-            return this.$store.getters.bookedVikarier;
+    computed: { 
+        filterVikarier() {
+          return this.$store.state.vikarier.filter((vikarie) => {
+            return vikarie.namn.toUpperCase().match(this.search.toUpperCase());
+          })
+        }
         },
         activeVikarier() {
             return this.$store.getters.activeVikarier;
         },
-        currentBookings() {
-            return this.$store.getters.currentBookings;
+        vikarier() {
+            return this.$store.getters.vikarier;
         },
         oldBookings() {
             return this.$store.getters.oldBookings;
-        },
-        kommuner() {
-            return this.$store.state.kommuner;
-        },
-        amnen() {
-            return this.$store.state.amnen;
-        },
-        klasser() {
-            return this.$store.state.klasser;
         }
-    } 
-}
-
-function filterKlass(list, klass) {
-    if (klass == 'Alla') {
-      return list;
-    } else {
-      return list.filter(vikarie => {
-        return vikarie.klass.includes(klass)
-      })
-    }
-}
-
-function filterAmne(list, amne) { 
-    if (amne == 'Alla') {
-      return list;
-    } else {
-      return list.filter(vikarie => {
-        return vikarie.amne.includes(amne)
-      })
-    }
-}
-
-function filterKommun(list, kommun) {
-    if (kommun == 'Alla') {
-      return list;
-    } else {
-      return list.filter(vikarie => {
-        return vikarie.kommun.includes(kommun)
-      })
-    }
 }
 
 </script>
@@ -221,21 +148,17 @@ function filterKommun(list, kommun) {
       margin: auto;
       margin-bottom: 3rem;
 
-      select {
-        background: #eee;
-        appearance: none;
-        width: 10vw;
-        padding: .35rem;
-        border-radius: 5px;
-        font-size: .8em;
-        height: 3rem;
-        border: none;
-        box-shadow: 5px 3px 2px #777;
-        background-image: url('../assets/arrow.svg');
-        background-repeat: no-repeat;
-        background-position: 95% 50%;
-        background-size: 1rem 1rem;
-      }    
+    input[type="search"] {
+      background-color: #eee;
+      border: none;
+      padding: 1rem 1.75rem;
+      width: 40vw;
+      border-radius: 3px;
+      background-image: url('../assets/search.svg');
+      background-repeat: no-repeat;
+      background-position: 1% 50%;
+      background-size: 1.25rem 1.25rem;
+    }
     
     }
 

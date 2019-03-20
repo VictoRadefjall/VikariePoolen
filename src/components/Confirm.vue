@@ -1,13 +1,12 @@
 <template>
     <main class="holder">
         <div id="confirm">
-            <h1>Tack för din bokning av</h1> 
+            <h1>Du är på väg att boka vikarie:</h1> 
             <h2> {{vikarie.namn}} </h2>
-            <p>När:</p> 
-            <h3> {{vikarie.datum.fran.toString()}}</h3>
-            <h3> {{vikarie.datum.till.toString()}}</h3>
-            <p>Var:</p> 
-            <h3> {{vikarie.kommun.toString()}}</h3>
+
+            <p class="booktext">Tryck på X för att slutföra bokning.</p>
+        
+            <a @click="$router.push('/vikarelista')">Gå tillbaka</a>
 
             <div class="icon">
                 <img class="vikariebild" src="../assets/confirm.png" alt="Bild av vikarie" />
@@ -38,11 +37,20 @@ export default {
         background: $lightpurple;
         max-width: 480px;
         width: 100%;
-        height: 80vh;
-        padding: 1rem;
+        height: 85vh;
+        padding: 1.5rem;
+        overflow: scroll;
         border-radius: 10px;
         @extend %center;
         flex-direction: column;
+
+        & a {
+            padding: 1rem;
+            margin: 1rem;
+            border-radius: 3px;
+            @extend %center;
+            background: $purple;
+        }
 
         .icon{
             & img {
@@ -52,17 +60,27 @@ export default {
         p {
             margin: 0;
             padding: 0;
+
+            &.booktext {
+                font-size: 1.5em;
+                padding: .5rem;
+            }
+        }
+
+        h1 {
+            margin: 0;
         }
 
         h2 {
             font-size: 2rem;
+            padding: .5rem;
             font-weight: lighter;
             color:hotpink;
         }
         h3 {
             font-size: 1.5rem;
             margin: 10px;
-            color: rgb(189, 255, 189);
+            color: $lightgreen;
         }
     }
 }

@@ -60,10 +60,10 @@
           </article>
       </section>  
 
-          <div class="bokning">
-           <p class="input-bokare"> Bokare </p> <input type="text"  placeholder="Skriv in ditt namn.." v-model="nyBokning.bokare">
-           <p class="input-bokare"> Skola </p> <input type="text" v-model="nyBokning.skola" placeholder="Till vilken skola..">
-           </div>
+      <div class="bokning">
+        <p class="input-bokare"> Bokare </p> <input type="text"  placeholder="Skriv in ditt namn.." v-model="nyBokning.bokare">
+        <p class="input-bokare"> Skola </p> <input type="text" v-model="nyBokning.skola" placeholder="Till vilken skola..">
+      </div>
 
        
 
@@ -81,7 +81,7 @@
        </Modal>
 
      <!-- Avboka vikarie -->
-         <Modal btnText="Avboka"
+      <Modal btnText="Avboka"
           @before-close="deleteBokning(bokning._id)"
           v-if="bokning"
           :closeBtn="true"
@@ -89,7 +89,7 @@
           closeBtnHTML="<span>Bekräfta avbokning</span>"
         >
         <avboka/>
-       </Modal>
+      </Modal>
 
       <!-- </div> -->
     </main>
@@ -144,13 +144,12 @@ export default {
         }
     },
     methods: {
-        async skapaBokning() {
+        skapaBokning() {
           this.nyBokning.datum.fran = this.$children[0].StartDate;
           this.nyBokning.datum.till = this.$children[0].EndDate;
 
           this.$store.dispatch('skapaBokning', this.nyBokning);
           this.$store.dispatch('getBokningar')
-
 
         },
         async deleteBokning(bokning){
@@ -163,9 +162,33 @@ export default {
 
 <style lang="scss">
 @import '../scss/main.scss';
-    .border {
-      border-right: 1px solid grey;
-    }
+
+
+   button {
+      background-color: #BFDE8E;
+       @extend %center;
+       margin-bottom: 2rem;
+       width: 20rem;
+       border-radius: 999rem;
+       height: 2rem;
+       color: white;
+       text-decoration: none;
+
+     }
+
+     .close {
+         padding: 2rem;
+         background: none;
+         width: 1rem;
+         font-size: 2rem;
+         margin: auto;
+         margin-bottom: 3px;
+         border: none;
+
+     }
+
+    
+
 
     #boka {
       flex-direction: column;
