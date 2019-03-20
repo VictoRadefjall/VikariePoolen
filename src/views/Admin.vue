@@ -2,7 +2,6 @@
     <main id="admin">
         <h1>Logga in som Admin</h1>
         <section class="login">
-            <span :class="{rejected : rejected}" v-if="!this.validUsername">Ajdå! Något sket sig.</span>
             <input v-model="username" type="text" class="username" placeholder="username">
             <input v-model="password" type="password" placeholder="password">
             <a href="#" @click="login" class="btn">Login</a>
@@ -24,8 +23,8 @@ export default {
     methods: {
         login(){
             if(this.validUsername && this.validPassword) {
+                this.isLoggedIn = true;
                 this.$store.dispatch('login', {username: this.username, password: this.password });
-                this.$router.push('/panel');
             } 
         }
     },
@@ -49,7 +48,7 @@ export default {
     width: 100vw;
     color: white;
 
-    &.rejected {
+    .rejected {
         color: red;
     }
 

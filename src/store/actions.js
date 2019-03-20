@@ -1,4 +1,5 @@
 import axios from 'axios';
+import router from '../router'
 
 export default {
 
@@ -48,15 +49,20 @@ export default {
     async login(ctx, loginData){
       try {
         let token = await axios.post('http://localhost:3000/auth', loginData)
-        console.log(token);
+
         sessionStorage.setItem('authAdmin', token.data.authToken);
         
+        setTimeout(()=>{
+          router.push('/panel');
+        }, 1000)
+
         // Uppdatera för UI
         ctx.commit('setActiveAdmin', token.data.username);
 
       } catch(err) {
 
         ctx.commit('reject');
+        
         setTimeout(()=>{
           ctx.commit('reject');
         }, 1000)

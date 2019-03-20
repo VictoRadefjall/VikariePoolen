@@ -11,7 +11,7 @@
 
     <div class="vikarie-bild-status">
         <div class="vikarie-bild">
-          <img  src="../assets/avatar.png" alt="avatar"/>
+          <img src="../assets/avatar.png" alt="avatar"/>
         </div>
 
         </div>
@@ -65,7 +65,13 @@
         >
         <confirm/>
        </Modal>
-     
+
+       <Modal btnText="Avboka"
+       :closeBtn="true"
+       closeBtnHTML="<span>X</span>"
+        v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()">
+        <avboka/>
+       </Modal>
 
       </div>
     </main>
@@ -76,7 +82,7 @@
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'
 import Kalender from '@/components/Kalender'
-//import avboka from '@/components/Avboka'
+import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
@@ -99,7 +105,8 @@ export default {
     components: {
         confirm,
         Modal,
-        Kalender
+        Kalender,
+        avboka
     },
     data(){
         return {
@@ -111,7 +118,8 @@ export default {
               },
               bokare: '',
               skola: ''
-            }
+            },
+           
         }
     },
     methods: {

@@ -2,8 +2,8 @@
     <main id="panel">
 
         <section class="topnav">
+            <button class="logout" @click="logout">Logga ut</button>
             <h1>Admin Panel</h1> 
-            <button @click="logout">Logga ut</button>
             <button @click="$router.push('/add')">Lägg till</button>
         </section>
 
@@ -41,13 +41,13 @@
         <router-view />
 
         <section class="list-active">   
-            <h3>Ej bokade</h3>
+            <h3>Tillgängliga</h3>
             <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
         </section>
 
         <section class="list-booked">
             <h3>Bokade</h3>
-            <p class="card" v-for="bokning in currentBookings" :key="bokning.id">  
+            <div class="card" v-for="bokning in currentBookings" :key="bokning.id">  
                 <ul>
                    <li> Vikarie: {{ bokning.vikarie.namn }} </li>
                    <li> Från: {{ bokning.datum.fran }} </li>
@@ -55,13 +55,13 @@
                     <li> Bokad av: {{ bokning.bokare }} </li>
                     <li> Skola: {{ bokning.skola }} </li>
               </ul>
-            </p>
+            </div>
         </section>
         
 
         <section class="list-finished">
             <h3>Avslutade</h3>
-            <p class="card" v-for="bokning in oldBookings" :key="bokning.id">  
+            <div class="card" v-for="bokning in oldBookings" :key="bokning.id">  
                 <ul>
                    <li> Vikarie: {{ bokning.vikarie.namn }} </li>
                    <li> Från: {{ bokning.datum.fran }} </li>
@@ -69,7 +69,7 @@
                     <li> Bokad av: {{ bokning.bokare }} </li>
                     <li> Skola: {{ bokning.skola }} </li>
               </ul>
-            </p>
+            </div>
         </section>
 
     </main>
@@ -188,6 +188,7 @@ function filterKommun(list, kommun) {
         background: #8729FF;
         border-radius: 5px;
 
+
         h1{
             color: whitesmoke;
             font-size: 1.5rem;
@@ -196,6 +197,7 @@ function filterKommun(list, kommun) {
             text-transform: uppercase;
             letter-spacing: 3px;
         }
+
         button{
             margin: 10px;
             padding: 5px;
@@ -203,6 +205,11 @@ function filterKommun(list, kommun) {
             border-radius: 5px;
             background: none;
             color: white;
+
+            &.logout {
+                background: #222;
+                border: none;
+            } 
         }
 
     }
@@ -232,8 +239,19 @@ function filterKommun(list, kommun) {
       }    
     
     }
-    .card{
+    .card {
         width: 100%;
+    }
+    
+    .bookedCard {
+        width: 100%;
+        background: white;
+
+        ul {
+            li {
+                list-style-type: none;
+            }
+        }
     }
 
     @media screen and (max-width: 500px) {

@@ -9,9 +9,8 @@
 
       <section class="info">
         <h2> {{ vikarie.namn }} </h2>
-          <span v-if="vikarie.ledig" class="greenTxt"> Tillgänglig </span>
-          <span v-else class="redTxt">Bokad</span>
-
+          <span v-if="new Date(vikarie.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="greenTxt"> Tillgänglig </span>
+          <span v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()" class="redTxt"> Bokad fram till {{ vikarie.datum.till }} </span>
         <article>
           <p> 
             Ämnen: 
@@ -58,6 +57,9 @@ export default {
     },
     bokningar() {
       return this.$store.getters.bokningar
+    },
+    test() {
+      return this.$store.getters.test
     }
   }
 }
