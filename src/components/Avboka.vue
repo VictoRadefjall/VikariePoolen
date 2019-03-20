@@ -5,7 +5,7 @@
             <span> {{ vikarie.namn }} </span>
         </article>   
          <section id="btn">
-            <button type="button">Tillbaka</button>
+            <button type="button" @click="$router.push('/vikarielista')">Tillbaka</button>
          </section>
     </main>
 </template>

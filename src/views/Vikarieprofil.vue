@@ -11,7 +11,7 @@
 
     <div class="vikarie-bild-status">
         <div class="vikarie-bild">
-          <img  src="../assets/avatar.png" alt="avatar"/>
+          <img src="../assets/avatar.png" alt="avatar"/>
         </div>
 
         </div>
@@ -23,7 +23,7 @@
               <label class="rubrik">Kommun:</label>
               <ul>
                 <li v-for="kommun in vikarie.kommun" :key="kommun">
-                  {{ kommun }}
+                  <p>{{ kommun }}</p>
                 </li> 
               </ul>
             </div>  
@@ -50,19 +50,28 @@
           </article>
       </section>  
       
-           <p class="input-bokare"> Bokare <input type="text" placeholder="Bokare"></p>
-           <p class="input-bokare"> Plats <input type="text" placeholder="Plats"></p>
+           <p class="input-bokare"> Bokare <input type="text"  placeholder="Bokare" v-model="nyBokning.bokare"></p>
+           <p class="input-bokare"> Plats <input type="text" v-model="nyBokning.skola" placeholder="Plats"></p>
 
-        
+       
+
        <Kalender />
 
        <Modal btnText="Boka"
-        :closeBtn="true" 
+        @before-close="skapaBokning()"
+        :closeBtn="true"
+        class="boka-btn"
         closeBtnHTML="<span>X</span>"
         >
         <confirm/>
        </Modal>
-     
+
+       <Modal btnText="Avboka"
+       :closeBtn="true"
+       closeBtnHTML="<span>X</span>"
+        v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()">
+        <avboka/>
+       </Modal>
 
       </div>
     </main>
@@ -73,42 +82,55 @@
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'
 import Kalender from '@/components/Kalender'
-//import avboka from '@/components/Avboka'
+import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
     computed: {
         vikarie() {
+          console.log(this.$store.getters.getVikarieById(this.$route.params.id));
           return this.$store.getters.getVikarieById(this.$route.params.id);
+          
         }
+    },
+    // kan säga att den tvingar computed att köras
+    watch: {
+      vikarie: {
+        immediate: true,
+        handler(val){
+          this.nyBokning.vikarie = val._id; 
+        }
+      }
     },
     components: {
         confirm,
         Modal,
-        Kalender
+        Kalender,
+        avboka
     },
     data(){
         return {
-            active: false,
-            nyBokning: {
+              nyBokning: {
               vikarie: {},
               datum: {
-                fran: Date,
-                till: Date
+                fran: null,
+                till: null
               },
               bokare: '',
               skola: ''
-            }
+            },
+           
         }
     },
     methods: {
-        toggle(){
-            console.log('It works!')
-            this.active = !this.active;
-        },
         async skapaBokning() {
+          this.nyBokning.datum.fran = this.$children[0].StartDate;
+          this.nyBokning.datum.till = this.$children[0].EndDate;
+
           this.$store.dispatch('skapaBokning', this.nyBokning);
           this.$store.dispatch('getBokningar')
+
+
         }
     }
 }
@@ -119,6 +141,33 @@ export default {
 @import '../scss/main.scss';
 
 
+   button {
+      background-color: #BFDE8E;
+       @extend %center;
+       margin-bottom: 2rem;
+       width: 20rem;
+       border-radius: 999rem;
+       height: 2rem;
+       color: white;
+       text-decoration: none;
+
+
+     }
+
+     .close {
+         padding: 2rem;
+         background: none;
+         width: 1rem;
+         font-size: 2rem;
+         margin: auto;
+         margin-bottom: 3px;
+         border: none;
+
+     }
+
+    
+
+
     #boka {
       flex-direction: column;
       @extend %center;
@@ -127,7 +176,6 @@ export default {
       width: 100vw;
       height: auto;
       z-index: 1;
-      position: fixed;
       top: 0;
       left: 0;
       right: 0;
@@ -191,6 +239,7 @@ export default {
         display: flex;
         align-items: center;
         justify-content: center;
+        
 
         img {
             height: auto;
@@ -236,23 +285,9 @@ export default {
         }
 
     div {
-        .boka {
-            @extend %center;
-            background: #BFDE8E;
-            padding: .4rem;
-            margin: .5rem;
-            border: 0.2rem ;
-            text-decoration: none;
-            font-size: 1.25em;
-            font-family: 'Avenir', Helvetica, Arial, sans-serif;
-            font-weight: bold;
-            color: white;
-            border-radius: 999rem;
-            width: 25vw;
-
-            &.close {
+            button .close {
                 margin: auto;
-                width: auto;
+                @extend %center;
             }
 
         }
@@ -264,6 +299,6 @@ export default {
     
   }
  }
-}
+
 
 </style>

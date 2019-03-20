@@ -1,9 +1,11 @@
 <template>
     <main id="confirm">
-        <h1>Tack för din bokning!</h1> 
+        <h1>Tack för din bokning på</h1> 
         <h2> {{vikarie.namn}} </h2>
-         <!--   <h3> {{vikarie.skola}}</h3>
-        <h3>{{vikarie.bokare}} </h3> -->
+      Var :  <h3> {{vikarie.kommun.toString()}}</h3> 
+      <!-- Bokare:  <h3>{{vikarie.bokare.toString()}} </h3> 
+      När:    <h3> {{vikarie.datum.toStrig()}} </h3> -->
+
     </main>
 </template>
 
