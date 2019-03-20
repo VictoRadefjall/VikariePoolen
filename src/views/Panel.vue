@@ -9,40 +9,14 @@
 
         <!-- Filter Section -->
         <section class="selections">
-            <div class="selectBtn">
-            <label>Kommun</label>
-            <br />
-            <select v-model="kommun">
-                <option default>Alla</option>
-                <option v-for="kommun in kommuner" :value="kommun" :key="kommun">{{ kommun }}</option>
-            </select>
-            </div>
-
-            <div class="selectBtn">
-            <label>Ämne</label> 
-            <br />
-            <select v-model="amne">
-                <option default>Alla</option>
-                <option v-for="amne in amnen" :value="amne" :key="amne">{{ amne }}</option>
-            </select>
-            </div>
-
-            <div class="selectBtn">
-            <label>Årskurs</label> 
-            <br />
-            <select v-model="klass">
-                <option default>Alla</option>
-                <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
-            </select>
-            </div>
-            <a name="top"></a>
+            <input type="search" v-model="search" placeholder="Sök efter vikarie...">
         </section>
 
         <router-view />
 
         <section class="list-active">   
             <h3 class="category">Tillgängliga</h3>
-            <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in activeVikarier" :key="index" :vikarie="vikarie" />  
         </section>
 
         <section class="list-booked">
@@ -71,9 +45,7 @@ export default {
     }, 
     data() {
         return {
-            kommun: 'Alla',
-            amne: 'Alla',
-            klass: 'Alla'
+            search: ''
         }
     },
     methods: {
@@ -85,9 +57,6 @@ export default {
     computed: {
         filterAll() {
             return filterAmne(filterKommun(filterKlass(this.activeVikarier, this.klass), this.kommun), this.amne)
-        },
-        bookedVikarier() {
-            return this.$store.getters.bookedVikarier;
         },
         activeVikarier() {
             return this.$store.getters.activeVikarier;

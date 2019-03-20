@@ -10,9 +10,6 @@ export default {
         return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
       }
     },
-    bookedVikarier(state) {
-      return state.vikarier.filter(vikarie => !vikarie.ledig)
-    },
     activeVikarier(state) {
       return state.vikarier.filter(vikarie => vikarie.ledig)
     },

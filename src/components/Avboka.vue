@@ -1,16 +1,14 @@
 <template>
     <main id="avboka">
-        <!-- <article :class="{ active : active }">
-            <h1>Du har nu avbokat </h1>
-            <span> {{ vikarie.namn }} </span>
-        </article>    -->
 
         <div id="confirm">
-            <h1>Du har nu avbokat vikarie:</h1> 
+            <h1>Du är på väg att avboka vikarie:</h1> 
             <h2> {{vikarie.namn}} </h2>
-
+            <p>Tryck på X för att slutföra avbokning.</p>
+            <br>
+            <a @click="$router.push('/vikarelista/')">Gå tillbaka</a>
             <div class="icon">
-                <img class="vikariebild" src="../assets/unconfirm.png" alt="Bild av vikarie" style="height:200px; width:200px;" />
+                <img class="vikariebild" src="../assets/unconfirm.png" alt="Bild av vikarie" />
             </div>  
         </div>
     </main>
@@ -55,9 +53,19 @@ export default {
         @extend %center;
         flex-direction: column;
 
+        & a {
+            padding: .5rem;
+            margin-top: .5rem;
+            border-radius: 3px;
+            @extend %center;
+            background: $purple;
+        }
+
         .icon{
-            height: 150px;
-            width: 150px;
+
+            & img {
+                width: 150px;
+            }
         }
         p {
             margin: 0;

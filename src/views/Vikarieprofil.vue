@@ -52,7 +52,7 @@
       
            <p class="input-bokare"> Bokare <input type="text"  placeholder="Bokare" v-model="nyBokning.bokare"></p>
            <p class="input-bokare"> Plats <input type="text" v-model="nyBokning.skola" placeholder="Plats"></p>
-       
+      
 
        <Kalender />
 
@@ -67,7 +67,7 @@
        </Modal>
 
      <!-- Avboka vikarie -->
-         <Modal btnText="Avboka"
+      <Modal btnText="Avboka"
           @before-close="deleteBokning(bokning._id)"
           v-if="bokning"
           :closeBtn="true"
@@ -75,7 +75,7 @@
           closeBtnHTML="<span>X</span>"
         >
         <avboka/>
-       </Modal>
+      </Modal>
 
       </div>
     </main>
@@ -130,13 +130,12 @@ export default {
         }
     },
     methods: {
-        async skapaBokning() {
+        skapaBokning() {
           this.nyBokning.datum.fran = this.$children[0].StartDate;
           this.nyBokning.datum.till = this.$children[0].EndDate;
 
           this.$store.dispatch('skapaBokning', this.nyBokning);
           this.$store.dispatch('getBokningar')
-
 
         },
         async deleteBokning(bokning){
@@ -160,7 +159,6 @@ export default {
        height: 2rem;
        color: white;
        text-decoration: none;
-
 
      }
 

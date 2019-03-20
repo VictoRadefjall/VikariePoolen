@@ -7,8 +7,12 @@
       </aside>
 
       <section class="info">        
-            <span v-if="new Date(vikarie.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="greenTxt"> Tillgänglig </span>
-           <span v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()" class="redTxt"> Bokad fram till {{ vikarie.datum.till }} </span>
+        <section v-if="!bokning || bokning != undefined && new Date(bokning.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="messages">
+          <span class="greenTxt"> Tillgänglig </span>
+        </section>
+        <section v-if="bokning != undefined">
+          <span v-if="new Date(bokning.datum.till).getUnixTime() > this.$store.state.today.toFixed()"> Bokad fram till {{ bokning.datum.till }} </span>
+        </section>
         <div class="nameEdit">
           <h2> {{ vikarie.namn }} </h2> 
           <div class="icon">
@@ -60,6 +64,10 @@ export default {
     },
     bokningar() {
       return this.$store.getters.bokningar;
+    },
+    bokning() {
+      let avbokning = this.$store.state.bokningar.filter(bokning => bokning.vikarie._id.match(this.vikarie._id));
+      return avbokning[0];
     }
   },
   methods: {
