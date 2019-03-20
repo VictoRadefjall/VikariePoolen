@@ -67,25 +67,17 @@
         <confirm/>
        </Modal>
 
-<<<<<<< HEAD
      <!-- Avboka vikarie -->
-         <Modal btnText="avboka"
-        @before-close="removeVikarie()"
-        :closeBtn="true"
-        class="boka-btn"
-        closeBtnHTML="<span>X</span>"
+         <Modal btnText="Avboka"
+          @before-close="deleteBokning(bokning._id)"
+          v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()"
+          :closeBtn="true"
+          class="boka-btn"
+          closeBtnHTML="<span>X</span>"
         >
-        <Avboka/>
-       </Modal>
-     
-=======
-       <Modal btnText="Avboka"
-       :closeBtn="true"
-       closeBtnHTML="<span>X</span>"
-        v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()">
         <avboka/>
        </Modal>
->>>>>>> 0805c99ead8987ffb4c1b5237d87748840472952
+     
 
       </div>
     </main>
@@ -102,9 +94,10 @@ export default {
     name: 'vikarieprofil',
     computed: {
         vikarie() {
-          console.log(this.$store.getters.getVikarieById(this.$route.params.id));
           return this.$store.getters.getVikarieById(this.$route.params.id);
-          
+        },
+        bokning() {
+          return this.$store.getters.bokningar;
         }
     },
     // kan säga att den tvingar computed att köras
@@ -147,8 +140,10 @@ export default {
 
 
         },
-         
-    }
+        async deleteBokning(bokning){
+          this.$store.dispatch('deleteBokning', bokning)
+        }  
+  }
 }
 </script>
 

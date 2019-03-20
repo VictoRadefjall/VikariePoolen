@@ -1,6 +1,6 @@
 <template>
     <main id="avboka">
-        <article :class="{ active : active }">
+        <article>
             <h1>Du har nu avbokat </h1>
             <span> {{ vikarie.namn }} </span>
                  <h2> Tack! </h2>

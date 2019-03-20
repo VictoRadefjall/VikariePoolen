@@ -1,6 +1,6 @@
 export default {
     vikarier: [],
-    apiUrl: 'http://localhost:3000',
+    apiUrl: 'http://localhost:3001',
     bokningar: [],
     bokning: {},
     loggedIn: false,
