@@ -177,11 +177,19 @@ function filterKommun(list, kommun) {
         border-bottom-right-radius: 5px;
 
         .logout{
+            border-radius: 3px;
+            color: #fff;
             border: none;
             background: rgb(208, 105, 255);
             margin: 1rem;
             padding: 5px;
             cursor: pointer;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                background: rgb(195, 0, 255);
+            }
+            
         }
 
 
@@ -201,6 +209,11 @@ function filterKommun(list, kommun) {
             color: white;
             cursor: pointer;
             font-size: .8rem;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            &:hover {
+                background: rgb(255, 0, 221);
+            }
         }
 
     }

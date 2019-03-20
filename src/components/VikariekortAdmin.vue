@@ -80,6 +80,7 @@ export default {
   width: 100vw;
   max-width: 480px;
   
+  
   .card {
     width: 40vw;
     height: 5rem;
@@ -91,6 +92,7 @@ export default {
     margin: .5rem;
     cursor: pointer;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-left: solid 5px rgb(166, 94, 180);
 
     .nameEdit{
       display: flex;
