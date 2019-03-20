@@ -26,7 +26,7 @@ export default {
         // skapar bokning
     async skapaBokning(data, nyBokning) {
       try {
-        
+      
         await axios.post(`${data.state.apiUrl}/bokningar`, nyBokning);
         data.dispatch('getBokningar');
       }
@@ -48,9 +48,9 @@ export default {
          // raderar en vikarie
     async deleteBokning(ctx, id) {
       try {
-        await axios.delete(`${ctx.state.apiUrl}/bokningar` + id);
-        await ctx.dispatch('getBokningar');
-        console.log('Bokning borttagen.')
+        await axios.delete(`${ctx.state.apiUrl}/bokningar/` + id);
+        await ctx.dispatch('getBokningar')
+        console.log('Bokning borttagen.');
       }
       catch(err) {
         console.error(err);
