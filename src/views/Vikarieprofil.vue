@@ -1,6 +1,5 @@
 <template>
     <main id="boka">
-      <!-- <div class="profil"> -->
 
         <button class="backBtn" @click="$router.push('/vikarielista')">
           &#8592; tillbaka
@@ -80,6 +79,7 @@
        <Kalender />
 
     <!-- Boka vikarie -->
+    <div class="btn">
        <Modal btnText="Boka"
         @before-close="skapaBokning()"
         v-if="!bokning"
@@ -89,8 +89,10 @@
         >
         <confirm/>
        </Modal>
+    </div>
 
      <!-- Avboka vikarie -->
+    <div class="btn">
       <Modal btnText="Avboka"
           @before-close="deleteBokning(bokning._id)"
           v-if="bokning"
@@ -100,8 +102,8 @@
         >
         <avboka/>
       </Modal>
-
-      <!-- </div> -->
+    </div>
+    
     </main>
 </template>
 
@@ -363,14 +365,22 @@ export default {
           flex-direction: column;
         }
       }
+      .btn{
+        width: 80%;
+        height: 3rem;
+        background: hotpink;
+        @extend %center;
+        margin-bottom: 1rem;
+        border-radius: 5px;
+      }
 
-     button {
-      background-color: #BFDE8E;
-      //  margin-bottom: 2rem;
-      //  width: 20rem;
-      //  height: 2rem;
+      button {
+      background-color: hotpink;
        color: white;
        text-decoration: none;
+       border: none;
+       font-size: 1rem;
+       cursor: pointer;
      }
 
     .input-bokare {
