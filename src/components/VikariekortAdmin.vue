@@ -77,11 +77,13 @@ export default {
   display: flex;
   flex-direction: column;
   @extend %center;
+  width: 100vw;
+  max-width: 480px;
   
   .card {
     width: 40vw;
     height: 5rem;
-    padding: 1rem;
+    padding: 1.1rem;
     display: inherit;
     border-radius: 5px;
     background: #eee;
@@ -143,6 +145,7 @@ export default {
             display: inherit;
             flex-direction: column;
             @extend %center;
+            color: rgb(148, 148, 148);
 
             span {
               font-weight: normal;
