@@ -1,6 +1,6 @@
 <template>
     <main id="admin">
-        <h1>Logga in som Admin</h1>
+        <h1 @click="$router.push('/')">Logga in som Admin</h1>
         <section class="login">
             <input v-model="username" type="text" class="username" placeholder="username">
             <input v-model="password" type="password" placeholder="password">
@@ -64,6 +64,7 @@ export default {
         font-family: 'Sansita';
         font-style: italic;
         text-transform: uppercase;
+        cursor: pointer;
     }
 
     .login {

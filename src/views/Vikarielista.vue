@@ -1,6 +1,6 @@
 <template>
   <main id="lista">
-    <h1>Vikarielista</h1>
+    <h1 @click="$router.push('/')">Vikarielista</h1>
 
     <header>
       <input type="search" v-model="search" placeholder="Sök efter vikarie...">
@@ -143,6 +143,7 @@ function filterKommun(list, kommun) {
     margin: 0;
     padding: 1rem;
     color: white;
+    cursor: pointer;
   }
 
   header {
