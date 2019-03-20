@@ -17,13 +17,6 @@
             <img src="../assets/avatar.png" alt="avatar"/>
           </div>
         </div>
-
-        <div class="status">
-          <p>status:</p>
-          <h3 class="redTxt" v-if="vikarie.datum.till != ''">Bokad</h3>
-          <h3 v-else>Tillgänglig</h3>
-        </div>
-
       </div>
 
       <section class="information">
@@ -79,30 +72,27 @@
        <Kalender />
 
     <!-- Boka vikarie -->
-    <div class="btn">
+
        <Modal btnText="Boka"
         @before-close="skapaBokning()"
-        v-if="!bokning"
+        v-if="!bokning || new Date(bokning.datum.till).getUnixTime() < this.$store.state.today.toFixed()"
         :closeBtn="true"
         class="boka-btn"
         closeBtnHTML="<span>X</span>"
         >
         <confirm/>
        </Modal>
-    </div>
 
      <!-- Avboka vikarie -->
-    <div class="btn">
       <Modal btnText="Avboka"
           @before-close="deleteBokning(bokning._id)"
-          v-if="bokning"
+          v-if="bokning && new Date(bokning.datum.till).getUnixTime() > this.$store.state.today.toFixed()"
           :closeBtn="true"
           class="boka-btn"
           closeBtnHTML="<span>Bekräfta avbokning</span>"
         >
         <avboka/>
       </Modal>
-    </div>
     
     </main>
 </template>
@@ -375,7 +365,7 @@ export default {
       }
 
       button {
-      background-color: hotpink;
+       background-color: hotpink;
        color: white;
        text-decoration: none;
        border: none;

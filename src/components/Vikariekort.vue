@@ -109,6 +109,7 @@ export default {
 
         .redTxt {
           color: rgb(253, 119, 104);
+           margin-top: .25rem;
         }
 
       h2 {
