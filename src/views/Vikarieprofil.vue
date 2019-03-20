@@ -73,7 +73,7 @@
           v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()"
           :closeBtn="true"
           class="boka-btn"
-          closeBtnHTML="<span>X</span>"
+          closeBtnHTML="<span>Bekräfta avbokning</span>"
         >
         <avboka/>
        </Modal>

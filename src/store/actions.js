@@ -23,7 +23,7 @@ export default {
         console.error(err);
       }
     },
-
+        // skapar bokning
     async skapaBokning(data, nyBokning) {
       try {
         
@@ -34,10 +34,10 @@ export default {
         console.error(err);
       }
     },
-
+         // avbokar en vikarie
     async removeVikarie(ctx, id) {
       try {
-        await axios.delete(`${ctx.state.apiUrl}/vikarier` + id);
+        await axios.delete(`${ctx.state.apiUrl}/vikarier/` + id);
         await ctx.dispatch('getVikarier');
         console.log('Användare borttagen.')
       }
@@ -45,7 +45,7 @@ export default {
         console.error(err);
       }
     },
-
+         // raderar en vikarie
     async deleteBokning(ctx, id) {
       try {
         await axios.delete(`${ctx.state.apiUrl}/bokningar` + id);
@@ -56,11 +56,10 @@ export default {
         console.error(err);
       }
     },
-
+  // login admin
     async login(ctx, loginData){
       try {
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData)
-
         sessionStorage.setItem('authAdmin', token.data.authToken);
         
         setTimeout(()=>{
@@ -68,7 +67,7 @@ export default {
         }, 1000)
 
         // Uppdatera för UI
-        ctx.commit('setActiveAdmin', token.data.username);
+       ctx.commit('setActiveAdmin', token.data.username);
 
       } catch(err) {
 
@@ -76,9 +75,13 @@ export default {
         
         setTimeout(()=>{
           ctx.commit('reject');
-        }, 1000)
-
+           console.log(err);
+        },1000)
+    
         console.error(err);      
-      }
-    },
-}
+      } 
+      
+      
+    }
+  }
+

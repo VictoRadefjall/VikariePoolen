@@ -4,10 +4,15 @@
         <section class="login">
             <input v-model="username" type="text" class="username" placeholder="username">
             <input v-model="password" type="password" placeholder="password">
-            <a href="#" @click="login" class="btn">Login</a>
+            <a href="#"  @click="login" class="btn">Login</a>
         </section>
     </main>
 </template>
+
+
+
+
+
 
 <script>
 export default {
@@ -51,6 +56,9 @@ export default {
     .rejected {
         color: red;
     }
+    .rejected:visited {
+  background: red;
+}
 
     & h1 {
         font-family: 'Sansita';
