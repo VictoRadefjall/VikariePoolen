@@ -57,6 +57,7 @@
 
        <Kalender />
 
+    <!-- Boka vikarie -->
        <Modal btnText="Boka"
         @before-close="skapaBokning()"
         :closeBtn="true"
@@ -64,6 +65,16 @@
         closeBtnHTML="<span>X</span>"
         >
         <confirm/>
+       </Modal>
+
+     <!-- Avboka vikarie -->
+         <Modal btnText="avboka"
+        @before-close="removeVikarie()"
+        :closeBtn="true"
+        class="boka-btn"
+        closeBtnHTML="<span>X</span>"
+        >
+        <Avboka/>
        </Modal>
      
 
@@ -76,7 +87,7 @@
 import Modal from "@melmacaluso/vue-modal"
 import confirm from '@/components/Confirm'
 import Kalender from '@/components/Kalender'
-//import avboka from '@/components/Avboka'
+import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
@@ -99,7 +110,10 @@ export default {
     components: {
         confirm,
         Modal,
-        Kalender
+        Kalender,
+        avboka,
+        confirm
+        
     },
     data(){
         return {
@@ -123,7 +137,8 @@ export default {
           this.$store.dispatch('getBokningar')
 
 
-        }
+        },
+         
     }
 }
 </script>

@@ -41,8 +41,8 @@
         </div>
 
         <div class="btn pads">
-          <button href="#" class="confirm" @click="$router.push('/panel')">Redigera</button>
-          <button href="#" @click="$router.push('/panel')" class="back">Tillbaka </button>
+          <button href="#" class="confirm" alt="Redigera" @click="$router.push('/panel')">Redigera</button>
+          <button href="#" @click="$router.push('/panel')" alt="tillbaka" class="back">Tillbaka </button>
         </div>
 
       </aside>

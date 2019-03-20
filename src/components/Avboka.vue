@@ -3,6 +3,7 @@
         <article :class="{ active : active }">
             <h1>Du har nu avbokat </h1>
             <span> {{ vikarie.namn }} </span>
+                 <h2> Tack! </h2>
         </article>   
          <section id="btn">
             <button type="button">Tillbaka</button>
@@ -10,19 +11,21 @@
     </main>
 </template>
 
+
+
 <script>
 export default {
     name: 'avboka',
-    props: ['active'],
     computed: {
         vikarie() {
-            return this.$store.getters.getVikarieById(this.$route.params.id);
+          return this.$store.getters.getVikarieById(this.$route.params.id);
         },
     },
-
-
 };
 </script>
+
+
+
 
 
 <style lang="scss">
