@@ -8,6 +8,18 @@ export default {
     getVikarieById(state){
       return(vikarieId) => {
         return state.vikarier.filter(vikarie => vikarie._id == vikarieId)[0];
-      };
-    }
+      }
+    },
+    bookedVikarier(state) {
+      return state.vikarier.filter(vikarie => !vikarie.ledig)
+    },
+    activeVikarier(state) {
+      return state.vikarier.filter(vikarie => vikarie.ledig)
+    },
+    oldBookings(state) {
+      return state.bokningar.filter(bokning => new Date(bokning.datum.till).getUnixTime() <= state.today.toFixed());
+    },
+    currentBookings(state) {
+      return state.vikarier.filter(bokning => new Date(bokning.datum.till).getUnixTime() >= state.today.toFixed())
+    },
 };

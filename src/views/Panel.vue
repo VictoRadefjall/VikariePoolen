@@ -2,10 +2,10 @@
     <main id="panel">
 
         <section class="topnav">
+            <button class="logout" @click="logout">Logga ut</button>
             <h1>Admin Panel</h1> 
             <button @click="$router.push('/add')">Lägg till</button>
         </section>
-
 
         <!-- Filter Section -->
         <section class="selections">
@@ -35,14 +35,24 @@
                 <option v-for="klass in klasser" :key="klass" :value="klass">{{ klass }}</option>
             </select>
             </div>
+            <a name="top"></a>
         </section>
 
         <router-view />
 
         <section class="list-active">   
+            <h3>Tillgängliga</h3>
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
+        </section>
 
-        <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
+        <section class="list-booked">
+            <h3>Bokade</h3>
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in currentBookings" :key="index" :vikarie="vikarie" />  
+        </section>
+        
 
+        <section class="list-finished">
+            <Bokningskort />
         </section>
 
     </main>
@@ -50,11 +60,13 @@
 
 <script>
 import VikariekortAdmin from '../components/VikariekortAdmin'
+import Bokningskort from '../components/Bokningskort'
 
 export default {
     name: 'panel',
     components: {
-        VikariekortAdmin
+        VikariekortAdmin,
+        Bokningskort
     }, 
     data() {
         return {
@@ -63,12 +75,27 @@ export default {
             klass: 'Alla'
         }
     },
+    methods: {
+        logout() {
+            sessionStorage.clear();
+            this.$router.push('/');
+        }
+    },
     computed: {
         filterAll() {
-            return filterAmne(filterKommun(filterKlass(this.vikarier, this.klass), this.kommun), this.amne)
+            return filterAmne(filterKommun(filterKlass(this.activeVikarier, this.klass), this.kommun), this.amne)
         },
-        vikarier() {
-            return this.$store.getters.vikarier;
+        bookedVikarier() {
+            return this.$store.getters.bookedVikarier;
+        },
+        activeVikarier() {
+            return this.$store.getters.activeVikarier;
+        },
+        currentBookings() {
+            return this.$store.getters.currentBookings;
+        },
+        oldBookings() {
+            return this.$store.getters.oldBookings;
         },
         kommuner() {
             return this.$store.state.kommuner;
@@ -92,7 +119,7 @@ function filterKlass(list, klass) {
     }
 }
 
-function filterAmne(list, amne) {
+function filterAmne(list, amne) { 
     if (amne == 'Alla') {
       return list;
     } else {
@@ -123,11 +150,16 @@ function filterKommun(list, kommun) {
     display: flex;
     justify-content: center;
     align-items: center;
-    max-width: 460px;
+    max-width: 480px;
     width: 100%;
     margin: auto;
     background: $lightpurple;
     flex-direction: column;
+
+    .list-active, .list-booked {
+        width: 90vw;
+        max-width: 460px;
+    }
 
 
     .topnav{
@@ -141,6 +173,7 @@ function filterKommun(list, kommun) {
         background: #8729FF;
         border-radius: 5px;
 
+
         h1{
             color: whitesmoke;
             font-size: 1.5rem;
@@ -149,6 +182,7 @@ function filterKommun(list, kommun) {
             text-transform: uppercase;
             letter-spacing: 3px;
         }
+
         button{
             margin: 10px;
             padding: 5px;
@@ -156,7 +190,13 @@ function filterKommun(list, kommun) {
             border-radius: 5px;
             background: none;
             color: white;
+
+            &.logout {
+                background: #222;
+                border: none;
+            } 
         }
+
     }
 
     .selections {
@@ -184,11 +224,30 @@ function filterKommun(list, kommun) {
       }    
     
     }
-    .card{
+    .card {
         width: 100%;
     }
+    
+    .bookedCard {
+        width: 100%;
+        background: white;
 
+        ul {
+            li {
+                list-style-type: none;
+            }
+        }
+    }
 
+    @media screen and (max-width: 500px) {
+    
+    .selections {
+        select {
+            width: 30vw;
+        }
+    }
+
+    }
 }
 
 

@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
+import auth from './auth';
 
 Vue.use(Router);
-
-export default new Router({
+let router = new Router({
   mode: 'history',
   base: process.env.BASE_URL,
   routes: [
@@ -27,11 +27,17 @@ export default new Router({
     {
       path: '/panel',
       name: 'panel',
+      meta: { 
+        requiresAuth: true
+      },
       component: () => import('./views/Panel.vue'),
       children: [
         {
           path: '/panel/:id',
           name: 'edituser',
+          meta: { 
+            requiresAuth: true
+          },
           component: () => import('./views/EditUser.vue')
         }
       ]
@@ -39,7 +45,15 @@ export default new Router({
     {
       path: '/add',
       name: 'adduser',
+      meta: { 
+        requiresAuth: true
+      },
       component: () => import('./views/AddUser.vue')
+    },
+    {
+      path: '/login',
+      name: 'admin',
+      component: () => import('./views/Admin.vue')
     },
     {
       path: '*',
@@ -47,3 +61,14 @@ export default new Router({
     }
   ]
 });
+
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth) && !auth.isAuthenticated()) {
+    next({ path: '/admin' });
+  } else {
+    next();
+  }
+});
+
+export default router;

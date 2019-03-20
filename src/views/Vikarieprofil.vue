@@ -11,7 +11,7 @@
 
     <div class="vikarie-bild-status">
         <div class="vikarie-bild">
-          <img  src="../assets/avatar.png" alt="avatar"/>
+          <img src="../assets/avatar.png" alt="avatar"/>
         </div>
 
         </div>
@@ -67,6 +67,7 @@
         <confirm/>
        </Modal>
 
+<<<<<<< HEAD
      <!-- Avboka vikarie -->
          <Modal btnText="avboka"
         @before-close="removeVikarie()"
@@ -77,6 +78,14 @@
         <Avboka/>
        </Modal>
      
+=======
+       <Modal btnText="Avboka"
+       :closeBtn="true"
+       closeBtnHTML="<span>X</span>"
+        v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()">
+        <avboka/>
+       </Modal>
+>>>>>>> 0805c99ead8987ffb4c1b5237d87748840472952
 
       </div>
     </main>
@@ -111,8 +120,7 @@ export default {
         confirm,
         Modal,
         Kalender,
-        avboka,
-        confirm
+        avboka
         
     },
     data(){
@@ -125,7 +133,8 @@ export default {
               },
               bokare: '',
               skola: ''
-            }
+            },
+           
         }
     },
     methods: {
