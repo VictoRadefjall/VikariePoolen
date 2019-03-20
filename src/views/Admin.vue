@@ -9,11 +9,6 @@
     </main>
 </template>
 
-
-
-
-
-
 <script>
 export default {
     name: 'admin',
