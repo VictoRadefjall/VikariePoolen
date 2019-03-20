@@ -33,16 +33,18 @@ export default {
 <style lang="scss">
 @import '../scss/main.scss';
 
-.bookingcard{
+.bookingcard {
     display: flex;
     flex-direction: row;
     background: #eee;
     max-width: 480px;
+    width: 100vw;
     border-radius: 5px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-left: solid 8px salmon;
+    margin-top: 1rem;
 
-    .name{
+    .name {
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -50,7 +52,7 @@ export default {
         width: 70%;
         text-align: left;
     }
-    .date{
+    .date {
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
@@ -80,6 +82,13 @@ export default {
             padding: 0;
             margin: 0;
             color:lightslategray;
+        }
+
+        @media screen and (max-width: 500px) {
+            .name {
+                width: 10%;
+            }
+ 
         }
 }
 

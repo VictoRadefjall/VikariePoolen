@@ -64,8 +64,8 @@
           <div class="bokning">
 
             <div class="who">
-              <p class="input-bokare"> Bokare: </p> 
               <p class="input-bokare"> Skola: </p> 
+              <p class="input-bokare"> Bokare: </p> 
             </div>
 
             <div class="where">
@@ -200,7 +200,7 @@ export default {
       flex-direction: column;
       @extend %center;
       background: white;
-      max-width: 430px;
+      max-width: 500px;
       width: 100vw;
       z-index: 1;
       position: sticky;

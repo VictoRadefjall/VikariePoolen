@@ -89,7 +89,6 @@ export default {
         max-width: 480px;
     }
 
-
     .topnav{
         display: flex;
         flex-direction: row;
@@ -179,7 +178,7 @@ export default {
     @media screen and (max-width: 500px) {
         #panel {
             overflow: hidden;
-
+    
         }
 
         .list-finished :nth-child(2) {
