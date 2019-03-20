@@ -45,7 +45,6 @@ export default {
         flex-direction: column;
 
         .icon{
-
             & img {
                 width: 150px;
             }
