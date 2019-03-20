@@ -37,7 +37,7 @@ export default {
 
     async removeVikarie(ctx, id) {
       try {
-        await axios.delete(`${ctx.state.apiUrl}/vikarier` + id);
+        await axios.delete(`${ctx.state.apiUrl}/vikarier/` + id);
         await ctx.dispatch('getVikarier');
         console.log('Användare borttagen.')
       }
@@ -48,9 +48,9 @@ export default {
 
     async deleteBokning(ctx, id) {
       try {
-        await axios.delete(`${ctx.state.apiUrl}/bokningar` + id);
-        await ctx.dispatch('getBokningar');
-        console.log('Bokning borttagen.')
+        await axios.delete(`${ctx.state.apiUrl}/bokningar/` + id);
+        await ctx.dispatch('getBokningar')
+        console.log('Bokning borttagen.');
       }
       catch(err) {
         console.error(err);

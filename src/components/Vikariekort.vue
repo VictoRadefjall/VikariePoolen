@@ -9,8 +9,10 @@
 
       <section class="info">
         <h2> {{ vikarie.namn }} </h2>
-          <span v-if="new Date(vikarie.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="greenTxt"> Tillgänglig </span>
-          <span v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()" class="redTxt"> Bokad fram till {{ vikarie.datum.till }} </span>
+          <span v-if="!bokning" class="greenTxt"> Tillgänglig </span>
+        <section v-if="bokning != undefined" class="messages">
+          <span v-if="new Date(bokning.datum.till).getUnixTime() > this.$store.state.today.toFixed()" class="redTxt"> Bokad fram till {{ bokning.datum.till }} </span>
+        </section>
         <article>
           <p> 
             Ämnen: 
@@ -57,7 +59,11 @@ export default {
     },
     bokningar() {
       return this.$store.getters.bokningar
-    }
+    },
+    bokning() {
+      let avbokning = this.$store.state.bokningar.filter(bokning => bokning.vikarie._id.match(this.vikarie._id));
+      return avbokning[0];
+    },
   }
 }
 </script>
@@ -94,10 +100,12 @@ export default {
 
         .greenTxt {
           color: green;
+          margin-top: .25rem;
         }
 
         .redTxt {
           color: red;
+          margin-top: .25rem;
         }
 
       h2 {

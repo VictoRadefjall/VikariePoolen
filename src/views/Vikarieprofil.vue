@@ -52,7 +52,6 @@
       
            <p class="input-bokare"> Bokare <input type="text"  placeholder="Bokare" v-model="nyBokning.bokare"></p>
            <p class="input-bokare"> Plats <input type="text" v-model="nyBokning.skola" placeholder="Plats"></p>
-
        
 
        <Kalender />
@@ -70,14 +69,13 @@
      <!-- Avboka vikarie -->
          <Modal btnText="Avboka"
           @before-close="deleteBokning(bokning._id)"
-          v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()"
+          v-if="bokning"
           :closeBtn="true"
           class="boka-btn"
           closeBtnHTML="<span>X</span>"
         >
         <avboka/>
        </Modal>
-     
 
       </div>
     </main>
@@ -97,8 +95,9 @@ export default {
           return this.$store.getters.getVikarieById(this.$route.params.id);
         },
         bokning() {
-          return this.$store.getters.bokningar;
-        }
+          let avbokning = this.$store.state.bokningar.filter(bokning => bokning.vikarie._id.match(this.vikarie._id));
+          return avbokning[0];
+        },
     },
     // kan säga att den tvingar computed att köras
     watch: {
