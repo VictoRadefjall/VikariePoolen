@@ -6,9 +6,11 @@
         <img class="vikariebild" src="../assets/avatar.png" alt="Bild av vikarie" />
       </aside>
 
-      <section class="info">
+      <section class="info">        
+            <span v-if="new Date(vikarie.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="greenTxt"> Tillgänglig </span>
+           <span v-if="new Date(vikarie.datum.till).getUnixTime() > this.$store.state.today.toFixed()" class="redTxt"> Bokad fram till {{ vikarie.datum.till }} </span>
         <div class="nameEdit">
-          <h2> {{ vikarie.namn }} </h2>
+          <h2> {{ vikarie.namn }} </h2> 
           <div class="icon">
             <a href="#top"><i class="fas fa-user-edit" @click="$router.push(`/panel/${vikarie._id}`)" href="#top"></i></a>
             <i class="fas fa-user-minus" @click="removeVikarie(vikarie._id)"></i>
@@ -110,6 +112,15 @@ export default {
       flex-direction: column;
       margin-left: .5rem;
       flex: 7;
+
+        & span {
+          font-size: .75em;
+          display: flex;
+          margin-top: -.25rem;
+          padding-bottom: .75rem;
+          font-weight: 600;
+          color: $purple;
+        }
 
       h2 {
         display: inherit;

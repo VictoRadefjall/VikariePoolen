@@ -20,6 +20,6 @@ export default {
       return state.bokningar.filter(bokning => new Date(bokning.datum.till).getUnixTime() <= state.today.toFixed());
     },
     currentBookings(state) {
-      return state.bokningar.filter(bokning => new Date(bokning.datum.till).getUnixTime() >= state.today.toFixed())
+      return state.vikarier.filter(bokning => new Date(bokning.datum.till).getUnixTime() >= state.today.toFixed())
     },
 };

@@ -47,29 +47,12 @@
 
         <section class="list-booked">
             <h3>Bokade</h3>
-            <div class="card" v-for="bokning in currentBookings" :key="bokning.id">  
-                <ul>
-                   <li> Vikarie: {{ bokning.vikarie.namn }} </li>
-                   <li> Från: {{ bokning.datum.fran }} </li>
-                    <li> Till: {{ bokning.datum.till }} </li>
-                    <li> Bokad av: {{ bokning.bokare }} </li>
-                    <li> Skola: {{ bokning.skola }} </li>
-              </ul>
-            </div>
+            <VikariekortAdmin class="card" v-for="(vikarie, index) in currentBookings" :key="index" :vikarie="vikarie" />  
         </section>
         
 
         <section class="list-finished">
-            <h3>Avslutade</h3>
-            <div class="card" v-for="bokning in oldBookings" :key="bokning.id">  
-                <ul>
-                   <li> Vikarie: {{ bokning.vikarie.namn }} </li>
-                   <li> Från: {{ bokning.datum.fran }} </li>
-                    <li> Till: {{ bokning.datum.till }} </li>
-                    <li> Bokad av: {{ bokning.bokare }} </li>
-                    <li> Skola: {{ bokning.skola }} </li>
-              </ul>
-            </div>
+            <Bokningskort />
         </section>
 
     </main>
@@ -77,11 +60,13 @@
 
 <script>
 import VikariekortAdmin from '../components/VikariekortAdmin'
+import Bokningskort from '../components/Bokningskort'
 
 export default {
     name: 'panel',
     components: {
-        VikariekortAdmin
+        VikariekortAdmin,
+        Bokningskort
     }, 
     data() {
         return {

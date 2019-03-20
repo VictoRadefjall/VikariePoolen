@@ -57,9 +57,6 @@ export default {
     },
     bokningar() {
       return this.$store.getters.bokningar
-    },
-    test() {
-      return this.$store.getters.test
     }
   }
 }
