@@ -26,7 +26,7 @@ export default {
 
     async skapaBokning(data, nyBokning) {
       try {
-        
+      
         await axios.post(`${data.state.apiUrl}/bokningar`, nyBokning);
         data.dispatch('getBokningar');
       }
