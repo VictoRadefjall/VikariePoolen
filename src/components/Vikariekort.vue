@@ -9,10 +9,13 @@
 
       <section class="info">
         <h2> {{ vikarie.namn }} </h2>
-          <span v-if="!bokning" class="greenTxt"> Tillgänglig </span>
+        <section v-if="!bokning || bokning != undefined && new Date(bokning.datum.till).getUnixTime() < this.$store.state.today.toFixed()" class="messages">
+          <span class="greenTxt"> Tillgänglig </span>
+        </section>
         <section v-if="bokning != undefined" class="messages">
           <span v-if="new Date(bokning.datum.till).getUnixTime() > this.$store.state.today.toFixed()" class="redTxt"> Bokad fram till {{ bokning.datum.till }} </span>
         </section>
+
         <article>
           <p> 
             Ämnen: 
