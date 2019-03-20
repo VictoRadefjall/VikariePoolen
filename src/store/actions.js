@@ -62,9 +62,7 @@ export default {
         let token = await axios.post(`${ctx.state.apiUrl}/auth`, loginData)
         sessionStorage.setItem('authAdmin', token.data.authToken);
         
-        setTimeout(()=>{
-          router.push('/panel');
-        }, 1000)
+        router.push('/panel');
 
         // Uppdatera för UI
        ctx.commit('setActiveAdmin', token.data.username);

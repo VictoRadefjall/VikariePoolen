@@ -152,7 +152,7 @@ function filterKommun(list, kommun) {
     justify-content: center;
     align-items: center;
     max-width: 480px;
-    width: 100%;
+    width: 100vw;
     margin: auto;
     background: $lightpurple;
     flex-direction: column;
@@ -238,13 +238,12 @@ function filterKommun(list, kommun) {
       }    
     
     }
-    .card {
-        width: 100%;
-    }
+
 
     @media screen and (max-width: 500px) {
         #panel {
             overflow: hidden;
+
         }
     
     .selections {
@@ -253,9 +252,6 @@ function filterKommun(list, kommun) {
         }
     }
 
-    .category, .topnav{
-        width: 100vw;
-    }
 
     }
 }

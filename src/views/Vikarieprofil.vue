@@ -72,6 +72,7 @@
     <!-- Boka vikarie -->
        <Modal btnText="Boka"
         @before-close="skapaBokning()"
+        v-if="!bokning"
         :closeBtn="true"
         class="boka-btn"
         closeBtnHTML="<span>X</span>"
@@ -283,6 +284,7 @@ export default {
                   padding: .25rem;
                   margin: 0;
                   display: flex;
+                  height: 7.5rem;
                   flex-direction: column;
                 
                   li {

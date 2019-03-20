@@ -1,6 +1,7 @@
 <template>
     <main id="admin">
         <h1 @click="$router.push('/')">Logga in som Admin</h1>
+        <span class="redTxt" v-if="!this.validPassword || !this.validUsername"> Fel användarnamn eller lösenord. </span>
         <section class="login">
             <input v-model="username" type="text" class="username" placeholder="username">
             <input v-model="password" type="password" placeholder="password">
@@ -14,8 +15,8 @@ export default {
     name: 'admin',
     data(){
         return {
-            username: 'admin',
-            password: 'poolare123',
+            username: '',
+            password: '',
             validUsername: true,
             validPassword: true
         }
@@ -23,18 +24,25 @@ export default {
     methods: {
         login(){
             if(this.validUsername && this.validPassword) {
-                this.isLoggedIn = true;
                 this.$store.dispatch('login', {username: this.username, password: this.password });
             } 
         }
     },
-    computed: {
-        admin() {
-            return this.$store.state.activeAdmin;
+    watch: {
+        username(val){
+            if(val.length == 5 && this.username == 'admin') {
+                this.validUsername = true;
+            } else {
+                this.validUsername = false;
+            }
         },
-        loggedIn() {
-            return this.$store.state.loggedIn;
-        }
+        password(val){
+            if(val.length == 10 && this.password == 'poolare123') {
+                this.validPassword = true;
+            } else {
+                this.validPassword = false;
+            }
+        },
     }
 }
 </script>
@@ -47,13 +55,16 @@ export default {
     flex-direction: column;
     width: 100vw;
     color: white;
-
-    .rejected {
+    
+    .redTxt {
         color: red;
+        font-size: .75em;
     }
-    .rejected:visited {
-  background: red;
-}
+
+    .greenTxt {
+        color: green;
+        font-size: .75em;
+    }
 
     & h1 {
         font-family: 'Sansita';
