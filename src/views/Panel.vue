@@ -3,7 +3,7 @@
 
         <section class="topnav">
             <button class="logout" @click="logout">Logga ut</button>
-            <h1>Admin Panel</h1> 
+            <h1>Admin Panel</h1>
             <div class="add" @click="$router.push('/add')">Lägg till</div>
         </section>
 
@@ -41,18 +41,19 @@
         <router-view />
 
         <section class="list-active">   
-            <h3>Tillgängliga</h3>
+            <h3 class="category">Tillgängliga</h3>
             <VikariekortAdmin class="card" v-for="(vikarie, index) in filterAll" :key="index" :vikarie="vikarie" />  
         </section>
 
         <section class="list-booked">
-            <h3>Bokade</h3>
+            <h3 class="category">Bokade</h3>
             <VikariekortAdmin class="card" v-for="(vikarie, index) in currentBookings" :key="index" :vikarie="vikarie" />  
         </section>
         
 
         <section class="list-finished">
-            <Bokningskort />
+            <h3 class="category">Avslutade</h3>
+            <Bokningskort class="card" />
         </section>
 
     </main>
@@ -156,9 +157,9 @@ function filterKommun(list, kommun) {
     background: $lightpurple;
     flex-direction: column;
 
-    .list-active, .list-booked {
-        width: 90vw;
-        max-width: 460px;
+    .list-active, .list-booked, .list-finished {
+        width: 100vw;
+        max-width: 480px;
     }
 
 
@@ -167,11 +168,21 @@ function filterKommun(list, kommun) {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        width: 100%;
+        max-width: 480px;
+        width: 100vw;
         margin: auto;
         height: 50px;
         background: #8729FF;
-        border-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border-bottom-right-radius: 5px;
+
+        .logout{
+            border: none;
+            background: rgb(208, 105, 255);
+            margin: 1rem;
+            padding: 5px;
+            cursor: pointer;
+        }
 
 
         h1{
@@ -183,21 +194,23 @@ function filterKommun(list, kommun) {
             letter-spacing: 3px;
         }
         .add{
-            margin: 10px;
-            padding: 5px;
-            // border: solid white 2px;
-            border-radius: 15px;
+            margin: 1rem;
+            padding: 8px;
+            border-radius: 99999rem;
             background: #F151C4;
             color: white;
             cursor: pointer;
             font-size: .8rem;
-
-            &.logout {
-                background: #222;
-                border: none;
-            } 
         }
 
+    }
+
+    .category{
+        background: rgba(134, 41, 255, 0.63);
+        text-align: left;
+        padding: 8px;
+        color: whitesmoke;
+        max-width: 480px;
     }
 
     .selections {
@@ -228,24 +241,20 @@ function filterKommun(list, kommun) {
     .card {
         width: 100%;
     }
-    
-    .bookedCard {
-        width: 100%;
-        background: white;
-
-        ul {
-            li {
-                list-style-type: none;
-            }
-        }
-    }
 
     @media screen and (max-width: 500px) {
+        #panel {
+            overflow: hidden;
+        }
     
     .selections {
         select {
             width: 30vw;
         }
+    }
+
+    .category, .topnav{
+        width: 100vw;
     }
 
     }
