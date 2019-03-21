@@ -19,6 +19,7 @@ export default {
     name: 'admin',
     data(){
         return {
+            isLoggedIn,
             username: 'admin',
             password: 'poolare123',
             validUsername: true,

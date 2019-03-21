@@ -90,6 +90,9 @@ import avboka from '@/components/Avboka'
 
 export default {
     name: 'vikarieprofil',
+    data(){
+      this.isLoggedIn
+    },
     computed: {
         vikarie() {
           return this.$store.getters.getVikarieById(this.$route.params.id);
