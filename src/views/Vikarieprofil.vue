@@ -22,36 +22,38 @@
       <section class="information">
           <article>
 
-            <div class="vikarieInfo ">
-              <label class="rubrik">Kommun:</label>
-              <ul>
-                <li v-for="kommun in vikarie.kommun" :key="kommun">
-                  {{ kommun }}
-                </li> 
-              </ul>
-            </div>  
+          <!-- Kommuner -->
+          <div class="vikarieInfo ">
+            <label class="rubrik">Kommun:</label>
+            <ul>
+              <li v-for="kommun in vikarie.kommun" :key="kommun">
+                {{ kommun }}
+              </li> 
+            </ul>
+          </div>  
             
+          <!-- Ämnen -->
+          <div class="vikarieInfo ">
+            <label class="rubrik">Ämne:</label>
+            <ul>
+              <li v-for="amne in vikarie.amne" :key="amne"> 
+                {{ amne }} 
+              </li>
+            </ul>
+          </div> 
 
-           <div class="vikarieInfo ">
-              <label class="rubrik">Ämne:</label>
-              <ul>
-                <li v-for="amne in vikarie.amne" :key="amne"> 
-                  {{ amne }} 
-                </li>
-              </ul>
-           </div> 
-
-            <div class="vikarieInfo"> 
-              <label class="rubrik">Årskurs:</label>
-              <ul>
-                <li v-for="klass in vikarie.klass" :key="klass">
-                  {{ klass }}
-                </li> 
-              </ul>
-            </div>     
-        
-          </article>
-      </section>  
+          <!-- Årskurs -->
+          <div class="vikarieInfo"> 
+            <label class="rubrik">Årskurs:</label>
+            <ul>
+              <li v-for="klass in vikarie.klass" :key="klass">
+                {{ klass }}
+              </li> 
+            </ul>
+          </div>     
+      
+        </article>
+    </section>  
 
           <div class="bokning">
 
@@ -60,6 +62,7 @@
               <p class="input-bokare"> Bokare: </p> 
             </div>
 
+            <!-- Bokare och skola -->
             <div class="where">
               <input type="text" v-model="nyBokning.skola" placeholder="Till vilken skola..">
               <input type="text"  placeholder="Skriv in ditt namn.." v-model="nyBokning.bokare">
